@@ -30,8 +30,6 @@ public class LiquidContainerSetting : MonoBehaviour
     [SerializeField]
     Rigidbody rb;
 
-    [SerializeField] TextMeshProUGUI text;
-
     [Space(10)]
     [Header("Pour Setting")]
     [SerializeField]
@@ -70,8 +68,7 @@ public class LiquidContainerSetting : MonoBehaviour
             rb = rigidbody;
             lastVelocity = rb.velocity;
         }
-        else
-        {
+        if(!rb){
             isStationary = true;
         }
         SetFill();
@@ -87,10 +84,6 @@ public class LiquidContainerSetting : MonoBehaviour
             SetPour();
             CheckPour();
             PourParticle();
-        }
-        if (text)
-        {
-            UpdateText();
         }
     }
 
@@ -217,10 +210,5 @@ public class LiquidContainerSetting : MonoBehaviour
     public float GetFillLevel()
     {
         return fillAmount;
-    }
-
-    void UpdateText()
-    {
-        text.SetText((fillAmount * 100).ToString("F2"));
     }
 }

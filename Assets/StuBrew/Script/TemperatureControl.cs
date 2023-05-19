@@ -19,23 +19,9 @@ public class TemperatureControl : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI text;
 
-    [SerializeField]
-    float temperatureThreshold = 77f;
-    [SerializeField]
-    UnityEvent<bool> aboveTemperatureThreshold;
-
     void Update()
     {
         Cool();
-
-        if(temperature > temperatureThreshold)
-        {
-            aboveTemperatureThreshold?.Invoke(true);
-        }
-        else
-        {
-            aboveTemperatureThreshold?.Invoke(false);
-        }
 
         if(text)
             text.SetText(temperature.ToString("0"));
@@ -54,5 +40,10 @@ public class TemperatureControl : MonoBehaviour
     public void Cool(float heatLoss)
     {
         temperature = Mathf.Clamp(temperature - heatLoss * Time.deltaTime, roomTemperature, maxTemperature);
+    }
+
+    public float GetTemperature()
+    {
+        return temperature;
     }
 }

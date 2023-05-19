@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class MashTunProcess : MonoBehaviour
+public class MashTunProcess : StuBrew.BrewingProcess
 {
     [SerializeField]
     ParticleHopper maltHopper;
@@ -14,25 +14,44 @@ public class MashTunProcess : MonoBehaviour
     [SerializeField]
     float timeOvertime = 0.01f;
 
-    [SerializeField] TextMeshProUGUI text;
+    [SerializeField] TextMeshProUGUI waterText;
+    [SerializeField] TextMeshProUGUI timeText;
 
+    [SerializeField] private float waterTarget = 0.7f;
+    private float waterFill = 0f;
     void Start()
     {
-        maltHopper = GetComponent<ParticleHopper>();
+        base.Start();
+        if (!maltHopper)
+            maltHopper = GetComponent<ParticleHopper>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (maltHopper.GetFillLevel() == 1 && water.GetFillLevel() == 1)
+        waterFill = water.GetFillLevel();
+        if (maltHopper.GetFillLevel() >= 1 && water.GetFillLevel() >= 0.7)
         {
             time = Mathf.Clamp(time + timeOvertime * Time.deltaTime, 0, 1);
-            UpdateText();
         }
+
+        if(time >= 1 && !canNext)
+        {
+            TriggerNextProcess();
+            canNext = true;
+        }
+        if (time < 1 && canNext)
+        {
+            TriggerNextProcess(false);
+            canNext = false;
+        }
+
+        UpdateText();
     }
 
     void UpdateText()
     {
-        text.SetText((time).ToString("F2"));
+        timeText.SetText((time * 100).ToString("F2"));
+        waterText.SetText((waterFill * 100 / waterTarget).ToString("F2"));
     }
 }
