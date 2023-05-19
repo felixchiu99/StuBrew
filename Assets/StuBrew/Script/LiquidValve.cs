@@ -48,7 +48,7 @@ public class LiquidValve : Autohand.PhysicsGadgetHingeAngleReader
         }
     }
 
-    public void ToggleFluidTransfer(bool isEnable)
+    public void EnableFluidTransfer(bool isEnable)
     {
         allowFluidTransfer = isEnable;
     }

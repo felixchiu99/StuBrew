@@ -19,7 +19,10 @@ public class MashTunProcess : StuBrew.BrewingProcess
 
     [SerializeField] private float waterTarget = 0.7f;
     private float waterFill = 0f;
-    void Start()
+
+    private short processStage = 0;
+
+    new void Start()
     {
         base.Start();
         if (!maltHopper)
@@ -39,11 +42,16 @@ public class MashTunProcess : StuBrew.BrewingProcess
         {
             TriggerNextProcess();
             canNext = true;
+            maltHopper.ClearFill();
         }
         if (time < 1 && canNext)
         {
             TriggerNextProcess(false);
             canNext = false;
+        }
+        if(time > 0)
+        {
+            TriggerOnProcessStarted();
         }
 
         UpdateText();

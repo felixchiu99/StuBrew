@@ -16,6 +16,8 @@ public class PhysicsGadgetSwitch : Autohand.PhysicsGadgetHingeAngleReader
 
     HingeJoint hinge;
 
+    short forcedDir = 0;
+
     protected override void Start()
     {
         base.Start();
@@ -35,27 +37,61 @@ public class PhysicsGadgetSwitch : Autohand.PhysicsGadgetHingeAngleReader
             switchOff?.Invoke();
         }
     }
+    
+    float ForceLeverOn(bool dir)
+    {
+        bool actualDir = dir;
+        if(forcedDir != 0)
+        {
+            actualDir = forcedDir > 0;
+        }
+        float targetPosition;
+        if (actualDir)
+        {
+            targetPosition = 100;
+        }
+        else
+        {
+            targetPosition = 0;
+        }
+        return targetPosition;
+    }
 
     void CheckLeverPos()
     {
         var spring = hinge.spring;
         spring.spring = 1f;
+        if (forcedDir != 0)
+            spring.spring = 5f;
         spring.damper = 1f;
 
         var value = GetValue();
 
         if(value > cutOffValue)
         {
-            spring.targetPosition = 100;
+            spring.targetPosition = ForceLeverOn(true);
             isOn = true;
+            if (forcedDir > 0)
+                forcedDir = 0;
         }
         else
         {
-            spring.targetPosition = 0;
+            spring.targetPosition = ForceLeverOn(false);
             isOn = false;
+            if (forcedDir < 0)
+                forcedDir = 0;
         }
 
         hinge.spring = spring;
         hinge.useSpring = true;
+    }
+
+    public void ForceState(bool dir = false)
+    {
+        forcedDir = dir ? (short)1 : (short)-1;
+    }
+    public bool GetState()
+    {
+        return isOn;
     }
 }

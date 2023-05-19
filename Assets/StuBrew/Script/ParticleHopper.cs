@@ -77,4 +77,8 @@ public class ParticleHopper : MonoBehaviour
     {
         return particleCount == 0 ? 0 : particleCount / particleMax;
     }
+    public void ClearFill()
+    {
+        particleCount = 0;
+    }
 }

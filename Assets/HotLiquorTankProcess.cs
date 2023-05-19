@@ -10,7 +10,7 @@ public class HotLiquorTankProcess : StuBrew.BrewingProcess
     [SerializeField]
     float temperatureThreshold = 77f;
 
-    void Start()
+    new void Start()
     {
         base.Start();
         tempControl = GetComponent<TemperatureControl>();

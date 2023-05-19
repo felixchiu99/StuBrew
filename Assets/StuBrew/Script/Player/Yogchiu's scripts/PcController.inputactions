@@ -6,15 +6,6 @@
             "id": "7d33d717-9095-47ce-8ec9-265f3c4a03f5",
             "actions": [
                 {
-                    "name": "Move",
-                    "type": "Value",
-                    "id": "e99bcf3f-647e-4f0b-9031-15c319eaed21",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "Look",
                     "type": "Value",
                     "id": "fb86083b-de3a-44f8-beab-f6974d7091ee",
@@ -29,16 +20,7 @@
                     "id": "ab2322cc-aa14-4fb3-83de-d36832bac800",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "00660c39-f410-42ae-b827-ec29dedaa8dc",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 },
                 {
@@ -58,24 +40,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Sprint",
-                    "type": "Button",
-                    "id": "e4955133-86d7-4757-ace1-bc301c97acff",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Crouch",
-                    "type": "Button",
-                    "id": "e6634eb5-09d8-4a7c-a276-74e5b958d10f",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -91,64 +55,9 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "2D Vector",
-                    "id": "b5ee5e46-a81c-4e70-a69d-73a35271e5c2",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "6d53b792-3a69-4e54-9c21-3fd9fec5b414",
-                    "path": "<Keyboard>/#(W)",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyBoard_Mouse",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "90bdc518-8fea-4405-914f-d5a27416b920",
-                    "path": "<Keyboard>/#(S)",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyBoard_Mouse",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "2a7204c0-a575-4b7d-8199-6b38917b5f6e",
-                    "path": "<Keyboard>/#(A)",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyBoard_Mouse",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "7e9b1780-6222-42c3-8f29-b62b7b316b61",
-                    "path": "<Keyboard>/#(D)",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyBoard_Mouse",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "",
                     "id": "1fd4a71f-1e62-487b-9b61-d0c5c5778536",
-                    "path": "<Keyboard>/#(E)",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyBoard_Mouse",
@@ -158,20 +67,9 @@
                 },
                 {
                     "name": "",
-                    "id": "2ed18e28-59c3-4ec2-b261-58128ba5b6b9",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyBoard_Mouse",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "4b1d98ea-b06a-44e7-af13-7b9d8fd765c5",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "KeyBoard_Mouse",
                     "action": "Action1",
@@ -182,16 +80,126 @@
                     "name": "",
                     "id": "43b58fb5-cc3d-4fc0-ae50-5c90aa3a630f",
                     "path": "<Mouse>/rightButton",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "KeyBoard_Mouse",
                     "action": "Action2",
                     "isComposite": false,
                     "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "GenericMovement",
+            "id": "f3e2f8c6-bac1-4ddb-b339-855f29a9b643",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "61096a20-06ff-46e2-b62b-3073c2d35859",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "61b1d452-62b4-4181-a152-a0ade2feb301",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Sprint",
+                    "type": "Button",
+                    "id": "80f80a40-12d5-410f-9bbe-f8d37b216da5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Crouch",
+                    "type": "Button",
+                    "id": "c91262c9-e964-4174-bffe-e8a20659d9de",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "2D Vector",
+                    "id": "4814b474-d484-4131-9e11-7a439e672b4e",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "d55d0399-f008-46bf-b5b9-42c6a59fc411",
+                    "path": "<Keyboard>/#(W)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoard_Mouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "43e9cc75-822a-4449-b0be-79591a3024d3",
+                    "path": "<Keyboard>/#(S)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoard_Mouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "9d493c6e-60fc-4123-844d-7c9ac4d0a073",
+                    "path": "<Keyboard>/#(A)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoard_Mouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "eb643ce5-1989-4e5b-878c-b84e8aadc31a",
+                    "path": "<Keyboard>/#(D)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoard_Mouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "",
-                    "id": "9f80559b-7a7a-4a89-8a1d-5d52b2333d2c",
+                    "id": "e3d7bbb4-1560-4f73-bff8-ba8b5f929036",
+                    "path": "<Keyboard>/space",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "KeyBoard_Mouse",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b1895fce-d05d-42a9-9122-1a10c091ade9",
                     "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
@@ -202,7 +210,7 @@
                 },
                 {
                     "name": "",
-                    "id": "4dafe58e-452a-4d57-93fe-3c2afb6dfd4d",
+                    "id": "e0c2ba39-838b-4da0-8f87-9628c94055ed",
                     "path": "<Keyboard>/ctrl",
                     "interactions": "",
                     "processors": "",
@@ -344,6 +352,76 @@
                     "action": "Up / Down",
                     "isComposite": false,
                     "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "Interactable",
+            "id": "5387b445-30db-44f9-b605-97f1f4fda214",
+            "actions": [
+                {
+                    "name": "Turn Left",
+                    "type": "Button",
+                    "id": "716b1c61-db38-4fae-a8a6-7fbc13a8c7ce",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Turn Right",
+                    "type": "Button",
+                    "id": "06bf135d-c3df-4c89-a2d3-000feddf4b69",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "725e8a0e-8d42-4b42-b4eb-5741f8388e62",
+                    "path": "<Keyboard>/q",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Turn Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c4da11fa-5fae-496e-bdf1-01730e664b66",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Turn Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3df9356e-a172-479c-88ae-7d3c05ecdf38",
+                    "path": "<Keyboard>/e",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Turn Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bf387426-8615-4991-a76c-26af2db834e9",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Turn Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

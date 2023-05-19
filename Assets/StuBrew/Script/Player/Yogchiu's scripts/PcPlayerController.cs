@@ -58,8 +58,23 @@ public class PcPlayerController : MonoBehaviour
     public CapsuleCollider bodyCapsule;
     float groundedOffset = 0.1f;
 
+    //Crosshair
+    [Tooltip("Crosshair Normal")]
+    [SerializeField] GameObject crossHairNorm;
+    [Tooltip("Crosshair Interactable")]
+    [SerializeField] GameObject crossHairHit;
+
+
+    [Space(10)]
+    [Header("Interactable")]
     //controllable Objects
     GameObject controllable;
+
+
+    PlayerInput playerInput;
+    InputActionMap IActionMap;
+    InputActionMap MovementActionMap;
+    bool isInteracting = false;
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +82,12 @@ public class PcPlayerController : MonoBehaviour
         body = GetComponent<Rigidbody>();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        CrosshairHit(false);
+        if(!playerInput)
+            playerInput = GetComponent<PlayerInput>();
+        IActionMap = playerInput.actions.FindActionMap("Interactable");
+        MovementActionMap = playerInput.actions.FindActionMap("GenericMovement");
+        MovementActionMap.Enable();
     }
 
     protected virtual void FixedUpdate()
@@ -209,12 +230,62 @@ public class PcPlayerController : MonoBehaviour
             return forwardFollow.rotation * (new Vector3(moveAxis.x, moveAxis.y, moveAxis.z));
     }
 
+    void CrosshairHit(bool hit)
+    {
+        crossHairNorm.SetActive(!hit);
+        crossHairHit.SetActive(hit);
+    }
+
+    void ToggleInteractiveInput()
+    {
+        if (isInteracting)
+        {
+            IActionMap.Disable();
+            MovementActionMap.Enable();
+            isInteracting = false;
+        }
+        else
+        {
+            IActionMap.Enable();
+            MovementActionMap.Disable();
+            isInteracting = true;
+        }
+    }
+    void DisableInteractiveInput()
+    {
+        if (isInteracting)
+        {
+            IActionMap.Disable();
+            MovementActionMap.Enable();
+            isInteracting = false;
+        }
+    }
 
     public void OnLook(InputAction.CallbackContext context)
     {
         Vector2 deltaTurn = context.ReadValue<Vector2>();
+        //up down
         headCamera.transform.Rotate(Vector3.right * -deltaTurn.y * 0.1f * MouseSpeed);
+        //left right
         transform.Rotate(Vector3.up * deltaTurn.x * 0.05f * MouseSpeed);
+
+        Vector3 yRotation = headCamera.transform.localEulerAngles;
+        yRotation.z = 0;
+        yRotation.y = 0;
+        headCamera.transform.localRotation = Quaternion.Euler(yRotation);
+
+        //check ray
+        RaycastHit hit;
+        CrosshairHit(false);
+        if (Physics.Raycast(headCamera.transform.position, headCamera.transform.forward, out hit, 1.0f) && hit.transform.tag == "Interactable_PC")
+        {
+            CrosshairHit(true);
+            controllable = hit.transform.gameObject;
+        }
+        else
+        {
+            controllable = null;
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -230,13 +301,15 @@ public class PcPlayerController : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 100.0f))
+        if (!context.performed)
+            return;
+        if (controllable)
         {
-            Transform objectHit = hit.transform;
-
-            // Do something with the object that was hit by the raycast.
-            Debug.Log(objectHit.tag);
+            ToggleInteractiveInput();
+        }
+        else
+        {
+            DisableInteractiveInput();
         }
     }
 
@@ -245,5 +318,37 @@ public class PcPlayerController : MonoBehaviour
         if(isGrounded)
             body.AddForce(Vector3.up * Mathf.Sqrt(0.8f * -Physics.gravity.y), ForceMode.VelocityChange);
             //body.AddForce(Vector3.up * Mathf.Sqrt(0.5f * -Physics.gravity.y), ForceMode.VelocityChange);
+    }
+
+    public void OnIRotateLeft(InputAction.CallbackContext context)
+    {
+        if (controllable && context.performed)
+        {
+            if (controllable.TryGetComponent(out IRange rotatableObject))
+            {
+                rotatableObject.OnLeft();
+            }
+        }
+    }
+    public void OnIRotateRight(InputAction.CallbackContext context)
+    {
+        if (controllable && context.performed)
+        {
+            if (controllable.TryGetComponent(out IRange rotatableObject))
+            {
+                rotatableObject.OnRight();
+            }
+        }
+    }
+
+    public void OnLeftClick(InputAction.CallbackContext context)
+    {
+        if (controllable && context.performed)
+        {
+            if (controllable.TryGetComponent(out IClickable clickableObject))
+            {
+                clickableObject.OnClick();
+            }
+        }
     }
 }
