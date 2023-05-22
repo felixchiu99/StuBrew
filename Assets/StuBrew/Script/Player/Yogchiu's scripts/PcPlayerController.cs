@@ -69,6 +69,7 @@ public class PcPlayerController : MonoBehaviour
     [Header("Interactable")]
     //controllable Objects
     GameObject controllable;
+    GameObject pickupable;
 
 
     PlayerInput playerInput;
@@ -83,7 +84,7 @@ public class PcPlayerController : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         CrosshairHit(false);
-        if(!playerInput)
+        if (!playerInput)
             playerInput = GetComponent<PlayerInput>();
         IActionMap = playerInput.actions.FindActionMap("Interactable");
         MovementActionMap = playerInput.actions.FindActionMap("GenericMovement");
@@ -97,6 +98,7 @@ public class PcPlayerController : MonoBehaviour
         {
             UpdateRigidbody();
             Ground();
+            HoldPickupable();
         }
     }
 
@@ -251,6 +253,7 @@ public class PcPlayerController : MonoBehaviour
             isInteracting = true;
         }
     }
+
     void DisableInteractiveInput()
     {
         if (isInteracting)
@@ -277,10 +280,14 @@ public class PcPlayerController : MonoBehaviour
         //check ray
         RaycastHit hit;
         CrosshairHit(false);
-        if (Physics.Raycast(headCamera.transform.position, headCamera.transform.forward, out hit, 1.0f) && hit.transform.tag == "Interactable_PC")
+        if (Physics.Raycast(headCamera.transform.position, headCamera.transform.forward, out hit, 1.0f))
         {
-            CrosshairHit(true);
-            controllable = hit.transform.gameObject;
+            if (hit.transform.tag == "Interactable_PC" || hit.transform.tag == "Pickupable_PC")
+            {
+                CrosshairHit(true);
+                controllable = hit.transform.gameObject;
+            }
+
         }
         else
         {
@@ -306,6 +313,21 @@ public class PcPlayerController : MonoBehaviour
         if (controllable)
         {
             ToggleInteractiveInput();
+            if (controllable.transform.tag == "Pickupable_PC")
+            {
+                if (pickupable)
+                {
+                    Rigidbody rb = pickupable.GetComponent<Rigidbody>();
+                    rb.isKinematic = false;
+                    pickupable = null;
+                }
+                else
+                {
+                    pickupable = controllable.transform.gameObject;
+                    Rigidbody rb = pickupable.GetComponent<Rigidbody>();
+                    rb.isKinematic = true;
+                }
+            }
         }
         else
         {
@@ -315,14 +337,16 @@ public class PcPlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if(isGrounded)
+        if (isGrounded)
             body.AddForce(Vector3.up * Mathf.Sqrt(0.8f * -Physics.gravity.y), ForceMode.VelocityChange);
-            //body.AddForce(Vector3.up * Mathf.Sqrt(0.5f * -Physics.gravity.y), ForceMode.VelocityChange);
+        //body.AddForce(Vector3.up * Mathf.Sqrt(0.5f * -Physics.gravity.y), ForceMode.VelocityChange);
     }
 
     public void OnIRotateLeft(InputAction.CallbackContext context)
     {
-        if (controllable && context.performed)
+        if (!context.performed)
+            return;
+        if (controllable)
         {
             if (controllable.TryGetComponent(out IRange rotatableObject))
             {
@@ -332,7 +356,9 @@ public class PcPlayerController : MonoBehaviour
     }
     public void OnIRotateRight(InputAction.CallbackContext context)
     {
-        if (controllable && context.performed)
+        if (!context.performed)
+            return;
+        if (controllable)
         {
             if (controllable.TryGetComponent(out IRange rotatableObject))
             {
@@ -343,12 +369,28 @@ public class PcPlayerController : MonoBehaviour
 
     public void OnLeftClick(InputAction.CallbackContext context)
     {
-        if (controllable && context.performed)
+        if (!context.performed)
+            return;
+        if (controllable)
         {
             if (controllable.TryGetComponent(out IClickable clickableObject))
             {
                 clickableObject.OnClick();
             }
+        }
+    }
+    public void OnScroll(InputAction.CallbackContext context)
+    {
+        if (pickupable)
+        {
+            pickupable.transform.RotateAround(pickupable.transform.position, headCamera.transform.right, (context.ReadValue<float>()==0?0: context.ReadValue<float>() >1 ? 1: -1) * 5f);
+        }
+    }
+
+    void HoldPickupable(){
+        if(pickupable){
+            MovementActionMap.Enable();
+            pickupable.transform.position = headCamera.transform.position + headCamera.transform.forward * 0.5f;
         }
     }
 }

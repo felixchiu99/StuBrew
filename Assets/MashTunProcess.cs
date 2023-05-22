@@ -8,6 +8,8 @@ public class MashTunProcess : StuBrew.BrewingProcess
     [SerializeField]
     ParticleHopper maltHopper;
     [SerializeField]
+    LiquidStage liquidStage;
+    [SerializeField]
     LiquidContainerSetting water;
 
     float time = 0;
@@ -53,7 +55,7 @@ public class MashTunProcess : StuBrew.BrewingProcess
         {
             TriggerOnProcessStarted();
         }
-
+        liquidStage.BlendLiquidStage(1, time);
         UpdateText();
     }
 

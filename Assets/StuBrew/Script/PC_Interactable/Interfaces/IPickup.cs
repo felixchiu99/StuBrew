@@ -1,6 +1,6 @@
 public interface IPickup
 {
-    void OnClick();
+    void OnInteract();
     void OnScroll();
     void OnLeft();
     void OnRight();

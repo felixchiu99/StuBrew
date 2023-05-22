@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DialPc : InteractableBase, IClickable, IRange
 {
-    [SerializeField] int stepAmount = 10;
+    [SerializeField] int stepAmount = 45;
     [SerializeField] bool inverseDir = false;
 
     public void OnClick()

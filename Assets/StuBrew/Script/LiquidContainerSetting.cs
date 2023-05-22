@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using NaughtyAttributes;
 
 public class LiquidContainerSetting : MonoBehaviour
 {
@@ -31,24 +32,26 @@ public class LiquidContainerSetting : MonoBehaviour
     Rigidbody rb;
 
     [Space(10)]
+    
     [Header("Pour Setting")]
-    [SerializeField]
-    float rimRadius = 0.09f;
-    [SerializeField]
-    float containerHeight;
-    [SerializeField]
-    float pourMinTilt = 1f;
-    [SerializeField]
-    ParticleContainer container;
+    [HideIf("isStationary")]
+    [SerializeField]    float rimRadius = 0.09f;
+    [HideIf("isStationary")]
+    [SerializeField]    float containerHeight;
+    [HideIf("isStationary")]
+    [SerializeField]    float pourMinTilt = 1f;
+    [HideIf("isStationary")]
+    [SerializeField]    ParticleContainer container;
 
+    [HideIf("isStationary")]
+    [SerializeField]    private Transform pour;
+    [HideIf("isStationary")]
+    [SerializeField]    private Transform liq;
+    [HideIf("isStationary")]
     public bool isPour = false;
 
-    [SerializeField] 
+    [SerializeField]
     private AnimationCurve shapeFillCompensate;
-    [SerializeField]
-    private Transform pour;
-    [SerializeField]
-    private Transform liq;
 
     private Vector3 lastVelocity;
 

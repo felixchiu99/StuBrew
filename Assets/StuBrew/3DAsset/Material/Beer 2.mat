@@ -105,8 +105,8 @@ Material:
     - _DstBlend: 10
     - _EnvironmentReflections: 1
     - _Fill: 1
-    - _FoamPercentage: 0.1
-    - _FoamSmoothness: 0.206
+    - _FoamPercentage: 0
+    - _FoamSmoothness: 1
     - _FoamWidth: 0.15
     - _Foam_Smoothness: 0.01
     - _Frequency: 100

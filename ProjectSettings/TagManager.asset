@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Hopper
   - Interactable_PC
+  - Pickupable_PC
   layers:
   - Default
   - TransparentFX
