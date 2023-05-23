@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CustomTag))]
 public class PickUpPC : MonoBehaviour, IPickup
 {
     protected void Start()
@@ -25,3 +26,4 @@ public class PickUpPC : MonoBehaviour, IPickup
         Debug.Log("Right");
     }
 }
+

@@ -68,7 +68,7 @@ public class KettleProcess : StuBrew.BrewingProcess
         {
             hopStage = 1;
         }
-        if(time >= 0.9f)
+        if(time >= 0.9f && time < 1f)
         {
             hopStage = 2;
         }
@@ -77,6 +77,19 @@ public class KettleProcess : StuBrew.BrewingProcess
     void BlendLiquidStage()
     {
         liquidStage.BlendLiquidStage(1, time);
+    }
+
+    void UpdateText()
+    {
+        tempText.SetText((tempControl.GetTemperature()).ToString("F2"));
+        waterText.SetText((waterFill* 100).ToString("F2"));
+        timeText.SetText((time * 100).ToString("F2"));
+        if(hopStage == 2)
+        {
+            Debug.Log("hopstage 0 :" + hopAmount[0]);
+            Debug.Log("hopstage 1 :" + hopAmount[1]);
+            Debug.Log("hopstage 2 :" + hopAmount[2]);
+        }
     }
 
     void ResetKettle()
@@ -90,10 +103,14 @@ public class KettleProcess : StuBrew.BrewingProcess
         }
     }
 
-    void UpdateText()
+    private void OnTriggerEnter(Collider other)
     {
-        tempText.SetText((tempControl.GetTemperature()).ToString("F2"));
-        waterText.SetText((waterFill* 100).ToString("F2"));
-        timeText.SetText((time * 100).ToString("F2"));
+        if (!other.attachedRigidbody)
+            return;
+        if (!other.attachedRigidbody.GetComponent<CustomTag>().HasTag("Hops"))
+            return;
+        
+        hopAmount[hopStage]++;
+        Destroy(other.attachedRigidbody.gameObject);
     }
 }
