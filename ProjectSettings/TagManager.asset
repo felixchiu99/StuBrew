@@ -8,6 +8,7 @@ TagManager:
   - Interactable_PC
   - Pickupable_PC
   - Hops
+  - Yeast
   layers:
   - Default
   - TransparentFX
@@ -36,7 +37,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - NoCollide
   - HandPlayer
   - Hand
   - Grabbable

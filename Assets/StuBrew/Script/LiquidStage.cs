@@ -54,7 +54,7 @@ public class LiquidStage : MonoBehaviour
         rend.material.SetVector("_Foam_EdgeColour", liqColours[currentLiquid].foamColour);
         rend.material.SetVector("_Fensel", liqColours[currentLiquid].fenselColour);
         rend.material.SetFloat("_Transparency", liqColours[currentLiquid].transparency);
-        rend.material.SetFloat("_FoamAmount", liqColours[currentLiquid].foamAmount);
+        rend.material.SetFloat("_FoamPercentage", liqColours[currentLiquid].foamAmount);
         rend.material.SetFloat("_FoamSmoothness", liqColours[currentLiquid].foamSmoothness);
     }
     public void BlendLiquidStage(int liquidStage, float blend = 0)
@@ -81,7 +81,13 @@ public class LiquidStage : MonoBehaviour
         rend.material.SetVector("_Foam_EdgeColour", foamColour);
         rend.material.SetVector("_Fensel", fenselColour);
         rend.material.SetFloat("_Transparency", transparency);
-        rend.material.SetFloat("_FoamAmount", foamAmount);
+        rend.material.SetFloat("_FoamPercentage", foamAmount);
         rend.material.SetFloat("_FoamSmoothness", foamSmoothness);
+    }
+
+    public void ChangeLiquidStage(int stage)
+    {
+        if (stage < liqColours.Count)
+            currentLiquid = stage;  
     }
 }

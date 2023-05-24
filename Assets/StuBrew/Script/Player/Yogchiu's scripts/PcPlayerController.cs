@@ -56,6 +56,13 @@ public class PcPlayerController : MonoBehaviour
     float highestPoint;
     bool tempDisableGrounding = false;
     public CapsuleCollider bodyCapsule;
+
+    [Tooltip("Collider for crouching")]
+    public CapsuleCollider crouchCapsule;
+    public float normalCameraYValue = 1.32f;
+    public float crouchCameraYValue = 0.9f;
+    private bool isCrouch = false;
+
     float groundedOffset = 0.1f;
 
     //Crosshair
@@ -89,6 +96,8 @@ public class PcPlayerController : MonoBehaviour
         IActionMap = playerInput.actions.FindActionMap("Interactable");
         MovementActionMap = playerInput.actions.FindActionMap("GenericMovement");
         MovementActionMap.Enable();
+
+        headCamera.transform.localPosition = new Vector3(headCamera.transform.localPosition.x, normalCameraYValue, headCamera.transform.localPosition.z);
     }
 
     protected virtual void FixedUpdate()
@@ -152,6 +161,7 @@ public class PcPlayerController : MonoBehaviour
 
         //SyncBodyHead();
 
+        Crouch(isCrouch);
     }
 
     protected virtual void Ground()
@@ -317,6 +327,8 @@ public class PcPlayerController : MonoBehaviour
             {
                 if (pickupable)
                 {
+                    int LayerIgnoreRaycast = LayerMask.NameToLayer("Grabbable");
+                    SetGameLayerRecursive(pickupable, LayerIgnoreRaycast);
                     Rigidbody rb = pickupable.GetComponent<Rigidbody>();
                     rb.isKinematic = false;
                     pickupable = null;
@@ -326,6 +338,8 @@ public class PcPlayerController : MonoBehaviour
                     pickupable = controllable.transform.gameObject;
                     Rigidbody rb = pickupable.GetComponent<Rigidbody>();
                     rb.isKinematic = true;
+                    int LayerIgnoreRaycast = LayerMask.NameToLayer("NoCollide");
+                    SetGameLayerRecursive(pickupable, LayerIgnoreRaycast);
                 }
             }
         }
@@ -387,10 +401,43 @@ public class PcPlayerController : MonoBehaviour
         }
     }
 
+    public void OnCrouch(InputAction.CallbackContext context)
+    {
+        if (context.started)
+            isCrouch = true;
+        if (context.canceled)
+            isCrouch = false;
+    }
+
     void HoldPickupable(){
         if(pickupable){
             MovementActionMap.Enable();
             pickupable.transform.position = headCamera.transform.position + headCamera.transform.forward * 0.5f;
+        }
+    }
+
+    void Crouch(bool isCrouch = false)
+    {
+        if (isCrouch)
+        {
+            bodyCapsule.enabled = false;
+            crouchCapsule.enabled = true;
+            headCamera.transform.localPosition = new Vector3(headCamera.transform.localPosition.x, crouchCameraYValue, headCamera.transform.localPosition.z);
+        }
+        else
+        {
+            bodyCapsule.enabled = true;
+            crouchCapsule.enabled = false;
+            headCamera.transform.localPosition = new Vector3(headCamera.transform.localPosition.x, normalCameraYValue, headCamera.transform.localPosition.z);
+        }
+    }
+
+    private void SetGameLayerRecursive(GameObject gameObject, int layer)
+    {
+        gameObject.layer = layer;
+        foreach (Transform child in gameObject.transform)
+        {
+            SetGameLayerRecursive(child.gameObject, layer);
         }
     }
 }

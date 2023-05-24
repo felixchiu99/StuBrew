@@ -46,6 +46,11 @@ public class LiquidValve : Autohand.PhysicsGadgetHingeAngleReader
             float transfered = toContainer.AddLiquid(newValue * Time.deltaTime);
             fluidOut?.Invoke(transfered * 10000);
         }
+        else if(canTransfer)
+        {
+            Debug.Log("fluidOut");
+            fluidOut?.Invoke(newValue * Time.deltaTime);
+        }
     }
 
     public void EnableFluidTransfer(bool isEnable)

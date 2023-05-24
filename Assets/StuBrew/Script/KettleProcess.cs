@@ -72,11 +72,20 @@ public class KettleProcess : StuBrew.BrewingProcess
         {
             hopStage = 2;
         }
+
+        if (time >= 1)
+        {
+            TriggerNextProcess();
+        }
     }
 
     void BlendLiquidStage()
     {
         liquidStage.BlendLiquidStage(1, time);
+        if(time >= 1)
+        {
+            liquidStage.ChangeLiquidStage(1);
+        }
     }
 
     void UpdateText()
@@ -86,9 +95,9 @@ public class KettleProcess : StuBrew.BrewingProcess
         timeText.SetText((time * 100).ToString("F2"));
         if(hopStage == 2)
         {
-            Debug.Log("hopstage 0 :" + hopAmount[0]);
-            Debug.Log("hopstage 1 :" + hopAmount[1]);
-            Debug.Log("hopstage 2 :" + hopAmount[2]);
+            //Debug.Log("hopstage 0 :" + hopAmount[0]);
+            //Debug.Log("hopstage 1 :" + hopAmount[1]);
+            //Debug.Log("hopstage 2 :" + hopAmount[2]);
         }
     }
 
@@ -101,13 +110,19 @@ public class KettleProcess : StuBrew.BrewingProcess
         {
             hopAmount[i] = 0;
         }
+        liquidStage.ChangeLiquidStage(0);
+
+        base.Start();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (!other.attachedRigidbody)
             return;
-        if (!other.attachedRigidbody.GetComponent<CustomTag>().HasTag("Hops"))
+        CustomTag tag = other.attachedRigidbody.GetComponent<CustomTag>();
+        if (!tag)
+            return;
+        if (!tag.HasTag("Hops"))
             return;
         
         hopAmount[hopStage]++;
