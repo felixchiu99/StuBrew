@@ -10,7 +10,7 @@ public class LiquidContainerSetting : MonoBehaviour
     [SerializeField]
     float maxWobble = 0.03f;
 
-    [SerializeField]
+    //[SerializeField]
     float fillAmount = 0.5f;
 
     [SerializeField]
@@ -23,6 +23,9 @@ public class LiquidContainerSetting : MonoBehaviour
 
     [SerializeField]
     bool isStationary = false;
+
+    [SerializeField] float volume;
+    [SerializeField] float currentLiquidStored = 0f;
 
     [Space(10)]
     [Header("Operation")]
@@ -77,6 +80,7 @@ public class LiquidContainerSetting : MonoBehaviour
         SetFill();
         SetRenderWobble();
         containerHeight = transform.localScale.y;
+        volume = Mathf.PI * transform.localScale.x / 2 * transform.localScale.z / 2 * containerHeight;
     }
 
     void Update()
@@ -109,6 +113,10 @@ public class LiquidContainerSetting : MonoBehaviour
         if (container)
         {
             fillAmount = container.GetFillLevel();
+        }
+        else
+        {
+            fillAmount = currentLiquidStored / volume;
         }
 
         float tiltAngle = Vector3.Angle(transform.up, Vector3.up);
@@ -199,15 +207,19 @@ public class LiquidContainerSetting : MonoBehaviour
 
     public float AddLiquid(float addAmount)
     {
-        float transfered = Mathf.Clamp(fillAmount, 0, 1);
-        fillAmount = Mathf.Clamp(fillAmount + addAmount, 0, 1);
-        return fillAmount - transfered;
+        float before = Mathf.Clamp(currentLiquidStored, 0, volume);
+        currentLiquidStored = Mathf.Clamp(currentLiquidStored + addAmount, 0, volume);
+        if (currentLiquidStored == volume)
+            return 0;
+        return currentLiquidStored - before;
     }
     public float SubstractLiquid(float substractAmount)
     {
-        float transfered = fillAmount > 0.000000001f ? fillAmount : 0;
-        fillAmount = Mathf.Clamp(fillAmount - substractAmount, 0, 1);
-        return transfered - fillAmount;
+        float before = currentLiquidStored > 0.000000001f ? currentLiquidStored : 0;
+        currentLiquidStored = Mathf.Clamp(currentLiquidStored - substractAmount, 0, volume);
+        if (currentLiquidStored == 0)
+            return 0;
+        return currentLiquidStored - before;
     }
 
     public float GetFillLevel()

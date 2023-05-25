@@ -12,6 +12,8 @@ public class MashTunProcess : StuBrew.BrewingProcess
     [SerializeField]
     LiquidContainerSetting water;
 
+    LiquidProperties liqProp;
+
     float time = 0;
     [SerializeField]
     float timeOvertime = 0.01f;
@@ -24,7 +26,7 @@ public class MashTunProcess : StuBrew.BrewingProcess
 
     private short processStage = 0;
 
-    new void Start()
+    void Start()
     {
         base.Start();
         if (!maltHopper)

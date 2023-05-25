@@ -37,6 +37,9 @@ public class LiquidValve : Autohand.PhysicsGadgetHingeAngleReader
         bool canTransfer = allowFluidTransfer;
         if (fromContainer && canTransfer)
         {
+            if (toContainer)
+                if (toContainer.GetFillLevel() == 1)
+                    newValue = 0;
             float transfered = fromContainer.SubstractLiquid(newValue * Time.deltaTime);
             canTransfer = transfered == 0 ? false : canTransfer;
         }
@@ -48,7 +51,6 @@ public class LiquidValve : Autohand.PhysicsGadgetHingeAngleReader
         }
         else if(canTransfer)
         {
-            Debug.Log("fluidOut");
             fluidOut?.Invoke(newValue * Time.deltaTime);
         }
     }

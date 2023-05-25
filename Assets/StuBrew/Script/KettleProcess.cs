@@ -93,12 +93,7 @@ public class KettleProcess : StuBrew.BrewingProcess
         tempText.SetText((tempControl.GetTemperature()).ToString("F2"));
         waterText.SetText((waterFill* 100).ToString("F2"));
         timeText.SetText((time * 100).ToString("F2"));
-        if(hopStage == 2)
-        {
-            //Debug.Log("hopstage 0 :" + hopAmount[0]);
-            //Debug.Log("hopstage 1 :" + hopAmount[1]);
-            //Debug.Log("hopstage 2 :" + hopAmount[2]);
-        }
+        hopText.SetText(hopAmount[0].ToString("0") + " : " + hopAmount[1].ToString("0") + " : " + hopAmount[2].ToString("0"));
     }
 
     void ResetKettle()
