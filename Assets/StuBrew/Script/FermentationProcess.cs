@@ -19,7 +19,6 @@ public class FermentationProcess : StuBrew.BrewingProcess
 
     //Time
     float time = 0;
-    [SerializeField]
     float timeOvertime = 0.01f;
 
     //Text
@@ -45,7 +44,7 @@ public class FermentationProcess : StuBrew.BrewingProcess
     {
         if ((liquidAmount <= 0 || yeastAmount <= 0))
             return;
-        float timeOvertime = EvaluateCurve(yeastTimeGraph, yeastAmount);
+        timeOvertime = EvaluateCurve(yeastTimeGraph, yeastAmount);
 
         time = Mathf.Clamp(time + timeOvertime * Time.deltaTime, 0, 1);
     }
@@ -64,6 +63,7 @@ public class FermentationProcess : StuBrew.BrewingProcess
         yeastText.SetText((yeastAmount).ToString("F2"));
         waterText.SetText((liquidAmount * 100).ToString("F2"));
         timeText.SetText((time * 100).ToString("F2"));
+        tempText.SetText(liqProp.GetTemperature().ToString("0"));
     }
 
     private float EvaluateCurve(AnimationCurve curve, float position)

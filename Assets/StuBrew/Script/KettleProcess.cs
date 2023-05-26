@@ -48,6 +48,7 @@ public class KettleProcess : StuBrew.BrewingProcess
     void Update()
     {
         waterFill = wort.GetFillLevel();
+        liqProp.SetTemperature(tempControl.GetTemperature());
         ProgressTime();
         BlendLiquidStage();
         UpdateText();
@@ -73,9 +74,17 @@ public class KettleProcess : StuBrew.BrewingProcess
             hopStage = 2;
         }
 
-        if (time >= 1)
+        if (time >= 1 && !canNext)
         {
+            canNext = true;
+            liquidStage.ChangeLiquidStage(1);
+            liqProp.ChangeBitterness(0.2f);
             TriggerNextProcess();
+        }
+        if (time < 1 && canNext)
+        {
+            canNext = false;
+            TriggerNextProcess(false);
         }
     }
 
@@ -108,6 +117,7 @@ public class KettleProcess : StuBrew.BrewingProcess
         liquidStage.ChangeLiquidStage(0);
 
         base.Start();
+        TriggerOnProcessReset();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -121,6 +131,21 @@ public class KettleProcess : StuBrew.BrewingProcess
             return;
         
         hopAmount[hopStage]++;
+
+        switch(hopStage){
+            case 0:
+                liqProp.ChangeBitterness(0.15f);
+                return;
+            case 1:
+                liqProp.ChangeBitterness(0.1f);
+                liqProp.ChangeAroma(0.05f);
+                return;
+            case 2:
+                liqProp.ChangeBitterness(0.05f);
+                liqProp.ChangeAroma(0.2f);
+                return;
+        }
+
         Destroy(other.attachedRigidbody.gameObject);
     }
 }

@@ -6,7 +6,7 @@ public class SwitchPc : InteractableBase, IClickable
 {
     PhysicsGadgetSwitch physicSwitch;
 
-    void Start()
+    new void Start() //new hides the parent Start
     {
         base.Start();
         if(!physicSwitch)

@@ -380,6 +380,7 @@ MonoBehaviour:
   foamSmoothness: -1.74
   thickness: 1
   isStationary: 1
+  overrideFill: 0
   volume: 0
   currentLiquidStored: 0
   rend: {fileID: 0}
@@ -732,6 +733,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 86011197}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &91105629 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5116238323746712889, guid: 352f22c0ea4b32f46995b40e5190f09d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2135843148}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &91105636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91105629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce78912661c7744b938e6d7f55c97a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &101903004
 GameObject:
   m_ObjectHideFlags: 0
@@ -1776,6 +1795,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 234256039}
+  - component: {fileID: 234256041}
+  - component: {fileID: 234256040}
   m_Layer: 0
   m_Name: Hot Liquor Tank
   m_TagString: Untagged
@@ -1800,6 +1821,75 @@ Transform:
   m_Father: {fileID: 1734184994}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &234256040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234256038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8f95f3e9b0620a4abacf82db5d2551a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  processStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  processReset:
+    m_PersistentCalls:
+      m_Calls: []
+  processCompleted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1601053543}
+        m_TargetAssemblyTypeName: LiquidValve, Assembly-CSharp
+        m_MethodName: EnableFluidTransfer
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  transferLiquid:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1748282977}
+        m_TargetAssemblyTypeName: StuBrew.BrewingProcess, Assembly-CSharp
+        m_MethodName: SetLiquidProperties
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  tempControl: {fileID: 8450573313844497654}
+  temperatureThreshold: 77
+--- !u!114 &234256041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234256038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa12c40612413084aa1d229c19948c8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  temperature: 0
+  flavourBalance: 0
+  bitterness: 0
+  sweetness: 0
+  aroma: 0
+  color: {r: 0.8160377, g: 1, b: 0.9897799, a: 0}
+  foamColor: {r: 1, g: 1, b: 1, a: 0}
 --- !u!1 &257333697
 GameObject:
   m_ObjectHideFlags: 0
@@ -8896,14 +8986,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 513370568}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.752, z: 0.83}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.752, z: 0.8300002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 916019208}
   - {fileID: 783199597}
-  m_Father: {fileID: 972917173}
+  m_Father: {fileID: 1552525182}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &520144573
@@ -9488,14 +9578,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 538404303}
   m_LocalRotation: {x: -0.122787856, y: 0.6963643, z: 0.122787856, w: 0.6963643}
-  m_LocalPosition: {x: 0.57, y: 0.65999997, z: 0.412}
+  m_LocalPosition: {x: 0.57000005, y: 0.65999997, z: 0.41200006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 604499510}
   - {fileID: 81737842}
-  m_Father: {fileID: 1748282976}
-  m_RootOrder: 1
+  - {fileID: 2135843149}
+  m_Father: {fileID: 1769484060}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -20, y: 90, z: 0}
 --- !u!1 &556639928
 GameObject:
@@ -10450,7 +10541,7 @@ MonoBehaviour:
   invertValue: 1
   playRange: 0.05
   valveMinValue: 0
-  valveMaxValue: 0.01
+  valveMaxValue: 0.05
   fromContainer: {fileID: 79895298}
   toContainer: {fileID: 0}
   initRotation: {x: 0, y: 90, z: 0}
@@ -11529,13 +11620,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 778236846}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.304, y: 0, z: 0.476}
+  m_LocalPosition: {x: 0.304, y: 0, z: 0.47600016}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 618805141}
   - {fileID: 2147232682}
-  m_Father: {fileID: 972917173}
+  m_Father: {fileID: 1552525182}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &778558315
@@ -11646,6 +11737,7 @@ GameObject:
   - component: {fileID: 782153474}
   - component: {fileID: 782153477}
   - component: {fileID: 782153478}
+  - component: {fileID: 782153479}
   m_Layer: 0
   m_Name: Kettle
   m_TagString: Untagged
@@ -11668,7 +11760,7 @@ Transform:
   - {fileID: 2076230409}
   - {fileID: 1598625722}
   - {fileID: 79895302}
-  m_Father: {fileID: 972917173}
+  m_Father: {fileID: 1552525182}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &782153477
@@ -11711,12 +11803,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  processReset:
+    m_PersistentCalls:
+      m_Calls: []
   processCompleted:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 660235751}
         m_TargetAssemblyTypeName: LiquidValve, Assembly-CSharp
         m_MethodName: EnableFluidTransfer
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  transferLiquid:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1092550357}
+        m_TargetAssemblyTypeName: StuBrew.BrewingProcess, Assembly-CSharp
+        m_MethodName: SetLiquidProperties
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11735,6 +11845,25 @@ MonoBehaviour:
   waterText: {fileID: 969983882}
   hopText: {fileID: 357780729}
   timeText: {fileID: 1754149082}
+--- !u!114 &782153479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782153473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa12c40612413084aa1d229c19948c8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  temperature: 0
+  flavourBalance: 0
+  bitterness: 0
+  sweetness: 0
+  aroma: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
+  foamColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &783199596
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11856,7 +11985,7 @@ MonoBehaviour:
   invertValue: 1
   playRange: 0.05
   valveMinValue: 0
-  valveMaxValue: 0.01
+  valveMaxValue: 0.05
   fromContainer: {fileID: 6504342020823637358}
   toContainer: {fileID: 79895298}
   initRotation: {x: 0, y: 90, z: 0}
@@ -12307,6 +12436,7 @@ MonoBehaviour:
   foamSmoothness: -1.74
   thickness: 1
   isStationary: 1
+  overrideFill: 0
   volume: 0
   currentLiquidStored: 0
   rend: {fileID: 0}
@@ -13017,6 +13147,7 @@ MonoBehaviour:
   foamSmoothness: 0.2
   thickness: 0.0001
   isStationary: 0
+  overrideFill: 0
   volume: 0
   currentLiquidStored: 0
   rend: {fileID: 0}
@@ -13457,14 +13588,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919240649}
-  m_LocalRotation: {x: -0.21263106, y: 0.67437977, z: 0.21263106, w: 0.67437977}
+  m_LocalRotation: {x: -0.21263108, y: 0.67437977, z: 0.21263108, w: 0.67437977}
   m_LocalPosition: {x: 0.3080001, y: 0.65999997, z: -0.1500001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 725686765}
+  - {fileID: 1351843263}
+  - {fileID: 1891472161}
   m_Father: {fileID: 1708718864}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -35, y: 90, z: 0}
 --- !u!1 &928565860
 GameObject:
@@ -14000,40 +14133,6 @@ MonoBehaviour:
   emitNum: 3
   part: {fileID: 462069219}
   display: {fileID: 0}
---- !u!1 &972917172
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 972917173}
-  m_Layer: 0
-  m_Name: Kettle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &972917173
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 972917172}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 782153474}
-  - {fileID: 778236847}
-  - {fileID: 513370569}
-  m_Father: {fileID: 1552525182}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1025413678
 GameObject:
   m_ObjectHideFlags: 0
@@ -19306,6 +19405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1092550356}
   - component: {fileID: 1092550357}
+  - component: {fileID: 1092550358}
   m_Layer: 0
   m_Name: Heat Exchanger
   m_TagString: Untagged
@@ -19344,13 +19444,52 @@ MonoBehaviour:
   processStarted:
     m_PersistentCalls:
       m_Calls: []
+  processReset:
+    m_PersistentCalls:
+      m_Calls: []
   processCompleted:
     m_PersistentCalls:
       m_Calls: []
+  transferLiquid:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1310506689}
+        m_TargetAssemblyTypeName: StuBrew.BrewingProcess, Assembly-CSharp
+        m_MethodName: SetLiquidProperties
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  flowRate: 0.04
+  coolTemp: 16
   toContainer: {fileID: 829265433}
   fluidOut:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1092550358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092550355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa12c40612413084aa1d229c19948c8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  temperature: 0
+  flavourBalance: 0
+  bitterness: 0
+  sweetness: 0
+  aroma: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
+  foamColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1105248902
 GameObject:
   m_ObjectHideFlags: 0
@@ -20653,7 +20792,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1309403256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.1042, y: 1.1017, z: -1.6901}
+  m_LocalPosition: {x: -1.6607, y: 1.006, z: -1.5419}
   m_LocalScale: {x: 0.05, y: 0.1, z: 0.05}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20750,6 +20889,7 @@ GameObject:
   - component: {fileID: 1310506686}
   - component: {fileID: 1310506688}
   - component: {fileID: 1310506689}
+  - component: {fileID: 1310506690}
   m_Layer: 0
   m_Name: Fermentation Vessel
   m_TagString: Untagged
@@ -20802,7 +20942,13 @@ MonoBehaviour:
   processStarted:
     m_PersistentCalls:
       m_Calls: []
+  processReset:
+    m_PersistentCalls:
+      m_Calls: []
   processCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  transferLiquid:
     m_PersistentCalls:
       m_Calls: []
   liquidStage: {fileID: 829265434}
@@ -20858,11 +21004,29 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  timeOvertime: 0.01
   tempText: {fileID: 775331100}
   waterText: {fileID: 1732865367}
   yeastText: {fileID: 408891923}
   timeText: {fileID: 1415289715}
+--- !u!114 &1310506690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310506685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa12c40612413084aa1d229c19948c8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  temperature: 0
+  flavourBalance: 0
+  bitterness: 0
+  sweetness: 0
+  aroma: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
+  foamColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1321743854
 GameObject:
   m_ObjectHideFlags: 0
@@ -21354,13 +21518,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1351843262}
-  m_LocalRotation: {x: -0.21263106, y: 0.67437977, z: 0.21263106, w: 0.67437977}
-  m_LocalPosition: {x: 0.3080008, y: 0.65999997, z: -0.1500001}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.40000007, y: 0.40000004, z: 0.009999996}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1708718864}
-  m_RootOrder: 0
+  m_Father: {fileID: 919240650}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1351843264
 BoxCollider:
@@ -21475,6 +21639,7 @@ MonoBehaviour:
   foamSmoothness: 0
   thickness: 1
   isStationary: 0
+  overrideFill: 0
   volume: 0
   currentLiquidStored: 0
   rend: {fileID: 0}
@@ -23385,7 +23550,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 972917173}
+  - {fileID: 782153474}
+  - {fileID: 778236847}
+  - {fileID: 513370569}
   m_Father: {fileID: 1039289282}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
@@ -24671,7 +24838,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1351843263}
   - {fileID: 919240650}
   m_Father: {fileID: 1871908252}
   m_RootOrder: 1
@@ -24990,6 +25156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1748282976}
   - component: {fileID: 1748282977}
+  - component: {fileID: 1748282978}
   m_Layer: 0
   m_Name: Mash Tun
   m_TagString: Untagged
@@ -25010,7 +25177,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4935853192950669131}
-  - {fileID: 538404304}
   m_Father: {fileID: 1769484060}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25041,6 +25207,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  processReset:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1601053543}
+        m_TargetAssemblyTypeName: LiquidValve, Assembly-CSharp
+        m_MethodName: EnableFluidTransfer
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   processCompleted:
     m_PersistentCalls:
       m_Calls:
@@ -25056,13 +25237,50 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  transferLiquid:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 782153478}
+        m_TargetAssemblyTypeName: StuBrew.BrewingProcess, Assembly-CSharp
+        m_MethodName: SetLiquidProperties
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   maltHopper: {fileID: 5707324064591054322}
   liquidStage: {fileID: 6504342020823637357}
   water: {fileID: 6504342020823637358}
+  maltLiquidStage: {fileID: 1826405829}
+  malt: {fileID: 1826405828}
   timeOvertime: 0.1
   waterText: {fileID: 1840520689}
   timeText: {fileID: 329230774}
+  maltText: {fileID: 813670489}
   waterTarget: 0.7
+--- !u!114 &1748282978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748282975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa12c40612413084aa1d229c19948c8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  temperature: 0
+  flavourBalance: 0
+  bitterness: 0
+  sweetness: 0
+  aroma: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
+  foamColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1752486222
 GameObject:
   m_ObjectHideFlags: 0
@@ -25330,6 +25548,7 @@ Transform:
   m_Children:
   - {fileID: 1748282976}
   - {fileID: 1671820455}
+  - {fileID: 538404304}
   m_Father: {fileID: 1039289282}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
@@ -25464,6 +25683,157 @@ MonoBehaviour:
   switchOff:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1826405826
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1826405827}
+  - component: {fileID: 1826405831}
+  - component: {fileID: 1826405830}
+  - component: {fileID: 1826405829}
+  - component: {fileID: 1826405828}
+  m_Layer: 0
+  m_Name: Malt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1826405827
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826405826}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.031, z: 0}
+  m_LocalScale: {x: 1, y: 1.35, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4935853192950669131}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1826405828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826405826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00f0e2af7f14f364693db825b79a80b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxWobble: 0
+  foamAmount: 0
+  foamSmoothness: 0
+  thickness: 1
+  isStationary: 1
+  overrideFill: 1
+  volume: 0
+  currentLiquidStored: 0
+  rend: {fileID: 0}
+  rb: {fileID: 0}
+  rimRadius: 0.09
+  containerHeight: 0
+  pourMinTilt: 1
+  container: {fileID: 0}
+  pour: {fileID: 0}
+  liq: {fileID: 0}
+  isPour: 0
+  shapeFillCompensate:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1826405829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826405826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e1ae7fb67b125b408bf5bce9b09c14b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fillMin: -0.64
+  fillMax: -0.5
+  rend: {fileID: 0}
+  currentLiquid: 0
+  liqColours:
+  - surfaceColour: {r: 0.5294118, g: 0.34117648, b: 0.007843138, a: 0}
+    liquidColour: {r: 0.3764706, g: 0.25490198, b: 0, a: 0}
+    foamColour: {r: 0.5294118, g: 0.34117648, b: 0.007843138, a: 0}
+    fenselColour: {r: 0, g: 0, b: 0, a: 1}
+    transparency: 0
+    foamAmount: 0.03
+    foamSmoothness: 0.1
+  - surfaceColour: {r: 0.5294118, g: 0.34117648, b: 0.007843138, a: 0}
+    liquidColour: {r: 0.3764706, g: 0.25490198, b: 0, a: 0}
+    foamColour: {r: 0.5294118, g: 0.34117648, b: 0.007843138, a: 0}
+    fenselColour: {r: 0, g: 0, b: 0, a: 1}
+    transparency: 1
+    foamAmount: 0.03
+    foamSmoothness: 0.1
+--- !u!23 &1826405830
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826405826}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 20c03fc4306df02469fe138be65c7c74, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1826405831
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826405826}
+  m_Mesh: {fileID: -9216810965846887918, guid: a7d773d2b7ceae441a2f9b7fd9030721, type: 3}
 --- !u!1 &1840520687
 GameObject:
   m_ObjectHideFlags: 0
@@ -25769,6 +26139,159 @@ Transform:
   m_Father: {fileID: 1039289282}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1001 &1891472160
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 919240650}
+    m_Modifications:
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.30000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.30000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.30000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.15429993
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.14059997
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.008000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3756400870299172609, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_Name
+      value: Reset Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 5116238323746712895, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: invertValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5116238323746712895, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: OnPressed.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5116238323746712895, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: OnPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5116238323746712895, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: OnPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1748282977}
+    - target: {fileID: 5116238323746712895, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: OnPressed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5116238323746712895, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: OnPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResetProcess
+      objectReference: {fileID: 0}
+    - target: {fileID: 5116238323746712895, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: OnPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MashTunProcess, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5116238323746712895, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: OnPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 352f22c0ea4b32f46995b40e5190f09d, type: 3}
+--- !u!4 &1891472161 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1891472160}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1891472162 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5116238323746712889, guid: 352f22c0ea4b32f46995b40e5190f09d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1891472160}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1891472163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891472162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce78912661c7744b938e6d7f55c97a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1947858019
 GameObject:
   m_ObjectHideFlags: 0
@@ -27053,6 +27576,141 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2105738663}
   m_CullTransparentMesh: 1
+--- !u!1001 &2135843148
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 538404304}
+    m_Modifications:
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.30000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.30000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.30000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.15429993
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.14059997
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.008000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3756400870299172609, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: m_Name
+      value: Reset Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 5116238323746712895, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: invertValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5116238323746712895, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: OnPressed.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5116238323746712895, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: OnPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5116238323746712895, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: OnPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1748282977}
+    - target: {fileID: 5116238323746712895, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: OnPressed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5116238323746712895, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: OnPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResetProcess
+      objectReference: {fileID: 0}
+    - target: {fileID: 5116238323746712895, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: OnPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MashTunProcess, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5116238323746712895, guid: 352f22c0ea4b32f46995b40e5190f09d,
+        type: 3}
+      propertyPath: OnPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 352f22c0ea4b32f46995b40e5190f09d, type: 3}
+--- !u!4 &2135843149 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2135843148}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2147232681
 GameObject:
   m_ObjectHideFlags: 0
@@ -27141,7 +27799,6 @@ GameObject:
   - component: {fileID: 8450573313844497653}
   - component: {fileID: 1363870293}
   - component: {fileID: 8450573313844497654}
-  - component: {fileID: 8450573313844497655}
   m_Layer: 0
   m_Name: Liquid
   m_TagString: Untagged
@@ -27814,6 +28471,7 @@ Transform:
   - {fileID: 2687436639160565905}
   - {fileID: 149886378700987361}
   - {fileID: 5936763586396532048}
+  - {fileID: 1826405827}
   m_Father: {fileID: 1748282976}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -27852,7 +28510,7 @@ MonoBehaviour:
   particleOverflowMax: 500
   particleLoss: 0
   overflowCollider: {fileID: 0}
-  text: {fileID: 813670489}
+  text: {fileID: 0}
 --- !u!65 &5707324064591054323
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27957,6 +28615,7 @@ MonoBehaviour:
   foamSmoothness: 0
   thickness: 1
   isStationary: 1
+  overrideFill: 0
   volume: 0
   currentLiquidStored: 0
   rend: {fileID: 0}
@@ -28104,40 +28763,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   temperature: 18
-  heatOverTime: 1
+  heatOverTime: 3
   heatLossOverTime: 0.1
   roomTemperature: 18
   maxTemperature: 200
   text: {fileID: 189909485}
---- !u!114 &8450573313844497655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 907676526666579713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8f95f3e9b0620a4abacf82db5d2551a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  processStarted:
-    m_PersistentCalls:
-      m_Calls: []
-  processCompleted:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1601053543}
-        m_TargetAssemblyTypeName: LiquidValve, Assembly-CSharp
-        m_MethodName: EnableFluidTransfer
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  tempControl: {fileID: 0}
-  temperatureThreshold: 77

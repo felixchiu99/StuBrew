@@ -13,7 +13,8 @@ public class HotLiquorTankProcess : StuBrew.BrewingProcess
     new void Start()
     {
         base.Start();
-        tempControl = GetComponent<TemperatureControl>();
+        if(!tempControl)
+            tempControl = GetComponent<TemperatureControl>();
     }
 
     void Update()
@@ -22,6 +23,7 @@ public class HotLiquorTankProcess : StuBrew.BrewingProcess
         //toggle next process
         if (temperature > temperatureThreshold && !canNext)
         {
+            liqProp.SetTemperature(temperature);
             TriggerNextProcess();
             canNext = true;
         }
@@ -32,4 +34,5 @@ public class HotLiquorTankProcess : StuBrew.BrewingProcess
             canNext = false;
         }
     }
+
 }

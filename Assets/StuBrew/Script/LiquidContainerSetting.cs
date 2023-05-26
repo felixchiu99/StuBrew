@@ -24,6 +24,8 @@ public class LiquidContainerSetting : MonoBehaviour
     [SerializeField]
     bool isStationary = false;
 
+    [SerializeField] bool overrideFill = false;
+
     [SerializeField] float volume;
     [SerializeField] float currentLiquidStored = 0f;
 
@@ -114,7 +116,7 @@ public class LiquidContainerSetting : MonoBehaviour
         {
             fillAmount = container.GetFillLevel();
         }
-        else
+        else if(!overrideFill)
         {
             fillAmount = currentLiquidStored / volume;
         }
@@ -225,5 +227,10 @@ public class LiquidContainerSetting : MonoBehaviour
     public float GetFillLevel()
     {
         return fillAmount;
+    }
+
+    public void SetVisualFill(float amount)
+    {
+        fillAmount = Mathf.Clamp(amount, 0, 1);
     }
 }

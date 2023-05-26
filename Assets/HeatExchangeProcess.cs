@@ -6,7 +6,9 @@ using UnityEngine.Events;
 public class HeatExchangeProcess : StuBrew.BrewingProcess
 {
     float liquid = 0f;
-    float flowRate = 0.01f;
+    [SerializeField] float flowRate = 0.04f;
+
+    [SerializeField] float coolTemp = 16f;
 
     [SerializeField]
     LiquidContainerSetting toContainer;
@@ -31,8 +33,11 @@ public class HeatExchangeProcess : StuBrew.BrewingProcess
             {
                 float transfered = toContainer.AddLiquid(flowRate * Time.deltaTime);
                 fluidOut?.Invoke(transfered);
-                liquid = Mathf.Clamp(liquid - flowRate * Time.deltaTime, 0, 100);
+                liquid = Mathf.Clamp(liquid - transfered, 0, 100);
                 //fluidOut?.Invoke(flowRate);
+
+                liqProp.SetTemperature(coolTemp * 0.9f + liqProp.GetTemperature() * 0.1f) ;
+                TriggerNextProcess();
             }
         }
     }

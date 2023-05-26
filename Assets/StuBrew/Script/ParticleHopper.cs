@@ -75,10 +75,18 @@ public class ParticleHopper : MonoBehaviour
 
     public float GetFillLevel()
     {
-        return particleCount == 0 ? 0 : particleCount / particleMax;
+        return particleCount == 0 ? 0 : (float)particleCount / particleMax;
     }
+
+    public float GetFillAmount()
+    {
+        return particleCount;
+    }
+
     public void ClearFill()
     {
         particleCount = 0;
+        if (text)
+            text.SetText(particleCount.ToString());
     }
 }
