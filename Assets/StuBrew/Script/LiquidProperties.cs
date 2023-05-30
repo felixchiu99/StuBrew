@@ -5,7 +5,7 @@ using UnityEngine;
 public class LiquidProperties : MonoBehaviour
 {
     //
-    [SerializeField] float temperature = 0;
+    [SerializeField] float temperature = 18f;
 
     // liquid properties
     [SerializeField] float flavourBalance = 0;   //0-1
@@ -15,18 +15,29 @@ public class LiquidProperties : MonoBehaviour
     [SerializeField] float aroma = 0;         //0-1
 
     // Color, clarity and foam
-    public Color color;
+    public Color color = Color.white;
     float transparency = 0;     //0-1
-    public Color foamColor;
+    public Color foamColor = Color.white;
     //
+
+    //transfer
+    public bool canTransfer = false;
+
+    void Start()
+    {
+        canTransfer = false;
+        ClearLiq();
+    }
 
     void Update()
     {
-        flavourBalance = bitterness / sweetness;
+        flavourBalance = (sweetness + bitterness) == 0 ?0 :bitterness / (sweetness + bitterness);
     }
 
     public void Copy(LiquidProperties prop)
     {
+        //if (!canTransfer)
+        //    return;
         temperature = prop.temperature;
         flavourBalance = prop.flavourBalance;
         
@@ -43,7 +54,11 @@ public class LiquidProperties : MonoBehaviour
     {
         bitterness += change;
     }
-    
+    public float GetBitterness()
+    {
+        return bitterness;
+    }
+
     public void ChangeSweetness(float change)
     {
         sweetness += change;
@@ -60,6 +75,10 @@ public class LiquidProperties : MonoBehaviour
     public void ChangeAroma(float change)
     {
         aroma += change;
+    }
+    public float GetAroma()
+    {
+        return aroma;
     }
 
     public void ChangeTransparency(float change)
@@ -80,4 +99,16 @@ public class LiquidProperties : MonoBehaviour
         temperature = change;
     }
 
+    public void ClearLiq()
+    {
+        temperature = 18f;
+        flavourBalance = 0;
+
+        bitterness = 0;
+        sweetness = 0;
+        aroma = 0;
+        color = Color.white;
+        foamColor = Color.white;
+        transparency = 0;
+    }
 }

@@ -74,14 +74,14 @@ public class KettleProcess : StuBrew.BrewingProcess
             hopStage = 2;
         }
 
-        if (time >= 1 && !canNext)
+        if (time >= 1 && !CanNext())
         {
             canNext = true;
             liquidStage.ChangeLiquidStage(1);
             liqProp.ChangeBitterness(0.2f);
             TriggerNextProcess();
         }
-        if (time < 1 && canNext)
+        if (time < 1 && CanNext())
         {
             canNext = false;
             TriggerNextProcess(false);

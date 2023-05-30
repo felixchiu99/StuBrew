@@ -104,7 +104,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 10
     - _EnvironmentReflections: 1
-    - _Fill: 1
+    - _Fill: 0.861
     - _FoamPercentage: 0
     - _FoamSmoothness: 1
     - _FoamWidth: 0.15

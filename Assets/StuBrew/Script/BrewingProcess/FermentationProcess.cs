@@ -33,6 +33,7 @@ public class FermentationProcess : StuBrew.BrewingProcess
         ProgressTime();
         BlendLiquidStage();
         UpdateText();
+        ProgressNext();
     }
 
     void AddYeast()
@@ -64,6 +65,20 @@ public class FermentationProcess : StuBrew.BrewingProcess
         waterText.SetText((liquidAmount * 100).ToString("F2"));
         timeText.SetText((time * 100).ToString("F2"));
         tempText.SetText(liqProp.GetTemperature().ToString("0"));
+    }
+
+    void ProgressNext()
+    {
+        if (time >= 1 && !canNext)
+        {
+            canNext = true;
+            TriggerNextProcess();
+        }
+        if (time < 1 && canNext)
+        {
+            canNext = false;
+            TriggerNextProcess(false);
+        }
     }
 
     private float EvaluateCurve(AnimationCurve curve, float position)

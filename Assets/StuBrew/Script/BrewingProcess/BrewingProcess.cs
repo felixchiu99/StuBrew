@@ -18,6 +18,8 @@ namespace StuBrew
         [SerializeField]
         UnityEvent<LiquidProperties> transferLiquid;
 
+        [SerializeField] BrewingProcess nextProcess;
+
         protected bool canNext = false;
 
         protected LiquidProperties liqProp;
@@ -31,10 +33,12 @@ namespace StuBrew
 
         protected void TriggerOnProcessStarted()
         {
+            liqProp.canTransfer = false;
             processStarted?.Invoke();
         }
         protected void TriggerOnProcessReset()
         {
+            liqProp.canTransfer = true;
             processReset?.Invoke();
         }
 
@@ -43,13 +47,19 @@ namespace StuBrew
             processCompleted?.Invoke(completed);
             if (completed)
             {
-                transferLiquid?.Invoke(liqProp);
+                //transferLiquid?.Invoke(liqProp);
+                nextProcess.SetLiquidProperties(liqProp);
             }
         }
 
         public void ToggleCanNext()
         {
             canNext = !canNext;
+        }
+
+        protected bool CanNext()
+        {
+            return (canNext && nextProcess.IsTransferEnable());
         }
 
         public void BlendLiquidProperties(LiquidProperties prop , float blend)
@@ -60,6 +70,11 @@ namespace StuBrew
         public void SetLiquidProperties(LiquidProperties prop)
         {
             liqProp.Copy(prop);
+        }
+
+        public bool IsTransferEnable()
+        {
+            return liqProp.canTransfer;
         }
     }
 }

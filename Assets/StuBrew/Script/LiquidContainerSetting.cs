@@ -82,7 +82,8 @@ public class LiquidContainerSetting : MonoBehaviour
         SetFill();
         SetRenderWobble();
         containerHeight = transform.localScale.y;
-        volume = Mathf.PI * transform.localScale.x / 2 * transform.localScale.z / 2 * containerHeight;
+        if(volume == 0)
+            volume = Mathf.PI * transform.localScale.x / 2 * transform.localScale.z / 2 * containerHeight;
     }
 
     void Update()
@@ -112,15 +113,15 @@ public class LiquidContainerSetting : MonoBehaviour
 
     void SetFill()
     {
-        if (container)
+        if (container && !isStationary)
         {
             fillAmount = container.GetFillLevel();
         }
         else if(!overrideFill)
         {
-            fillAmount = currentLiquidStored / volume;
+            fillAmount = volume == 0? 0 :currentLiquidStored / (float)volume;
         }
-
+        
         float tiltAngle = Vector3.Angle(transform.up, Vector3.up);
         float compansate = EvaluateCurve(shapeFillCompensate, fillAmount);
         float fill = Mathf.Lerp(fillAmount, compansate, Mathf.Clamp(tiltAngle / 90, 0, 1));
