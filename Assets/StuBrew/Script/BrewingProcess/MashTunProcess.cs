@@ -31,7 +31,7 @@ public class MashTunProcess : StuBrew.BrewingProcess
     private int flushCounter = 0;
     private float waterFill = 0f;
 
-    void Start()
+    new void Start()
     {
         base.Start();
         if (!maltHopper)
@@ -88,6 +88,7 @@ public class MashTunProcess : StuBrew.BrewingProcess
     {
         if (waterFill <= 0)
         {
+            canNext = false;
             maltHopper.ClearFill();
             TriggerOnProcessReset();
         }

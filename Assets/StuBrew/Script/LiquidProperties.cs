@@ -20,12 +20,14 @@ public class LiquidProperties : MonoBehaviour
     public Color foamColor = Color.white;
     //
 
+    private bool isDefault = true;
+
     //transfer
-    public bool canTransfer = false;
+    public bool canTransfer = true;
 
     void Start()
     {
-        canTransfer = false;
+        canTransfer = true;
         ClearLiq();
     }
 
@@ -38,6 +40,7 @@ public class LiquidProperties : MonoBehaviour
     {
         //if (!canTransfer)
         //    return;
+        isDefault = false;
         temperature = prop.temperature;
         flavourBalance = prop.flavourBalance;
         
@@ -52,6 +55,7 @@ public class LiquidProperties : MonoBehaviour
 
     public void ChangeBitterness(float change)
     {
+        isDefault = false;
         bitterness += change;
     }
     public float GetBitterness()
@@ -61,6 +65,7 @@ public class LiquidProperties : MonoBehaviour
 
     public void ChangeSweetness(float change)
     {
+        isDefault = false;
         sweetness += change;
     }
     public float GetSweetness()
@@ -69,11 +74,13 @@ public class LiquidProperties : MonoBehaviour
     }
     public void SetSweetness(float change)
     {
+        isDefault = false;
         sweetness = change;
     }
 
     public void ChangeAroma(float change)
     {
+        isDefault = false;
         aroma += change;
     }
     public float GetAroma()
@@ -83,11 +90,13 @@ public class LiquidProperties : MonoBehaviour
 
     public void ChangeTransparency(float change)
     {
+        isDefault = false;
         transparency += change;
     }
 
     public void ChangeTemperature(float change)
     {
+        isDefault = false;
         temperature += change;
     }
     public float GetTemperature()
@@ -96,11 +105,13 @@ public class LiquidProperties : MonoBehaviour
     }
     public void SetTemperature(float change)
     {
+        isDefault = false;
         temperature = change;
     }
 
     public void ClearLiq()
     {
+        isDefault = true;
         temperature = 18f;
         flavourBalance = 0;
 
@@ -110,5 +121,25 @@ public class LiquidProperties : MonoBehaviour
         color = Color.white;
         foamColor = Color.white;
         transparency = 0;
+    }
+
+    public bool IsDefault()
+    {
+        return isDefault;
+    }
+    public static bool operator ==(LiquidProperties a, LiquidProperties b)
+    {
+        bool similar = true;
+        similar = a.GetTemperature() != b.GetTemperature()? false : similar;
+        similar = a.GetBitterness() != b.GetBitterness()? false : similar;
+        similar = a.GetSweetness() != b.GetSweetness()? false : similar;
+        similar = a.GetAroma() != b.GetAroma()? false : similar;
+        
+        return similar;
+    }
+    public static bool operator !=(LiquidProperties a, LiquidProperties b)
+    {
+        bool similar = a == b;
+        return !similar;
     }
 }

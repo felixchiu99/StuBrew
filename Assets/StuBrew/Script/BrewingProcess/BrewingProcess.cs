@@ -18,37 +18,53 @@ namespace StuBrew
         [SerializeField]
         UnityEvent<LiquidProperties> transferLiquid;
 
-        [SerializeField] BrewingProcess nextProcess;
+        [SerializeField] protected BrewingProcess nextProcess;
 
         protected bool canNext = false;
+        protected bool hasProcessStarted = false;
+        protected bool hasProcessFinished = false;
 
         protected LiquidProperties liqProp;
 
         protected void Start()
         {
+            canNext = false;
             TriggerNextProcess(false);
             if (!liqProp)
                 liqProp = GetComponent<LiquidProperties>();
+            liqProp.canTransfer = true;
         }
 
         protected void TriggerOnProcessStarted()
         {
+            hasProcessStarted = true;
             liqProp.canTransfer = false;
             processStarted?.Invoke();
         }
         protected void TriggerOnProcessReset()
         {
+            hasProcessStarted = false;
+            canNext = false;
             liqProp.canTransfer = true;
             processReset?.Invoke();
         }
 
         protected void TriggerNextProcess(bool completed = true)
         {
-            processCompleted?.Invoke(completed);
             if (completed)
             {
-                //transferLiquid?.Invoke(liqProp);
-                nextProcess.SetLiquidProperties(liqProp);
+                hasProcessFinished = true;
+                if (nextProcess.IsTransferEnable())
+                {
+                    processCompleted?.Invoke(completed);
+                    //transferLiquid?.Invoke(liqProp);
+                    nextProcess.SetLiquidProperties(liqProp);
+                }
+
+            }
+            else
+            {
+                processCompleted?.Invoke(completed);
             }
         }
 
@@ -57,9 +73,9 @@ namespace StuBrew
             canNext = !canNext;
         }
 
-        protected bool CanNext()
+        protected bool CanFlow()
         {
-            return (canNext && nextProcess.IsTransferEnable());
+            return canNext || (hasProcessFinished && nextProcess.IsTransferEnable());
         }
 
         public void BlendLiquidProperties(LiquidProperties prop , float blend)
@@ -72,9 +88,30 @@ namespace StuBrew
             liqProp.Copy(prop);
         }
 
+        public bool IsLiquidTransferrable(LiquidProperties prevliq)
+        {
+            return liqProp == prevliq || liqProp.IsDefault();
+        }
+        /*
         public bool IsTransferEnable()
         {
             return liqProp.canTransfer;
+        }
+        */
+        // check next
+        public bool IsTransferEnable()
+        {
+            return liqProp.canTransfer && nextProcess.IsLiquidTransferrable(liqProp);
+        }
+
+        virtual public bool IsExportingFluid()
+        {
+            return hasProcessFinished && IsTransferEnable();
+        }
+
+        virtual public bool IsAcceptingFluid()
+        {
+            return !hasProcessStarted;
         }
     }
 }

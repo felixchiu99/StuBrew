@@ -24,6 +24,11 @@ public class LiquidValve : Autohand.PhysicsGadgetHingeAngleReader
 
     private bool allowFluidTransfer = true;
 
+    [SerializeField] StuBrew.BrewingProcess previousProcess;
+    [SerializeField] StuBrew.BrewingProcess nextProcess;
+
+    [SerializeField] bool debug = false;
+
     protected override void Start()
     {
         base.Start();
@@ -32,6 +37,7 @@ public class LiquidValve : Autohand.PhysicsGadgetHingeAngleReader
 
     void Update()
     {
+        CheckFluidTransferStatus();
         var value = GetValue();
         float newValue = math.remap(-1, 1, valveMinValue, valveMaxValue, Mathf.Round(value));
         bool canTransfer = allowFluidTransfer;
@@ -53,6 +59,21 @@ public class LiquidValve : Autohand.PhysicsGadgetHingeAngleReader
         {
             fluidOut?.Invoke(newValue * Time.deltaTime);
         }
+    }
+
+    private void CheckFluidTransferStatus()
+    {
+        bool prev = true;
+        bool next = true;
+        if (previousProcess)
+            prev = previousProcess.IsExportingFluid();
+        if (nextProcess)
+            next = nextProcess.IsAcceptingFluid();
+        if (debug)
+        {
+            Debug.Log("prev : " + prev + " next : " + next);
+        }
+        allowFluidTransfer = (next && prev);
     }
 
     public void EnableFluidTransfer(bool isEnable)

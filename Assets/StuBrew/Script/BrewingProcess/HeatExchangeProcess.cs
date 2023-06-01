@@ -31,13 +31,16 @@ public class HeatExchangeProcess : StuBrew.BrewingProcess
         {
             if (toContainer)
             {
-                float transfered = toContainer.AddLiquid(flowRate * Time.deltaTime);
-                fluidOut?.Invoke(transfered);
-                liquid = Mathf.Clamp(liquid - transfered, 0, 100);
-                //fluidOut?.Invoke(flowRate);
+                if (toContainer.GetFillLevel() >= 1)
+                {
+                    float transfered = toContainer.AddLiquid(flowRate * Time.deltaTime);
+                    fluidOut?.Invoke(transfered);
+                    liquid = Mathf.Clamp(liquid - transfered, 0, 100);
+                    //fluidOut?.Invoke(flowRate);
 
-                liqProp.SetTemperature(coolTemp * 0.9f + liqProp.GetTemperature() * 0.1f) ;
-                TriggerNextProcess();
+                    liqProp.SetTemperature(coolTemp * 0.9f + liqProp.GetTemperature() * 0.1f);
+                    TriggerNextProcess();
+                }
             }
         }
     }

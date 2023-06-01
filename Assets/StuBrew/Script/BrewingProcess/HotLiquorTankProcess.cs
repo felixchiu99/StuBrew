@@ -10,6 +10,8 @@ public class HotLiquorTankProcess : StuBrew.BrewingProcess
     [SerializeField]
     float temperatureThreshold = 77f;
 
+    [SerializeField] PhysicsGadgetSwitch physicsSwitch;
+
     new void Start()
     {
         base.Start();
@@ -21,11 +23,14 @@ public class HotLiquorTankProcess : StuBrew.BrewingProcess
     {
         var temperature = tempControl.GetTemperature();
         //toggle next process
-        if (temperature > temperatureThreshold && !canNext)
+        if (temperature > temperatureThreshold)
         {
-            liqProp.SetTemperature(temperature);
-            TriggerNextProcess();
-            canNext = true;
+            if (!canNext)
+            {
+                TriggerNextProcess();
+                canNext = true;
+                liqProp.SetTemperature(temperature);
+            }
         }
         //reset process avalibility
         if (temperature <= temperatureThreshold && canNext)
@@ -35,4 +40,9 @@ public class HotLiquorTankProcess : StuBrew.BrewingProcess
         }
     }
 
+    override public bool IsExportingFluid()
+    {
+        bool exporting = base.IsExportingFluid();
+        return exporting && tempControl.GetTemperature() > temperatureThreshold;
+    }
 }

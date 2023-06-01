@@ -61,7 +61,7 @@ public class KettleProcess : StuBrew.BrewingProcess
         if (waterFill == 0)
             return;
         time = Mathf.Clamp(time + timeOvertime * Time.deltaTime, 0, 1);
-        if(time < 0.5f)
+        if (time < 0.5f)
         {
             hopStage = 0;
         }
@@ -69,19 +69,35 @@ public class KettleProcess : StuBrew.BrewingProcess
         {
             hopStage = 1;
         }
-        if(time >= 0.9f && time < 1f)
+        if (time >= 0.9f && time < 1f)
         {
             hopStage = 2;
         }
-
-        if (time >= 1 && !CanNext())
+        if (time >= 1)
+        {
+            hasProcessFinished = true;
+        }
+        else {
+            hasProcessFinished = false;
+        }
+        if (time >= 0 && !hasProcessStarted)
+        {
+            hasProcessStarted = true;
+            liqProp.canTransfer = false;
+        }
+        else if(time <=0 && hasProcessStarted)
+        {
+            liqProp.canTransfer = true;
+            hasProcessStarted = false;
+        }
+        if (time >= 1 && !CanFlow())
         {
             canNext = true;
             liquidStage.ChangeLiquidStage(1);
             liqProp.ChangeBitterness(0.2f);
             TriggerNextProcess();
         }
-        if (time < 1 && CanNext())
+        if (time < 1 && canNext)
         {
             canNext = false;
             TriggerNextProcess(false);
@@ -115,8 +131,6 @@ public class KettleProcess : StuBrew.BrewingProcess
             hopAmount[i] = 0;
         }
         liquidStage.ChangeLiquidStage(0);
-
-        base.Start();
         TriggerOnProcessReset();
     }
 
