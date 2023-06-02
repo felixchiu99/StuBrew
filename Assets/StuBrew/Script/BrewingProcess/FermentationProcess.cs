@@ -27,6 +27,10 @@ public class FermentationProcess : StuBrew.BrewingProcess
     [SerializeField] TextMeshProUGUI yeastText;
     [SerializeField] TextMeshProUGUI timeText;
 
+    //barrel
+    public GameObject barrelPrefab;
+    public Transform spawnPoint;
+
     void Update()
     {
         liquidAmount = wort.GetFillLevel();
@@ -77,7 +81,6 @@ public class FermentationProcess : StuBrew.BrewingProcess
         if (time < 1 && canNext)
         {
             canNext = false;
-            TriggerNextProcess(false);
         }
     }
 
@@ -98,5 +101,24 @@ public class FermentationProcess : StuBrew.BrewingProcess
 
         AddYeast();
         Destroy(other.attachedRigidbody.gameObject);
+    }
+
+    private void SpawnPrefab()
+    {
+        GameObject b = Instantiate(barrelPrefab, spawnPoint.position, Quaternion.identity);
+        LiquidProperties liq = b.GetComponent<LiquidProperties>();
+        liq.Copy(liqProp);
+    }
+
+    public void ResetProcess()
+    {
+        if (hasProcessFinished)
+        {
+            SpawnPrefab();
+            wort.EmptyContent();
+            yeastAmount = 0;
+            time = 0;
+            TriggerOnProcessReset();
+        }
     }
 }

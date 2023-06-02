@@ -25,7 +25,7 @@ public class LiquidProperties : MonoBehaviour
     //transfer
     public bool canTransfer = true;
 
-    void Start()
+    void Awake()
     {
         canTransfer = true;
         ClearLiq();

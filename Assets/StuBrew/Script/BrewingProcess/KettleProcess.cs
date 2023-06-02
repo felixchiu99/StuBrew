@@ -49,6 +49,10 @@ public class KettleProcess : StuBrew.BrewingProcess
     {
         waterFill = wort.GetFillLevel();
         liqProp.SetTemperature(tempControl.GetTemperature());
+        if (hasProcessFinished && waterFill <= 0)
+        {
+            ResetKettle();
+        }
         ProgressTime();
         BlendLiquidStage();
         UpdateText();
@@ -56,7 +60,7 @@ public class KettleProcess : StuBrew.BrewingProcess
 
     void ProgressTime()
     {
-        if (!isOn)
+        if (!isOn || waterFill <= 0.7f)
             return;
         if (waterFill == 0)
             return;
@@ -72,13 +76,6 @@ public class KettleProcess : StuBrew.BrewingProcess
         if (time >= 0.9f && time < 1f)
         {
             hopStage = 2;
-        }
-        if (time >= 1)
-        {
-            hasProcessFinished = true;
-        }
-        else {
-            hasProcessFinished = false;
         }
         if (time >= 0 && !hasProcessStarted)
         {
@@ -100,7 +97,6 @@ public class KettleProcess : StuBrew.BrewingProcess
         if (time < 1 && canNext)
         {
             canNext = false;
-            TriggerNextProcess(false);
         }
     }
 
@@ -124,7 +120,7 @@ public class KettleProcess : StuBrew.BrewingProcess
     void ResetKettle()
     {
         temperature = 18;
-
+        time = 0;
         hopStage = 0;
         for (int i = 0; i < 3; i++)
         {
@@ -161,5 +157,10 @@ public class KettleProcess : StuBrew.BrewingProcess
         }
 
         Destroy(other.attachedRigidbody.gameObject);
+    }
+
+    override public bool IsTransferEnable()
+    {
+        return true;
     }
 }

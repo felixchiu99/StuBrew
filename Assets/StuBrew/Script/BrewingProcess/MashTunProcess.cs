@@ -60,7 +60,6 @@ public class MashTunProcess : StuBrew.BrewingProcess
         if (time < 1 && canNext)
         {
             canNext = false;
-            TriggerNextProcess(false);
         }
         if (time > 0)
         {
@@ -88,7 +87,6 @@ public class MashTunProcess : StuBrew.BrewingProcess
     {
         if (waterFill <= 0)
         {
-            canNext = false;
             maltHopper.ClearFill();
             TriggerOnProcessReset();
         }

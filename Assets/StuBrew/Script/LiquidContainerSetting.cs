@@ -234,4 +234,15 @@ public class LiquidContainerSetting : MonoBehaviour
     {
         fillAmount = Mathf.Clamp(amount, 0, 1);
     }
+    public void EmptyContent()
+    {
+        if (container && !isStationary)
+        {
+            container.ClearFill();
+        }
+        else if (!overrideFill)
+        {
+            currentLiquidStored = 0;
+        }
+    }
 }

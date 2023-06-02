@@ -89,4 +89,9 @@ public class ParticleContainer : MonoBehaviour
     {
         isEmit = false;
     }
+
+    public void ClearFill()
+    {
+        storedParticle = 0;
+    }
 }

@@ -15,9 +15,6 @@ namespace StuBrew
         [SerializeField]
         UnityEvent<bool> processCompleted;
 
-        [SerializeField]
-        UnityEvent<LiquidProperties> transferLiquid;
-
         [SerializeField] protected BrewingProcess nextProcess;
 
         protected bool canNext = false;
@@ -44,6 +41,7 @@ namespace StuBrew
         protected void TriggerOnProcessReset()
         {
             hasProcessStarted = false;
+            hasProcessFinished = false;
             canNext = false;
             liqProp.canTransfer = true;
             processReset?.Invoke();
@@ -54,17 +52,13 @@ namespace StuBrew
             if (completed)
             {
                 hasProcessFinished = true;
-                if (nextProcess.IsTransferEnable())
+
+                if (IsTransferEnable())
                 {
                     processCompleted?.Invoke(completed);
-                    //transferLiquid?.Invoke(liqProp);
                     nextProcess.SetLiquidProperties(liqProp);
                 }
 
-            }
-            else
-            {
-                processCompleted?.Invoke(completed);
             }
         }
 
@@ -88,20 +82,16 @@ namespace StuBrew
             liqProp.Copy(prop);
         }
 
-        public bool IsLiquidTransferrable(LiquidProperties prevliq)
+        virtual public bool IsLiquidTransferrable(LiquidProperties prevliq)
         {
-            return liqProp == prevliq || liqProp.IsDefault();
+            return liqProp == prevliq || liqProp.IsDefault() || !hasProcessStarted;
         }
-        /*
-        public bool IsTransferEnable()
-        {
-            return liqProp.canTransfer;
-        }
-        */
         // check next
-        public bool IsTransferEnable()
+        virtual public bool IsTransferEnable()
         {
-            return liqProp.canTransfer && nextProcess.IsLiquidTransferrable(liqProp);
+            if(nextProcess)
+                return nextProcess.IsLiquidTransferrable(liqProp);
+            return true;
         }
 
         virtual public bool IsExportingFluid()

@@ -43,6 +43,7 @@ public class HotLiquorTankProcess : StuBrew.BrewingProcess
     override public bool IsExportingFluid()
     {
         bool exporting = base.IsExportingFluid();
+
         return exporting && tempControl.GetTemperature() > temperatureThreshold;
     }
 }

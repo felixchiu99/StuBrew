@@ -31,7 +31,7 @@ public class HeatExchangeProcess : StuBrew.BrewingProcess
         {
             if (toContainer)
             {
-                if (toContainer.GetFillLevel() >= 1)
+                if (toContainer.GetFillLevel() < 1)
                 {
                     float transfered = toContainer.AddLiquid(flowRate * Time.deltaTime);
                     fluidOut?.Invoke(transfered);
