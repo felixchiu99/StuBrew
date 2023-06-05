@@ -7,7 +7,7 @@ using TMPro;
 public class MashTunProcess : StuBrew.BrewingProcess
 {
     [SerializeField]
-    ParticleHopper maltHopper;
+    MaltHopper maltHopper;
     [SerializeField]
     LiquidStage liquidStage;
     [SerializeField]
@@ -35,7 +35,7 @@ public class MashTunProcess : StuBrew.BrewingProcess
     {
         base.Start();
         if (!maltHopper)
-            maltHopper = GetComponent<ParticleHopper>();
+            maltHopper = GetComponent<MaltHopper>();
     }
 
     // Update is called once per frame
@@ -52,8 +52,12 @@ public class MashTunProcess : StuBrew.BrewingProcess
         if (time >= 1 && !canNext)
         {
             canNext = true;
+            MaltProperties maltProp = maltHopper.GetMaltProperties();
+
             liquidStage.ChangeLiquidStage(1);
-            liqProp.SetSweetness(1 - 0.1f * flushCounter);
+            liqProp.ChangeBitterness(maltProp.GetSweetness() - 0.1f * flushCounter);
+            liqProp.ChangeBitterness(maltProp.GetBitterness());
+            liqProp.color = maltProp.GetColor();
             TriggerNextProcess();
             flushCounter++;
         }

@@ -7,9 +7,9 @@ public class ParticleHopper : MonoBehaviour
 {
     [SerializeField] int particleCount = 0;
     [Tooltip("Maximum Particle storage")]
-    [SerializeField] int particleMax = 500;
+    [SerializeField] protected int particleMax = 500;
     [Tooltip("Maximum Particle Overflow storage")]
-    [SerializeField] int particleOverflowMax = 500;
+    [SerializeField] protected int particleOverflowMax = 500;
     [Tooltip("Particle Loss per second")]
     [SerializeField] int particleLoss = 10;
 
@@ -20,7 +20,7 @@ public class ParticleHopper : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI text;
 
-    void Start()
+    protected void Start()
     {
         collisionEvents = new List<ParticleCollisionEvent>();
         InvokeRepeating("RemoveFromHopper", 1.0f, 1.0f);
@@ -44,8 +44,11 @@ public class ParticleHopper : MonoBehaviour
         var collision = part.collision;
         var trigger = part.trigger;
         int i = 0;
+
         while (i < numCollisionEvents)
         {
+            OnEachParticleCollision(other);
+
             if (particleCount > particleMax + particleOverflowMax)
             {
                 trigger.enabled = false;
@@ -71,6 +74,10 @@ public class ParticleHopper : MonoBehaviour
 
         if (text)
             text.SetText(particleCount.ToString());
+    }
+
+    virtual protected void OnEachParticleCollision(GameObject other) 
+    {
     }
 
     public float GetFillLevel()
