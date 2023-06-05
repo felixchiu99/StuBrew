@@ -15,6 +15,8 @@ public class ScoringProcess : StuBrew.BrewingProcess
     [SerializeField] TextMeshProUGUI flavourText;
     [SerializeField] TextMeshProUGUI cleanlinessText;
 
+    private GameObject triggeredObj;
+
     void Update()
     {
         UpdateText();
@@ -26,5 +28,34 @@ public class ScoringProcess : StuBrew.BrewingProcess
         sweetnessText.SetText(liqProp.GetSweetness().ToString("F2"));
         aromaText.SetText(liqProp.GetAroma().ToString("F2"));
         cleanlinessText.SetText((cleanliness * 100).ToString("F2") );
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (!other.attachedRigidbody)
+            return;
+        CustomTag tag = other.attachedRigidbody.GetComponent<CustomTag>();
+        if (!tag)
+            return;
+        if (!tag.HasTag("Barrel"))
+            return;
+        SetLiquidProperties(other.attachedRigidbody.GetComponent<LiquidProperties>());
+        triggeredObj = other.attachedRigidbody.gameObject;
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (!other.attachedRigidbody)
+            return;
+        CustomTag tag = other.attachedRigidbody.GetComponent<CustomTag>();
+        if (!tag)
+            return;
+        if (!tag.HasTag("Barrel"))
+            return;
+        if (triggeredObj == other.attachedRigidbody.gameObject)
+        {
+            triggeredObj = null;
+            liqProp.ClearLiq();
+        }
     }
 }

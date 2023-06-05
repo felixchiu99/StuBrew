@@ -9,6 +9,7 @@ TagManager:
   - Pickupable_PC
   - Hops
   - Yeast
+  - Barrel
   layers:
   - Default
   - TransparentFX

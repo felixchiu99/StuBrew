@@ -230,6 +230,11 @@ public class LiquidContainerSetting : MonoBehaviour
         return fillAmount;
     }
 
+    public float GetLiquidStored()
+    {
+        return currentLiquidStored;
+    }
+
     public void SetVisualFill(float amount)
     {
         fillAmount = Mathf.Clamp(amount, 0, 1);

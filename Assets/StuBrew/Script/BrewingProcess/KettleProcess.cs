@@ -144,15 +144,15 @@ public class KettleProcess : StuBrew.BrewingProcess
 
         switch(hopStage){
             case 0:
-                liqProp.ChangeBitterness(0.15f);
+                liqProp.ChangeBitterness(2f);
                 return;
             case 1:
-                liqProp.ChangeBitterness(0.1f);
-                liqProp.ChangeAroma(0.05f);
+                liqProp.ChangeBitterness(1f);
+                liqProp.ChangeAroma(0.5f) ;
                 return;
             case 2:
-                liqProp.ChangeBitterness(0.05f);
-                liqProp.ChangeAroma(0.2f);
+                liqProp.ChangeBitterness(0.5f);
+                liqProp.ChangeAroma(1f);
                 return;
         }
 

@@ -103,9 +103,10 @@ public class FermentationProcess : StuBrew.BrewingProcess
         Destroy(other.attachedRigidbody.gameObject);
     }
 
-    private void SpawnPrefab()
+    private void SpawnPrefab(int i)
     {
-        GameObject b = Instantiate(barrelPrefab, spawnPoint.position, Quaternion.identity);
+        Vector3 pos = spawnPoint.position + new Vector3(0, i * 0.7f, 0);
+        GameObject b = Instantiate(barrelPrefab, pos, Quaternion.identity);
         LiquidProperties liq = b.GetComponent<LiquidProperties>();
         liq.Copy(liqProp);
     }
@@ -114,7 +115,11 @@ public class FermentationProcess : StuBrew.BrewingProcess
     {
         if (hasProcessFinished)
         {
-            SpawnPrefab();
+            int barrelCount = (int)(wort.GetLiquidStored() / 0.164f);
+            for(int i = 0; i < barrelCount; i++)
+            {
+                SpawnPrefab(i);
+            }
             wort.EmptyContent();
             yeastAmount = 0;
             time = 0;

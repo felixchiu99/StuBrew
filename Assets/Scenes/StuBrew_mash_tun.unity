@@ -2679,21 +2679,6 @@ MonoBehaviour:
   processCompleted:
     m_PersistentCalls:
       m_Calls: []
-  transferLiquid:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1748282977}
-        m_TargetAssemblyTypeName: StuBrew.BrewingProcess, Assembly-CSharp
-        m_MethodName: SetLiquidProperties
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   nextProcess: {fileID: 1748282977}
   tempControl: {fileID: 8450573313844497654}
   temperatureThreshold: 77
@@ -4718,8 +4703,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 419797971}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.6, z: -0.95}
-  m_LocalScale: {x: 0.5, y: 0.2, z: 0.4}
+  m_LocalPosition: {x: 0, y: 1.6, z: -1.1}
+  m_LocalScale: {x: 0.5, y: 0.2, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 481656387}
@@ -14120,21 +14105,6 @@ MonoBehaviour:
   processCompleted:
     m_PersistentCalls:
       m_Calls: []
-  transferLiquid:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1092550357}
-        m_TargetAssemblyTypeName: StuBrew.BrewingProcess, Assembly-CSharp
-        m_MethodName: SetLiquidProperties
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   nextProcess: {fileID: 1092550357}
   tempControl: {fileID: 79895303}
   liquidStage: {fileID: 79895299}
@@ -26853,21 +26823,6 @@ MonoBehaviour:
   processCompleted:
     m_PersistentCalls:
       m_Calls: []
-  transferLiquid:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1310506689}
-        m_TargetAssemblyTypeName: StuBrew.BrewingProcess, Assembly-CSharp
-        m_MethodName: SetLiquidProperties
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   nextProcess: {fileID: 1310506689}
   flowRate: 0.04
   coolTemp: 16
@@ -28896,22 +28851,7 @@ MonoBehaviour:
   processCompleted:
     m_PersistentCalls:
       m_Calls: []
-  transferLiquid:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1445376477}
-        m_TargetAssemblyTypeName: StuBrew.BrewingProcess, Assembly-CSharp
-        m_MethodName: SetLiquidProperties
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  nextProcess: {fileID: 1445376477}
+  nextProcess: {fileID: 0}
   liquidStage: {fileID: 829265434}
   wort: {fileID: 829265433}
   yeastTimeGraph:
@@ -30456,6 +30396,7 @@ Transform:
   - {fileID: 1159904557}
   - {fileID: 1855293277}
   - {fileID: 2025477256}
+  - {fileID: 1665232186}
   m_Father: {fileID: 1039289282}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -30478,9 +30419,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   processCompleted:
-    m_PersistentCalls:
-      m_Calls: []
-  transferLiquid:
     m_PersistentCalls:
       m_Calls: []
   nextProcess: {fileID: 0}
@@ -32270,7 +32208,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1595367456}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.503, y: 2.509, z: -2.044}
+  m_LocalPosition: {x: 0.165, y: -0.131, z: -1.995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -33104,6 +33042,38 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1665232185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1665232186}
+  m_Layer: 0
+  m_Name: Pedestol
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1665232186
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665232185}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1786169510}
+  m_Father: {fileID: 1445376476}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1667767724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33744,21 +33714,6 @@ MonoBehaviour:
   processCompleted:
     m_PersistentCalls:
       m_Calls: []
-  transferLiquid:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 782153478}
-        m_TargetAssemblyTypeName: StuBrew.BrewingProcess, Assembly-CSharp
-        m_MethodName: SetLiquidProperties
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   nextProcess: {fileID: 782153478}
   maltHopper: {fileID: 5707324064591054322}
   liquidStage: {fileID: 6504342020823637357}
@@ -34101,6 +34056,160 @@ Transform:
   m_Father: {fileID: 1039289282}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!1 &1786169509
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1786169510}
+  - component: {fileID: 1786169514}
+  - component: {fileID: 1786169513}
+  - component: {fileID: 1786169512}
+  - component: {fileID: 1786169511}
+  - component: {fileID: 1786169515}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1786169510
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786169509}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.401, z: -0.489}
+  m_LocalScale: {x: 1, y: 0.1, z: 0.7}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1665232186}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1786169511
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786169509}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 12.01, z: 0.99999994}
+  m_Center: {x: 0, y: 6.53, z: 0}
+--- !u!65 &1786169512
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786169509}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1786169513
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786169509}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1786169514
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786169509}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1786169515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786169509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d659f5b17f65b7a42a9159a14708d50e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnTriggerEnterCall:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1445376477}
+        m_TargetAssemblyTypeName: ScoringProcess, Assembly-CSharp
+        m_MethodName: OnTriggerEnter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnTriggerExitCall:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1445376477}
+        m_TargetAssemblyTypeName: ScoringProcess, Assembly-CSharp
+        m_MethodName: OnTriggerExit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1793279761
 GameObject:
   m_ObjectHideFlags: 0

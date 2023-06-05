@@ -56,7 +56,8 @@ namespace StuBrew
                 if (IsTransferEnable())
                 {
                     processCompleted?.Invoke(completed);
-                    nextProcess.SetLiquidProperties(liqProp);
+                    if(nextProcess)
+                        nextProcess.SetLiquidProperties(liqProp);
                 }
 
             }
