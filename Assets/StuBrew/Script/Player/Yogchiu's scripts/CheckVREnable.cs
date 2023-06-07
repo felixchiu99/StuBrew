@@ -5,8 +5,8 @@ using UnityEngine.XR.Management;
 
 public class CheckVREnable : MonoBehaviour
 {
-    public GameObject XRPlayer;
-    public GameObject PCPlayer;
+    public List<GameObject> XRObject;
+    public List<GameObject> PCObject;
 
     // Start is called before the first frame update
     void Start()
@@ -14,16 +14,24 @@ public class CheckVREnable : MonoBehaviour
         // ...
         if (XRGeneralSettings.Instance.Manager.activeLoader != null)
         {
-            // XR device detected/loaded
-            Debug.Log("Xr device found");
-            XRPlayer.SetActive(true);
-            PCPlayer.SetActive(false);
+            SetObject(true);
         }
         else
         {
             Debug.Log("Xr device not found");
-            XRPlayer.SetActive(false);
-            PCPlayer.SetActive(true);
+            SetObject(false);
+        }
+    }
+
+    void SetObject(bool isXR)
+    {
+        foreach(GameObject item in XRObject)
+        {
+            item.SetActive(isXR);
+        }
+        foreach (GameObject item in PCObject)
+        {
+            item.SetActive(!isXR);
         }
     }
 }
