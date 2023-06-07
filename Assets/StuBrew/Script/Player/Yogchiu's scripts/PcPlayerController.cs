@@ -82,6 +82,7 @@ public class PcPlayerController : MonoBehaviour
     PlayerInput playerInput;
     InputActionMap IActionMap;
     InputActionMap MovementActionMap;
+    InputActionMap UiActionMap;
     bool isInteracting = false;
 
     // Start is called before the first frame update
@@ -94,9 +95,12 @@ public class PcPlayerController : MonoBehaviour
         if (!playerInput)
             playerInput = GetComponent<PlayerInput>();
         IActionMap = playerInput.actions.FindActionMap("Interactable");
+
         MovementActionMap = playerInput.actions.FindActionMap("GenericMovement");
         MovementActionMap.Enable();
 
+        UiActionMap = playerInput.actions.FindActionMap("UI");
+        UiActionMap.Enable();
         headCamera.transform.localPosition = new Vector3(headCamera.transform.localPosition.x, normalCameraYValue, headCamera.transform.localPosition.z);
     }
 

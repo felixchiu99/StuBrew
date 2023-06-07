@@ -12,11 +12,13 @@ public class GameMenu : MonoBehaviour
 
     [SerializeField] PlayerInput playerInput;
     InputActionMap MovementActionMap;
+    InputActionMap GameplayActionMap;
 
     void Start()
     {
         MovementActionMap = playerInput.actions.FindActionMap("GenericMovement");
-        inGameUI.enabled = false;
+        GameplayActionMap = playerInput.actions.FindActionMap("Gameplay");
+        UiEnable(false);
     }
 
     public void MainMenu()
@@ -48,11 +50,13 @@ public class GameMenu : MonoBehaviour
         Cursor.visible = enable;
         if (enable)
         {
+            GameplayActionMap.Disable();
             MovementActionMap.Disable();
             Cursor.lockState = CursorLockMode.Confined;
         }
         else
         {
+            GameplayActionMap.Enable();
             MovementActionMap.Enable();
             Cursor.lockState = CursorLockMode.Locked;
         }
