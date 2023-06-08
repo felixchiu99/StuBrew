@@ -26341,7 +26341,7 @@ MonoBehaviour:
   waterText: {fileID: 1732865367}
   yeastText: {fileID: 408891923}
   timeText: {fileID: 1415289715}
-  barrelPrefab: {fileID: 5557776543822526118, guid: edc56a3df3ef719499433acff640d670,
+  barrelPrefab: {fileID: 3796238299062968206, guid: 7b0b93b14b3faa7479a38b100610cd2d,
     type: 3}
   spawnPoint: {fileID: 1595367457}
 --- !u!114 &1310506690
