@@ -41,7 +41,6 @@ public class ItemDispenser : MonoBehaviour
         {
             selector = 0;
         }
-        Debug.Log(objList[selector].name);
         DisplayText();
     }
     public void PrevItem()
@@ -49,7 +48,7 @@ public class ItemDispenser : MonoBehaviour
         selector--;
         if (selector < 0)
         {
-            selector = objList.Count;
+            selector = objList.Count-1;
         }
         DisplayText();
     }

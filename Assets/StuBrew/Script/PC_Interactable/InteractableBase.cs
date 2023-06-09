@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableBase : MonoBehaviour
+public class InteractableBase : Highlightable
 {
     // Start is called before the first frame update
-    protected void Start()
+    new protected void Start()
     {
+        base.Start();
         gameObject.tag = "Interactable_PC";
     }
 

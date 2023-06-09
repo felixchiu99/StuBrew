@@ -8,6 +8,7 @@ public class CollisionIgnores : MonoBehaviour {
     public Collider[] cols2;
 
     void Start() {
+        DisableSelfCollisions();
         DisableCollisions();
     }
 
@@ -23,5 +24,13 @@ public class CollisionIgnores : MonoBehaviour {
                 Physics.IgnoreCollision(cols1[i], cols2[j], true);
     }
 
+    public void DisableSelfCollisions()
+    {
+        foreach (Collider c in GetComponents<Collider>())
+        {
+            for (int j = 0; j < cols2.Length; j++)
+                Physics.IgnoreCollision(c, cols2[j], true);
+        }
+    }
 
 }

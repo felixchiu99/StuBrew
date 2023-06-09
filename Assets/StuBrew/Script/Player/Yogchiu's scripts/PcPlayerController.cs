@@ -77,6 +77,7 @@ public class PcPlayerController : MonoBehaviour
     //controllable Objects
     GameObject controllable;
     GameObject pickupable;
+    float holdDist = 0.5f;
 
 
     PlayerInput playerInput;
@@ -294,16 +295,23 @@ public class PcPlayerController : MonoBehaviour
         //check ray
         RaycastHit hit;
         CrosshairHit(false);
+        if (controllable)
+        {
+            Highlightable obj = controllable.GetComponent<Highlightable>();
+            obj.SetHighLight(false);
+        }
         if (Physics.Raycast(headCamera.transform.position, headCamera.transform.forward, out hit, 1.0f))
         {
             if (hit.transform.tag == "Interactable_PC" || hit.transform.tag == "Pickupable_PC")
             {
                 CrosshairHit(true);
                 controllable = hit.transform.gameObject;
+                Highlightable obj = controllable.GetComponent<Highlightable>();
+                obj.SetHighLight(true);
             }
 
         }
-        else
+        else 
         {
             controllable = null;
         }
@@ -335,6 +343,7 @@ public class PcPlayerController : MonoBehaviour
                     SetGameLayerRecursive(pickupable, LayerIgnoreRaycast);
                     Rigidbody rb = pickupable.GetComponent<Rigidbody>();
                     rb.isKinematic = false;
+                    holdDist = 0.5f;
                     pickupable = null;
                 }
                 else
@@ -343,6 +352,10 @@ public class PcPlayerController : MonoBehaviour
                     Rigidbody rb = pickupable.GetComponent<Rigidbody>();
                     rb.isKinematic = true;
                     int LayerIgnoreRaycast = LayerMask.NameToLayer("NoCollide");
+                    if (pickupable.TryGetComponent(out PickUpPC pickupableObject))
+                    {
+                        holdDist = pickupableObject.GetHoldDist();
+                    }
                     SetGameLayerRecursive(pickupable, LayerIgnoreRaycast);
                 }
             }
@@ -416,7 +429,7 @@ public class PcPlayerController : MonoBehaviour
     void HoldPickupable(){
         if(pickupable){
             MovementActionMap.Enable();
-            pickupable.transform.position = headCamera.transform.position + headCamera.transform.forward * 0.5f;
+            pickupable.transform.position = headCamera.transform.position + headCamera.transform.forward * holdDist;
         }
     }
 

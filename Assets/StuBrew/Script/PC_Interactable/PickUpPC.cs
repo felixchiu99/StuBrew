@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CustomTag))]
-public class PickUpPC : MonoBehaviour, IPickup
+public class PickUpPC : Highlightable, IPickup
 {
-    protected void Start()
+    [SerializeField] float holdDist = 0.5f;
+    new protected void Start()
     {
+        base.Start();
         gameObject.tag = "Pickupable_PC";
     }
     public void OnInteract()
@@ -24,6 +26,11 @@ public class PickUpPC : MonoBehaviour, IPickup
     public void OnRight()
     {
         Debug.Log("Right");
+    }
+
+    public float GetHoldDist()
+    {
+        return holdDist;
     }
 }
 
