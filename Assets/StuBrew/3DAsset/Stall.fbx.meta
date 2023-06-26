@@ -1,9 +1,69 @@
 fileFormatVersion: 2
-guid: b3e757a369153574596417c1e82abdf9
+guid: cd65b7520e518fe41882c53247e265cd
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Brass
+    second: {fileID: 2100000, guid: c649218c89f3c50489b951239794d053, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Brass.001
+    second: {fileID: 2100000, guid: 25acf171c23184545a25b72e443cede3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Canopy
+    second: {fileID: 2100000, guid: 8696bd19156466b45acb19a99497a9dd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Handle
+    second: {fileID: 2100000, guid: 4bb4acbb8fbea2b41aa84c5dc4757f01, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Handle.001
+    second: {fileID: 2100000, guid: 7233e9e84b347434fa111af835eb582f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Outlet
+    second: {fileID: 2100000, guid: 2ca0b19745cd3fe4ca60a9dc153ac824, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pole
+    second: {fileID: 2100000, guid: 2468aad6d7f46e34c85017f45676ce1d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Table
+    second: {fileID: 2100000, guid: 34cb55dd121561f4ab4261dcde986b16, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Table.001
+    second: {fileID: 2100000, guid: cfec9e7ba7f07dd4698c2440bf17eddd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Table.003
+    second: {fileID: 2100000, guid: 5c413a3cb04abd04c93b11ab18ebf4a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Table.007
+    second: {fileID: 2100000, guid: 08806743e42998343a55ab618f62c0b7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood
+    second: {fileID: 2100000, guid: 80f391c01e7d7a64b898648c4d382518, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
