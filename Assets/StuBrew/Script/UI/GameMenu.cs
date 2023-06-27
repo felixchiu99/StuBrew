@@ -16,8 +16,12 @@ public class GameMenu : MonoBehaviour
 
     void Start()
     {
-        MovementActionMap = playerInput.actions.FindActionMap("GenericMovement");
-        GameplayActionMap = playerInput.actions.FindActionMap("Gameplay");
+        if (playerInput)
+        {
+            MovementActionMap = playerInput.actions.FindActionMap("GenericMovement");
+            GameplayActionMap = playerInput.actions.FindActionMap("Gameplay");
+        }
+        
         UiEnable(false);
     }
 
@@ -40,13 +44,18 @@ public class GameMenu : MonoBehaviour
     {
         if (!context.performed)
             return;
-        inGameUI.enabled = !inGameUI.enabled;
-        UiEnable(inGameUI.enabled);
+        if (inGameUI)
+        {
+            inGameUI.enabled = !inGameUI.enabled;
+            UiEnable(inGameUI.enabled);
+        }
+        
     }
 
     private void UiEnable(bool enable)
     {
-        inGameUI.enabled = enable;
+        if (inGameUI)
+            inGameUI.enabled = enable;
         Cursor.visible = enable;
         if (enable)
         {

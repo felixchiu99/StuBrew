@@ -12,7 +12,8 @@ namespace Autohand {
     public enum PlacePointNameType
     {
         name,
-        tag
+        tag,
+        customTag
     }
 
     public delegate void PlacePointEvent(PlacePoint point, Grabbable grabbable);
@@ -215,6 +216,18 @@ namespace Autohand {
                         return false;
                     if (nameCompareType == PlacePointNameType.tag && placeObj.CompareTag(badName))
                         return false;
+                    if (nameCompareType == PlacePointNameType.customTag)
+                    {
+                        if (placeObj.TryGetComponent<CustomTag>(out CustomTag tag))
+                        {
+                            if (tag.HasTag(badName))
+                            {
+
+                                return false;
+                            }
+
+                        }
+                    }
                 }
 
             if (placeNames.Length > 0)
@@ -224,6 +237,18 @@ namespace Autohand {
                         return true;
                     if (nameCompareType == PlacePointNameType.tag && placeObj.CompareTag(placeName))
                         return true;
+                    if (nameCompareType == PlacePointNameType.customTag)
+                    {
+                        if (placeObj.TryGetComponent<CustomTag>(out CustomTag tag))
+                        {
+                            if (tag.HasTag(placeName))
+                            {
+
+                                return true;
+                            }
+
+                        }
+                    }
                 }
             else
                 return true;

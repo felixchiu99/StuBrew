@@ -5,6 +5,11 @@ using UnityEngine;
 public class ParticleEffectController : MonoBehaviour
 {
     [SerializeField] ParticleSystem part;
+    void Start()
+    {
+        part.enableEmission = false;
+    }
+    
     public void Emit(int num = 1)
     {
         var emitParams = new ParticleSystem.EmitParams();

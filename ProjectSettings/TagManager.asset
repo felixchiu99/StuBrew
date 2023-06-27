@@ -11,6 +11,7 @@ TagManager:
   - Yeast
   - Barrel
   - Malt
+  - FingerTip
   layers:
   - Default
   - TransparentFX
