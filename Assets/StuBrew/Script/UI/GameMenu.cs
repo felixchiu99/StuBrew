@@ -14,6 +14,7 @@ public class GameMenu : MonoBehaviour
     InputActionMap MovementActionMap;
     InputActionMap GameplayActionMap;
 
+    public bool isPC = false;
     void Start()
     {
         if (playerInput)
@@ -54,20 +55,24 @@ public class GameMenu : MonoBehaviour
 
     private void UiEnable(bool enable)
     {
-        if (inGameUI)
-            inGameUI.enabled = enable;
-        Cursor.visible = enable;
-        if (enable)
+        if (isPC)
         {
-            GameplayActionMap.Disable();
-            MovementActionMap.Disable();
-            Cursor.lockState = CursorLockMode.Confined;
+            if (inGameUI)
+                inGameUI.enabled = enable;
+            Cursor.visible = enable;
+            if (enable)
+            {
+                GameplayActionMap.Disable();
+                MovementActionMap.Disable();
+                Cursor.lockState = CursorLockMode.Confined;
+            }
+            else
+            {
+                GameplayActionMap.Enable();
+                MovementActionMap.Enable();
+                Cursor.lockState = CursorLockMode.Locked;
+            }
         }
-        else
-        {
-            GameplayActionMap.Enable();
-            MovementActionMap.Enable();
-            Cursor.lockState = CursorLockMode.Locked;
-        }
+        
     }
 }

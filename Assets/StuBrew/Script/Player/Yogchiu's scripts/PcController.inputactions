@@ -29,7 +29,7 @@
                     "id": "fda63ee8-173d-42a8-a526-4d680ff72729",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "initialStateCheck": false
                 },
                 {
@@ -39,6 +39,15 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Action1(Hold)",
+                    "type": "Button",
+                    "id": "479ca767-cc10-4994-9cf2-38e7ab5b098f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
                     "initialStateCheck": false
                 }
             ],
@@ -69,7 +78,7 @@
                     "name": "",
                     "id": "4b1d98ea-b06a-44e7-af13-7b9d8fd765c5",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Tap",
+                    "interactions": "",
                     "processors": "",
                     "groups": "KeyBoard_Mouse",
                     "action": "Action1",
@@ -84,6 +93,17 @@
                     "processors": "",
                     "groups": "KeyBoard_Mouse",
                     "action": "Action2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0b1f7b4a-3e28-4d84-ada5-e2629d043787",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoard_Mouse",
+                    "action": "Action1(Hold)",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

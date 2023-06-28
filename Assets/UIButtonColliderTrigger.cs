@@ -41,14 +41,16 @@ public class UIButtonColliderTrigger : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (IsFront(other) && collisionTriggers == (collisionTriggers | (1 << other.gameObject.layer)) && UIController.IsActive())
+        if (collisionTriggers == (collisionTriggers | (1 << other.gameObject.layer)) && UIController.IsActive())
+        //if (UIController.IsActive())
         {
-            if (UIController.CheckHand(FindHand(other)))
-            {
-                Debug.Log("OnTrigger");
-                UIController.SetInactive();
-                btn.onClick.Invoke();
-            }
+            if (IsFront(other))
+                if (UIController.CheckHand(FindHand(other)))
+                {
+                    UIController.SetInactive();
+                    btn.onClick.Invoke();
+                    //Debug.Log(other.name);
+                }
 
             
         }
@@ -57,7 +59,7 @@ public class UIButtonColliderTrigger : MonoBehaviour
     {
         if (collisionTriggers == (collisionTriggers | (1 << other.gameObject.layer)) && !UIController.IsActive())
         {
-            Debug.Log("OnTriggerExit");
+            //Debug.Log("OnTriggerExit");
             UIController.SetActive();
         }
     }
@@ -69,7 +71,7 @@ public class UIButtonColliderTrigger : MonoBehaviour
 
     bool IsFingerTip(Collider other)
     {
-        if (TryGetComponent<CustomTag>(out CustomTag tag))
+        if (other.gameObject.TryGetComponent<CustomTag>(out CustomTag tag))
         {
             if (customTag == null || customTag == "")
             {

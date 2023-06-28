@@ -74,10 +74,14 @@ public class PcPlayerController : MonoBehaviour
 
     [Space(10)]
     [Header("Interactable")]
+
     //controllable Objects
     GameObject controllable;
     GameObject pickupable;
     float holdDist = 0.5f;
+
+    //HoldKey
+    bool isAction1Hold = false;
 
 
     PlayerInput playerInput;
@@ -113,6 +117,7 @@ public class PcPlayerController : MonoBehaviour
             UpdateRigidbody();
             Ground();
             HoldPickupable();
+            Action1Hold();
         }
     }
 
@@ -410,6 +415,17 @@ public class PcPlayerController : MonoBehaviour
             }
         }
     }
+
+    public void OnHold(InputAction.CallbackContext context)
+    {
+        
+        if (context.canceled)
+            isAction1Hold = false;
+        if (context.performed)
+            isAction1Hold = true;
+        if (!context.performed)
+            return;
+    }
     public void OnScroll(InputAction.CallbackContext context)
     {
         if (pickupable)
@@ -430,6 +446,17 @@ public class PcPlayerController : MonoBehaviour
         if(pickupable){
             MovementActionMap.Enable();
             pickupable.transform.position = headCamera.transform.position + headCamera.transform.forward * holdDist;
+        }
+    }
+
+    void Action1Hold()
+    {
+        if (isAction1Hold && controllable)
+        {
+            if (controllable.TryGetComponent(out IKeyHoldable keyHoldableObject))
+            {
+                keyHoldableObject.OnHold();
+            }
         }
     }
 
