@@ -6,10 +6,10 @@ public class TestUICollision : MonoBehaviour
 {
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("ui collision");
+        Debug.Log(gameObject.name + " ui collision");
     }
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("ui trigger");
+        Debug.Log(gameObject.name + " ui trigger");
     }
 }

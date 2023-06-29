@@ -7,12 +7,13 @@ public class UIButtonColliderTrigger : MonoBehaviour
 {
     [Tooltip("The layers that cause the Button to be activated")]
     public LayerMask collisionTriggers = ~0;
+
     [Tooltip("Reference to Button")]
     [SerializeField] Button btn;
+
     [Tooltip("Reference to Base of all related UI")]
     [SerializeField] UITouchable UIController;
 
-    [SerializeField] string customTag = "FingerTip";
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +43,7 @@ public class UIButtonColliderTrigger : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (collisionTriggers == (collisionTriggers | (1 << other.gameObject.layer)) && UIController.IsActive())
-        //if (UIController.IsActive())
+        if (UIController.IsFingerTip(other))
         {
             if (IsFront(other))
                 if (UIController.CheckHand(FindHand(other)))
@@ -55,36 +56,11 @@ public class UIButtonColliderTrigger : MonoBehaviour
             
         }
     }
-    void OnTriggerExit(Collider other)
-    {
-        if (collisionTriggers == (collisionTriggers | (1 << other.gameObject.layer)) && !UIController.IsActive())
-        {
-            //Debug.Log("OnTriggerExit");
-            UIController.SetActive();
-        }
-    }
+
     Autohand.Hand FindHand(Collider other)
     {
         Autohand.Hand hand = other.gameObject.GetComponentInParent<Autohand.Hand>();
         return hand;
-    }
-
-    bool IsFingerTip(Collider other)
-    {
-        if (other.gameObject.TryGetComponent<CustomTag>(out CustomTag tag))
-        {
-            if (customTag == null || customTag == "")
-            {
-                return false;
-            }
-            else {
-                return tag.HasTag(customTag);
-            }
-        }
-        else
-        {
-            return false;
-        }
     }
 
     bool IsFront(Collider other)
