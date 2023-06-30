@@ -349,6 +349,10 @@ public class PcPlayerController : MonoBehaviour
                     Rigidbody rb = pickupable.GetComponent<Rigidbody>();
                     rb.isKinematic = false;
                     holdDist = 0.5f;
+                    if (pickupable.TryGetComponent(out PickUpPC pickupableObject))
+                    {
+                        pickupableObject.OnRelease();
+                    }
                     pickupable = null;
                 }
                 else
@@ -360,6 +364,7 @@ public class PcPlayerController : MonoBehaviour
                     if (pickupable.TryGetComponent(out PickUpPC pickupableObject))
                     {
                         holdDist = pickupableObject.GetHoldDist();
+                        pickupableObject.OnInteract();
                     }
                     SetGameLayerRecursive(pickupable, LayerIgnoreRaycast);
                 }
