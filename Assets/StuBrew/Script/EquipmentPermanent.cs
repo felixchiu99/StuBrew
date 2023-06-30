@@ -13,5 +13,6 @@ public class EquipmentPermanent : MonoBehaviour
     {
         transform.position = spawnPoint.position;
         transform.rotation = spawnPoint.rotation;
+        transform.parent = spawnPoint;
     }
 }
