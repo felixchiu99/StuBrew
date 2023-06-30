@@ -14,24 +14,26 @@ public class PickUpPC : Highlightable, IPickup
     public void OnInteract()
     {
         Debug.Log("Clicked on pick up able");
-        if (transform.parent.gameObject.TryGetComponent(out Autohand.PlacePoint placePoint))
-        {
-            if (gameObject.TryGetComponent(out Autohand.Grabbable obj))
+        if (transform.parent != null)
+            if (transform.parent.gameObject.TryGetComponent(out Autohand.PlacePoint placePoint))
             {
-                placePoint.Remove(obj);
+                if (gameObject.TryGetComponent(out Autohand.Grabbable obj))
+                {
+                    placePoint.Remove(obj);
+                }
             }
-        }
     }
     public void OnRelease()
     {
         Debug.Log("Release on pick up able");
-        if(transform.parent.gameObject.TryGetComponent(out Autohand.PlacePoint placePoint))
-        {
-            if (gameObject.TryGetComponent(out Autohand.Grabbable obj))
+        if (transform.parent != null)
+            if (transform.parent.gameObject.TryGetComponent(out Autohand.PlacePoint placePoint))
             {
-                placePoint.Remove(obj);
+                if (gameObject.TryGetComponent(out Autohand.Grabbable obj))
+                {
+                    placePoint.Remove(obj);
+                }
             }
-        }
     }
     public void OnScroll()
     {

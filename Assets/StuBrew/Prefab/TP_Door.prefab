@@ -1170,12 +1170,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorRb: {fileID: 2425446881318694449}
-  clickForceMultiplier: 3000
+  clickForceMultiplier: 2000
   handleDirection: {x: 0, y: -90, z: 0}
-  handlePositionOffset: {x: -1, y: 0, z: 0}
-  openForceMultiplier: 1000
-  openDirection: {x: 0, y: 0, z: 90}
-  openPositionOffset: {x: 1, y: 0, z: 0}
+  handlePositionOffset: {x: 0, y: 0, z: 0}
+  openForceMultiplier: 1500
+  openDirection: {x: 0, y: 0, z: -90}
+  openPositionOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &2425446882551748812
 GameObject:
   m_ObjectHideFlags: 0
@@ -1587,12 +1587,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorRb: {fileID: 2425446881318694449}
-  clickForceMultiplier: 3000
+  clickForceMultiplier: 2000
   handleDirection: {x: 0, y: -90, z: 0}
-  handlePositionOffset: {x: -1, y: 0, z: 0}
-  openForceMultiplier: 1000
+  handlePositionOffset: {x: 0, y: 0, z: 0}
+  openForceMultiplier: 1500
   openDirection: {x: 0, y: 0, z: -90}
-  openPositionOffset: {x: 1, y: 0, z: 0}
+  openPositionOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &2425446882571523578
 GameObject:
   m_ObjectHideFlags: 0

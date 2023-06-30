@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 2864618480064253206}
   - component: {fileID: 2864618480064253209}
   m_Layer: 0
-  m_Name: Malt Can (1)
+  m_Name: Malt Can (Light)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,7 +130,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2864618480064253211}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 1.677, y: 1.207, z: 0.0205}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -349,6 +349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 374c79db8af188c46bbfc80c6cf7c95f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  holdDist: 0.5
 --- !u!114 &2864618480064253209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4441,7 +4442,7 @@ ParticleSystem:
     m_EnergyLossOnCollision:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -4512,8 +4513,7 @@ ParticleSystem:
     exit: 0
     colliderQueryMode: 0
     radiusScale: 1
-    primitives:
-    - {fileID: 0}
+    primitives: []
   SubModule:
     serializedVersion: 2
     enabled: 0

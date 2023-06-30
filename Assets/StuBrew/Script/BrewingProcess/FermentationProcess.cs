@@ -42,7 +42,7 @@ public class FermentationProcess : StuBrew.BrewingProcess
 
     void AddYeast()
     {
-        yeastAmount += 0.1f;
+        yeastAmount += 1f;
     }
 
     void ProgressTime()
@@ -65,7 +65,7 @@ public class FermentationProcess : StuBrew.BrewingProcess
 
     void UpdateText()
     {
-        yeastText.SetText((yeastAmount).ToString("F2"));
+        yeastText.SetText((yeastAmount).ToString("0"));
         waterText.SetText((liquidAmount * 100).ToString("F2"));
         timeText.SetText((time * 100).ToString("F2"));
         tempText.SetText(liqProp.GetTemperature().ToString("0"));
