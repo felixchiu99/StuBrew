@@ -68,6 +68,11 @@ public class ParticleContainer : MonoBehaviour
     {
         return (float)storedParticle / maxParticle;
     }
+    public void SetFillLevel(float fillLevel)
+    {
+        SetFill((int)(maxParticle * fillLevel));
+    }
+
     public void SetFlowRate(int particlePerSecond)
     {
         flowRate = particlePerSecond;
@@ -93,5 +98,10 @@ public class ParticleContainer : MonoBehaviour
     public void ClearFill()
     {
         storedParticle = 0;
+    }
+
+    public void SetFill(int fill)
+    {
+        storedParticle = fill > maxParticle ? maxParticle: fill;
     }
 }

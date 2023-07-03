@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 35515641}
   - component: {fileID: 35515640}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: TabletUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -884,6 +884,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1408433240}
+  - {fileID: 1696703782}
   m_Father: {fileID: 477394822}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1762,9 +1763,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "W A S D to move;\nF on interactable object to interact / pickup;\n\"<-\"
-    \"->\" while hover on dial to turn;\nLeft mouse on switch to toggle;\nScroll
-    while holding to Rotate;\n\tRotation is based on the direction you are facing;"
+  m_text: "W A S D to move;\nLeft Mouse Click on interactable object to interact
+    / pickup;\n\"Q\" \"E\" while hover on dial to turn;\nScroll while holding to
+    Rotate;\n\tRotation is based on the direction you are facing;\n\tShift While
+    Scrolling to Change direction;"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2924,10 +2926,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98c6e5ab7ab3b5048b948c3a624604b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstLevel: MainMenu
   inGameUI: {fileID: 0}
   playerInput: {fileID: 0}
   isPC: 0
+  firstLevel: MainMenu
 --- !u!1 &1095347059
 GameObject:
   m_ObjectHideFlags: 0
@@ -3770,7 +3772,7 @@ RectTransform:
   m_GameObject: {fileID: 1167601567}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1752486223}
@@ -4649,7 +4651,7 @@ RectTransform:
   m_GameObject: {fileID: 1369018587}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1752486223}
@@ -4743,10 +4745,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98c6e5ab7ab3b5048b948c3a624604b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstLevel: MainMenu
   inGameUI: {fileID: 1034712323}
   playerInput: {fileID: 8256122454471306094}
   isPC: 1
+  firstLevel: MainMenu
 --- !u!1 &1455894445
 GameObject:
   m_ObjectHideFlags: 0
@@ -6062,6 +6064,68 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1696703781
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1696703782}
+  - component: {fileID: 1696703783}
+  - component: {fileID: 1696703784}
+  m_Layer: 0
+  m_Name: TabletUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1696703782
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696703781}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 460300753}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1696703783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696703781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 829040f49e01a6c41ac382805a410a3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inGameUI: {fileID: 35515642}
+  playerInput: {fileID: 8256122454471306094}
+  isPC: 0
+--- !u!114 &1696703784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696703781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c69824d420e0ebb4191d9a5a08c322b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UI: {fileID: 35515642}
+  parentUnder: {fileID: 1696703782}
 --- !u!1 &1699575106
 GameObject:
   m_ObjectHideFlags: 0
@@ -8525,10 +8589,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98c6e5ab7ab3b5048b948c3a624604b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstLevel: MainMenu
   inGameUI: {fileID: 0}
   playerInput: {fileID: 0}
   isPC: 0
+  firstLevel: MainMenu
 --- !u!114 &2210384667502244207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13197,6 +13261,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 479ca767-cc10-4994-9cf2-38e7ab5b098f
     m_ActionName: Gameplay/Action1(Hold)[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8256122454471306083}
+        m_TargetAssemblyTypeName: PcPlayerController, Assembly-CSharp
+        m_MethodName: OnShift
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1a8115d0-7a26-4bf3-9b4b-53fa2f0dd374
+    m_ActionName: Interactable/Shift[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1696703783}
+        m_TargetAssemblyTypeName: InGameMenuController, Assembly-CSharp
+        m_MethodName: ToggleMenu
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6e764676-8e79-470b-97ce-ae9ae39a9dd9
+    m_ActionName: UI/ToggleInventory[/Keyboard/tab]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: KeyBoard_Mouse
   m_DefaultActionMap: Gameplay
@@ -13254,6 +13350,36 @@ MonoBehaviour:
   - {fileID: 1701247965}
   PCObject:
   - {fileID: 8256122454471306085}
+  OnXR:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPC:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1696703784}
+        m_TargetAssemblyTypeName: UIWorldSpaceToOverlay, Assembly-CSharp
+        m_MethodName: SetUIToOverLay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1696703783}
+        m_TargetAssemblyTypeName: InGameMenuController, Assembly-CSharp
+        m_MethodName: SetIsPC
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &8297316830642907336
 GameObject:
   m_ObjectHideFlags: 0

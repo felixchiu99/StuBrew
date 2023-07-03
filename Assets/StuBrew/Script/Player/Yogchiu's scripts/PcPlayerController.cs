@@ -90,6 +90,8 @@ public class PcPlayerController : MonoBehaviour
     InputActionMap UiActionMap;
     bool isInteracting = false;
 
+    bool isShiftPressed = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -100,6 +102,7 @@ public class PcPlayerController : MonoBehaviour
         if (!playerInput)
             playerInput = GetComponent<PlayerInput>();
         IActionMap = playerInput.actions.FindActionMap("Interactable");
+        IActionMap.Enable();
 
         MovementActionMap = playerInput.actions.FindActionMap("GenericMovement");
         MovementActionMap.Enable();
@@ -305,7 +308,8 @@ public class PcPlayerController : MonoBehaviour
             Highlightable obj = controllable.GetComponent<Highlightable>();
             obj.SetHighLight(false);
         }
-        if (Physics.Raycast(headCamera.transform.position, headCamera.transform.forward, out hit, 1.0f))
+        float interactDistance = 1.2f;
+        if (Physics.Raycast(headCamera.transform.position, headCamera.transform.forward, out hit, interactDistance))
         {
             if (hit.transform.tag == "Interactable_PC" || hit.transform.tag == "Pickupable_PC")
             {
@@ -339,7 +343,7 @@ public class PcPlayerController : MonoBehaviour
             return;
         if (controllable)
         {
-            ToggleInteractiveInput();
+            //ToggleInteractiveInput();
             if (controllable.transform.tag == "Pickupable_PC")
             {
                 if (pickupable)
@@ -353,6 +357,7 @@ public class PcPlayerController : MonoBehaviour
                     {
                         pickupableObject.OnRelease();
                     }
+                    pickupable.transform.SetParent(null);
                     pickupable = null;
                 }
                 else
@@ -367,6 +372,7 @@ public class PcPlayerController : MonoBehaviour
                         pickupableObject.OnInteract();
                     }
                     SetGameLayerRecursive(pickupable, LayerIgnoreRaycast);
+                    pickupable.transform.SetParent(transform);
                 }
             }
         }
@@ -414,6 +420,7 @@ public class PcPlayerController : MonoBehaviour
             return;
         if (controllable)
         {
+            OnInteract(context);
             if (controllable.TryGetComponent(out IClickable clickableObject))
             {
                 clickableObject.OnClick();
@@ -431,11 +438,24 @@ public class PcPlayerController : MonoBehaviour
         if (!context.performed)
             return;
     }
+
+    public void OnShift(InputAction.CallbackContext context)
+    {
+        if (context.canceled)
+            isShiftPressed = false;
+        if (context.started)
+            isShiftPressed = true;
+    }
+
     public void OnScroll(InputAction.CallbackContext context)
     {
         if (pickupable)
         {
-            pickupable.transform.RotateAround(pickupable.transform.position, headCamera.transform.right, (context.ReadValue<float>()==0?0: context.ReadValue<float>() >1 ? 1: -1) * 5f);
+            if(!isShiftPressed)
+                pickupable.transform.RotateAround(pickupable.transform.position, headCamera.transform.right, (context.ReadValue<float>()==0?0: context.ReadValue<float>() >1 ? 1: -1) * 5f);
+            else
+                //pickupable.transform.RotateAround(pickupable.transform.position, headCamera.transform.forward, (context.ReadValue<float>() == 0 ? 0 : context.ReadValue<float>() > 1 ? 1 : -1) * 5f);
+                pickupable.transform.RotateAround(pickupable.transform.position, Vector3.up, (context.ReadValue<float>() == 0 ? 0 : context.ReadValue<float>() > 1 ? 1 : -1) * 5f);
         }
     }
 

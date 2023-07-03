@@ -7,7 +7,8 @@ public class ParticleEffectController : MonoBehaviour
     [SerializeField] ParticleSystem part;
     void Start()
     {
-        part.enableEmission = false;
+        var em = part.emission;
+        em.enabled = true;
     }
     
     public void Emit(int num = 1)
@@ -19,11 +20,13 @@ public class ParticleEffectController : MonoBehaviour
     public void Play()
     {
         part.Play();
-        part.enableEmission = true;
+        var em = part.emission;
+        em.enabled = true;
     }
 
     public void Stop()
     {
-        part.enableEmission = false;
+        var em = part.emission;
+        em.enabled = false;
     }
 }
