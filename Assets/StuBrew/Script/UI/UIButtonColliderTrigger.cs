@@ -26,6 +26,9 @@ public class UIButtonColliderTrigger : MonoBehaviour
             if (TryGetComponent<Collider>(out Collider col))
             {
                 col.isTrigger = true;
+                RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
+                if (TryGetComponent<BoxCollider>(out BoxCollider boxCol))
+                    boxCol.size = new Vector3(rectTransform.sizeDelta.x, rectTransform.sizeDelta.y, 1);
             }
         }
         if (UIController == null)
@@ -39,6 +42,7 @@ public class UIButtonColliderTrigger : MonoBehaviour
                 }
             }
         }
+
     }
     void OnTriggerEnter(Collider other)
     {
