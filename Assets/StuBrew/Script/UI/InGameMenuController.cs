@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using NaughtyAttributes;
 
-public class InGameMenuController : MonoBehaviour
+public class InGameMenuController : MenuController
 {
+    [Required]
+    [SerializeField] InGameMenuManager manager;
+    [Required]
     [SerializeField] Canvas inGameUI;
 
     [SerializeField] PlayerInput playerInput;
@@ -15,6 +19,7 @@ public class InGameMenuController : MonoBehaviour
 
     void Start()
     {
+        manager.Add(inGameUI);
         if (playerInput)
         {
             MovementActionMap = playerInput.actions.FindActionMap("GenericMovement");
@@ -47,15 +52,16 @@ public class InGameMenuController : MonoBehaviour
         {
             if (inGameUI)
                 inGameUI.enabled = enable;
-            Cursor.visible = enable;
             if (enable)
             {
+                Cursor.visible = true;
                 GameplayActionMap.Disable();
                 MovementActionMap.Disable();
                 Cursor.lockState = CursorLockMode.Confined;
             }
-            else
+            else if(!manager.IsAnyEnabled())
             {
+                Cursor.visible = false;
                 GameplayActionMap.Enable();
                 MovementActionMap.Enable();
                 Cursor.lockState = CursorLockMode.Locked;

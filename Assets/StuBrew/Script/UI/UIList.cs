@@ -37,26 +37,31 @@ public class UIList : MonoBehaviour
     int maxShownOnPage = 0;
     void Awake()
     {
+        GetUIListComponents();
+
+        PrevItem();
+    }
+
+    public void GetUIListComponents()
+    {
         if (!manualComponents)
         {
             uiComponents.Clear();
-            for (int i = 0; i< parentUI.childCount; i++)
+            for (int i = 0; i < parentUI.childCount; i++)
             {
-                uiComponents.Add(new UIComponent(parentUI.GetChild(i).gameObject));
+                GameObject listItem = parentUI.GetChild(i).gameObject;
+                if (listItem.activeSelf)
+                    uiComponents.Add(new UIComponent(parentUI.GetChild(i).gameObject));
+            }
+            for (int i = 0; i < uiComponents.Count; i++)
+            {
+                uiComponents[i].rectTransform = uiComponents[i].UIElement.GetComponent<RectTransform>();
             }
         }
-
         maxShownOnPage = (int)(gridSize.x * gridSize.y);
 
         RearrangeUIList();
-
-        for (int i = 0; i < uiComponents.Count; i++)
-        {
-            uiComponents[i].rectTransform = uiComponents[i].UIElement.GetComponent<RectTransform>();
-        }
-
-        PrevItem();
-        //CalculateUIElement();
+        CalculateUIElement();
     }
 
     void RearrangeUIList()
@@ -101,6 +106,18 @@ public class UIList : MonoBehaviour
             }
              
         }
+        SetBtnState(prevBtn, true);
+        SetBtnState(nextBtn, true);
+
+        if (firstItem <= 0)
+        {
+            SetBtnState(prevBtn, false);
+        }
+        if (firstItem + maxShownOnPage >= uiComponents.Count)
+        {
+            SetBtnState(nextBtn, false);
+        }
+
     }
 
     void SetBtnState(Button[] btns, bool state)
@@ -112,29 +129,18 @@ public class UIList : MonoBehaviour
 
     public void PrevItem()
     {
-        SetBtnState(nextBtn, true);
         if (firstItem > 0) 
         {
             firstItem--;
-        }
-        
-        if(firstItem <= 0)
-        {
-            SetBtnState(prevBtn, false);
         }
         CalculateUIElement();
     }
 
     public void NextItem()
     {
-        SetBtnState(prevBtn, true);
         if (firstItem + maxShownOnPage < uiComponents.Count)
         {
             firstItem++;
-        }
-        if(firstItem + maxShownOnPage >= uiComponents.Count)
-        {
-            SetBtnState(nextBtn, false);
         }
 
         CalculateUIElement();

@@ -5,7 +5,7 @@ using UnityEngine;
 public class TabletUI : MonoBehaviour
 {
     [SerializeField] RectTransform backgroundImage;
-    public void Start()
+    public void Awake()
     {
         gameObject.SetActive(false);
     }

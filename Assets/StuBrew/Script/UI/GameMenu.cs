@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using NaughtyAttributes;
 
 public class GameMenu : InGameMenuController
 {
+    [Scene]
     public string firstLevel;
 
     public void MainMenu()
@@ -16,10 +18,5 @@ public class GameMenu : InGameMenuController
     public void CloseMenu()
     {
         UiEnable(false);
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
     }
 }

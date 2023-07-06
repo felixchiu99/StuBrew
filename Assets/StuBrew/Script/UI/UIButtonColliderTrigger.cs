@@ -14,7 +14,6 @@ public class UIButtonColliderTrigger : MonoBehaviour
     [Tooltip("Reference to Base of all related UI")]
     [SerializeField] UITouchable UIController;
 
-    // Start is called before the first frame update
     void Start()
     {
         if(btn == null)
@@ -46,6 +45,8 @@ public class UIButtonColliderTrigger : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
+        if (!btn.interactable)
+            return;
         if (collisionTriggers == (collisionTriggers | (1 << other.gameObject.layer)) && UIController.IsActive())
         if (UIController.IsFingerTip(other))
         {
