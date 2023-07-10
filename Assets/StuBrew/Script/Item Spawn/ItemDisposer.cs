@@ -19,6 +19,8 @@ public class ItemDisposer : MonoBehaviour
     }
     public void AddObj(Collider collider)
     {
+        if (delList.Contains(collider.attachedRigidbody.gameObject))
+            return;
         delList.Add(collider.attachedRigidbody.gameObject);
     }
     public void RemoveObj(Collider collider)

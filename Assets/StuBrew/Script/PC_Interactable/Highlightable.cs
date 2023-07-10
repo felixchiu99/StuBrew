@@ -6,6 +6,8 @@ public class Highlightable : MonoBehaviour
 {
     Outline outline;
 
+    bool overrideHighLight = false;
+
     protected void Start()
     {
         outline = gameObject.AddComponent<Outline>();
@@ -16,10 +18,16 @@ public class Highlightable : MonoBehaviour
     }
     public void ToggleHighLight()
     {
-        outline.enabled = !outline.enabled;
+        if (!overrideHighLight)
+            outline.enabled = !outline.enabled;
     }
     public void SetHighLight(bool enabled)
     {
-        outline.enabled = enabled;
+        if(!overrideHighLight)
+            outline.enabled = enabled;
+    }
+    public void SetOverrideHighlight(bool isOverride)
+    {
+        overrideHighLight = isOverride;
     }
 }

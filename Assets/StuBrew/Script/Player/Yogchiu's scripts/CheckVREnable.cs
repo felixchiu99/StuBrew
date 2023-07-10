@@ -6,6 +6,8 @@ using UnityEngine.Events;
 
 public class CheckVREnable : MonoBehaviour
 {
+    public bool isVR = false;
+
     public List<GameObject> XRObject;
 
     public List<GameObject> PCObject;
@@ -19,11 +21,13 @@ public class CheckVREnable : MonoBehaviour
         // ...
         if (XRGeneralSettings.Instance.Manager.activeLoader != null)
         {
+            isVR = true;
             SetObject(true);
             OnXR?.Invoke();
         }
         else
         {
+            isVR = false;
             Debug.Log("Xr device not found");
             SetObject(false);
             OnPC?.Invoke();
@@ -40,5 +44,10 @@ public class CheckVREnable : MonoBehaviour
         {
             item.SetActive(!isXR);
         }
+    }
+
+    public bool CheckIsVR()
+    {
+        return isVR;
     }
 }

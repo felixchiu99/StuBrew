@@ -1639,8 +1639,8 @@ GameObject:
   - component: {fileID: 2425446882663252090}
   - component: {fileID: 2425446882663252037}
   - component: {fileID: 2425446882663252036}
-  - component: {fileID: 2425446882663252039}
   - component: {fileID: 2425446882663252038}
+  - component: {fileID: 215893538}
   m_Layer: 0
   m_Name: TPCube
   m_TagString: Untagged
@@ -1726,19 +1726,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2425446882663252039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2425446882663252032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b3f69fa09888e34a8f0c5bb6f2fd3dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneName: BrewRoom
 --- !u!114 &2425446882663252038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1762,9 +1749,9 @@ MonoBehaviour:
   OnTriggerEnterCall:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2425446882663252039}
-        m_TargetAssemblyTypeName: ReloadSceneByName, Assembly-CSharp
-        m_MethodName: ReloadScene
+      - m_Target: {fileID: 215893538}
+        m_TargetAssemblyTypeName: FadeOnSceneChange, Assembly-CSharp
+        m_MethodName: DoFade
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1780,6 +1767,22 @@ MonoBehaviour:
   OnTriggerExitCall:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &215893538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2425446882663252032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65c56306b28e7e94abc28af4c43343c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: BrewRoom
+  col: {r: 0, g: 0, b: 0, a: 1}
+  fadeOutDuration: 1
+  fadeInDuration: 1
 --- !u!1 &2425446882912314247
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class DispensableObject
     [Header("Object")]
     public string name;
     public GameObject prefab;
+    public int price = 0;
 
 }
 
@@ -57,9 +58,12 @@ public class ItemDispenser : MonoBehaviour
     {
         if (!canSpawn)
             return;
-            
         if (objList.Count == 0)
             return;
+        if (objList[selector].price > 0)
+        {
+            CurrencyManager.Instance.Deduct(objList[selector].price);
+        }
         Debug.Log(objList[selector].name);
         GameObject obj = Instantiate(objList[selector].prefab, spawnPoint.position, Quaternion.identity);
     }

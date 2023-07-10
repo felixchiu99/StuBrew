@@ -72,7 +72,6 @@ public class BeerPump : MonoBehaviour
     }
     public void OnReleased()
     {
-        Debug.Log("OnRelease");
         isPulled = false;
         particles.Stop();
     }
@@ -90,7 +89,6 @@ public class BeerPump : MonoBehaviour
             cup.UpdateContainerFill();
             return true;
         }
-        Debug.Log("not Transfered");
         return false;
     }
 }

@@ -305,8 +305,10 @@ public class PcPlayerController : MonoBehaviour
         CrosshairHit(false);
         if (controllable)
         {
-            Highlightable obj = controllable.GetComponent<Highlightable>();
-            obj.SetHighLight(false);
+            if (controllable.TryGetComponent(out Highlightable obj))
+            {
+                obj.SetHighLight(false);
+            }
         }
         float interactDistance = 1.2f;
         if (Physics.Raycast(headCamera.transform.position, headCamera.transform.forward, out hit, interactDistance))
@@ -315,8 +317,10 @@ public class PcPlayerController : MonoBehaviour
             {
                 CrosshairHit(true);
                 controllable = hit.transform.gameObject;
-                Highlightable obj = controllable.GetComponent<Highlightable>();
-                obj.SetHighLight(true);
+                if (controllable.TryGetComponent(out Highlightable obj))
+                {
+                    obj.SetHighLight(true);
+                }
             }
 
         }
