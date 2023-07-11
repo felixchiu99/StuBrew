@@ -466,9 +466,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 215893538, guid: 5e424c17717a3c14c95ef7ae657b8921, type: 3}
+      propertyPath: col.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 215893538, guid: 5e424c17717a3c14c95ef7ae657b8921, type: 3}
+      propertyPath: sceneName
+      value: BrewRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 215893538, guid: 5e424c17717a3c14c95ef7ae657b8921, type: 3}
       propertyPath: vrChecker
       value: 
       objectReference: {fileID: 709275559}
+    - target: {fileID: 215893538, guid: 5e424c17717a3c14c95ef7ae657b8921, type: 3}
+      propertyPath: fadeInDuration
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 215893538, guid: 5e424c17717a3c14c95ef7ae657b8921, type: 3}
+      propertyPath: fadeOutDuration
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 2425446882571523578, guid: 5e424c17717a3c14c95ef7ae657b8921,
         type: 3}
       propertyPath: m_Name
@@ -1316,10 +1332,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disableOnStart: 1
-  cols1: []
-  cols2:
-  - {fileID: 687498920}
+  cols1:
+  - {fileID: 1048934841}
   - {fileID: 448705396}
+  - {fileID: 1142507916}
+  - {fileID: 1378715192}
+  - {fileID: 2113966322}
+  - {fileID: 1174175155}
+  - {fileID: 1408689281}
+  cols2:
+  - {fileID: 448705396}
+  - {fileID: 1048934841}
 --- !u!114 &448705399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2285,12 +2308,6 @@ PrefabInstance:
 --- !u!4 &687498919 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6162906464484583384, guid: 4ec9e31f61a4a5641aeddc30dd2a33f1,
-    type: 3}
-  m_PrefabInstance: {fileID: 687498918}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &687498920 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 6162906463587378329, guid: 4ec9e31f61a4a5641aeddc30dd2a33f1,
     type: 3}
   m_PrefabInstance: {fileID: 687498918}
   m_PrefabAsset: {fileID: 0}
@@ -8023,6 +8040,12 @@ Transform:
   m_Father: {fileID: 318748336}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1048934841 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 5116238323746712893, guid: 352f22c0ea4b32f46995b40e5190f09d,
+    type: 3}
+  m_PrefabInstance: {fileID: 448705394}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1051537467
 GameObject:
   m_ObjectHideFlags: 0

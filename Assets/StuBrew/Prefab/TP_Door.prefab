@@ -1779,10 +1779,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65c56306b28e7e94abc28af4c43343c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: BrewRoom
+  sceneName: Stall
   col: {r: 0, g: 0, b: 0, a: 1}
-  fadeOutDuration: 1
-  fadeInDuration: 1
+  fadeOutDuration: 0.3
+  fadeInDuration: 0.6
+  vrChecker: {fileID: 0}
+  VrFadeScreen: {fileID: 5242568268460461857, guid: 4bf4e1718fcf0964589ca3873643f7e0,
+    type: 3}
 --- !u!1 &2425446882912314247
 GameObject:
   m_ObjectHideFlags: 0
@@ -1934,4 +1937,5 @@ MonoBehaviour:
   - {fileID: 2425446881767064344}
   - {fileID: 2425446882912314245}
   - {fileID: 2425446882041362274}
+  - {fileID: 0}
   - {fileID: 0}

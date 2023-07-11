@@ -2,22 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using NaughtyAttributes;
 
-public class ScreenFader : MonoBehaviour
+public class VrFadeScreen : MonoBehaviour
 {
-    private string _fadeScene;
-    private float _alpha;
-
-    private CanvasGroup _myCanvas;
-    private Image _bg;
-    private float _lastTime;
-    private bool _startedLoading;
+    private Color fadeColor;
+    private float fadeOutDuration;
+    private float fadeInDuration;
 
     private float _fadeInDuration;
+    private string _fadeScene;
     private FadeOnSceneChange sceneChange;
 
+    [SerializeField] private Renderer rend;
+    // Start is called before the first frame update
+    void Awake()
+    {
+        transform.position = Camera.main.transform.position + Camera.main.transform.forward * 0.015f;
+        transform.localRotation = Camera.main.transform.rotation;
+        rend = GetComponent<Renderer>();
+    }
+
+    void Update()
+    {
+        transform.position = Camera.main.transform.position + Camera.main.transform.forward * 0.015f;
+        transform.localRotation = Camera.main.transform.rotation;
+    }
 
     //Set callback
     private void OnEnable()
@@ -32,20 +41,16 @@ public class ScreenFader : MonoBehaviour
         SceneManager.sceneLoaded -= OnLevelFinishedLoading;
     }
 
-    public void InitiateFader(FadeOnSceneChange initializer, CanvasGroup canvasGroup, Image image, string scene, Color fadeColor, float fadeInDuration, float fadeOutDuration)
+    public void InitiateFader(FadeOnSceneChange initializer, Renderer renderer, string scene, Color fadeColor, float fadeInDuration, float fadeOutDuration)
     {
         DontDestroyOnLoad(gameObject);
 
         _fadeInDuration = fadeInDuration;
         _fadeScene = scene;
+        this.fadeColor = fadeColor;
 
-        //Getting the visual elements
-        _myCanvas = canvasGroup;
-        _bg = image;
-        _bg.color = fadeColor;
+        rend = renderer;
 
-        //Checking and starting the coroutine
-        _myCanvas.alpha = 0.0f;
         sceneChange = initializer;
         StartCoroutine(FadeIt(initializer, FadeDirection.Out, fadeOutDuration));
     }
@@ -59,20 +64,23 @@ public class ScreenFader : MonoBehaviour
     private IEnumerator FadeIt(FadeOnSceneChange initializer, FadeDirection fadeDirection, float fadeDuration)
     {
         var timePassed = 0.0f;
-
+        Color newColor = fadeColor;
         switch (fadeDirection)
         {
             case FadeDirection.Out:
                 do
                 {
-                    _alpha = Mathf.Lerp(0, 1, timePassed / fadeDuration);
-                    _myCanvas.alpha = _alpha;
-
+                    newColor = fadeColor;
+                    newColor.a = Mathf.Lerp(0, 1, timePassed / fadeDuration);
+                    
+                    rend.material.color = newColor;
                     timePassed += Time.deltaTime;
                     yield return null;
                 } while (timePassed < fadeDuration);
 
-                _alpha = 1;
+                newColor = fadeColor;
+                newColor.a = 1;
+                rend.material.color = newColor;
 
                 SceneManager.LoadSceneAsync(_fadeScene);
                 break;
@@ -80,14 +88,18 @@ public class ScreenFader : MonoBehaviour
             case FadeDirection.In:
                 do
                 {
-                    _alpha = Mathf.Lerp(1, 0, timePassed / fadeDuration);
-                    _myCanvas.alpha = _alpha;
+                    newColor = fadeColor;
+                    newColor.a = Mathf.Lerp(1, 0, timePassed / fadeDuration);
+                    rend.material.color = newColor;
 
                     timePassed += Time.deltaTime;
                     yield return null;
                 } while (timePassed < fadeDuration);
 
-                _alpha = 0;
+                newColor = fadeColor;
+                newColor.a = 0;
+
+                rend.material.color = newColor;
 
                 initializer.DoneFading();
 

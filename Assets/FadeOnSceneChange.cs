@@ -15,6 +15,8 @@ public class FadeOnSceneChange : MonoBehaviour
 
     [SerializeField] CheckVREnable vrChecker;
 
+    public GameObject VrFadeScreen;
+
     private bool isFading;
 
     //Create Fader object and assing the fade scripts and assign all the variables
@@ -33,6 +35,20 @@ public class FadeOnSceneChange : MonoBehaviour
         fader.InitiateFader(this, init.GetComponent<CanvasGroup>(), init.GetComponent<Image>(), scene, col, fadeOutDuration, fadeInDuration);
     }
 
+    public void FadeVR(string scene, Color col, float fadeOutDuration, float fadeInDuration)
+    {
+        if (isFading)
+        {
+            return;
+        }
+
+        var init = Instantiate(VrFadeScreen, new Vector3(0, 0, 0), Quaternion.identity);
+        var fader = init.GetComponent<VrFadeScreen>();
+        isFading = true;
+        var rend = init.GetComponent<Renderer>();
+        fader.InitiateFader(this, rend, scene, col, fadeOutDuration, fadeInDuration);
+    }
+
     public void DoneFading()
     {
         isFading = false;
@@ -41,7 +57,9 @@ public class FadeOnSceneChange : MonoBehaviour
     [Button]
     public void DoFade()
     {
-        if(!vrChecker.CheckIsVR())
+        if (!vrChecker.CheckIsVR())
             Fade(sceneName, col, fadeOutDuration, fadeInDuration);
+        else
+            FadeVR(sceneName, col, fadeOutDuration, fadeInDuration);
     }
 }

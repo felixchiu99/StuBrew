@@ -7180,18 +7180,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 624711072}
   m_CullTransparentMesh: 1
---- !u!114 &631026851 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 215893538, guid: 5e424c17717a3c14c95ef7ae657b8921,
-    type: 3}
-  m_PrefabInstance: {fileID: 1821446030}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65c56306b28e7e94abc28af4c43343c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &638868335 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2425446882571523579, guid: 5e424c17717a3c14c95ef7ae657b8921,
@@ -18519,89 +18507,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1299909637
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1299909638}
-  - component: {fileID: 1299909641}
-  - component: {fileID: 1299909640}
-  m_Layer: 0
-  m_Name: FadeScreen
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1299909638
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1299909637}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.015}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2130720371}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &1299909640
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1299909637}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 36ed276ab5aaf3344a332d6413cb6f20, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1299909641
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1299909637}
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1301527438
 GameObject:
   m_ObjectHideFlags: 0
@@ -24271,16 +24176,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 382877240}
     m_Modifications:
     - target: {fileID: 215893538, guid: 5e424c17717a3c14c95ef7ae657b8921, type: 3}
-      propertyPath: sceneName
-      value: Stall
-      objectReference: {fileID: 0}
-    - target: {fileID: 215893538, guid: 5e424c17717a3c14c95ef7ae657b8921, type: 3}
       propertyPath: vrChecker
       value: 
       objectReference: {fileID: 1237996477}
     - target: {fileID: 215893538, guid: 5e424c17717a3c14c95ef7ae657b8921, type: 3}
       propertyPath: fadeInDuration
-      value: 1
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 2425446882571523578, guid: 5e424c17717a3c14c95ef7ae657b8921,
         type: 3}
@@ -24341,31 +24242,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2425446882663252038, guid: 5e424c17717a3c14c95ef7ae657b8921,
-        type: 3}
-      propertyPath: OnTriggerEnterCall.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 631026851}
-    - target: {fileID: 2425446882663252038, guid: 5e424c17717a3c14c95ef7ae657b8921,
-        type: 3}
-      propertyPath: OnTriggerEnterCall.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DoFade
-      objectReference: {fileID: 0}
-    - target: {fileID: 2425446882663252038, guid: 5e424c17717a3c14c95ef7ae657b8921,
-        type: 3}
-      propertyPath: OnTriggerEnterCall.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: FadeOnSceneChange, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2425446882663252039, guid: 5e424c17717a3c14c95ef7ae657b8921,
-        type: 3}
-      propertyPath: sceneName
-      value: Stall
-      objectReference: {fileID: 0}
-    - target: {fileID: 2425446883137798425, guid: 5e424c17717a3c14c95ef7ae657b8921,
-        type: 3}
-      propertyPath: cols2.Array.size
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2425446883137798425, guid: 5e424c17717a3c14c95ef7ae657b8921,
         type: 3}
@@ -27339,12 +27215,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2105738663}
   m_CullTransparentMesh: 1
---- !u!4 &2130720371 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2063786965451428313, guid: b024588b635c2e74c8ed38f510521a9c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1490260333}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2135843148
 PrefabInstance:
   m_ObjectHideFlags: 0
