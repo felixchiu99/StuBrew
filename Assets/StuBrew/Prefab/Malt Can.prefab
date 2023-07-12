@@ -231,6 +231,7 @@ GameObject:
   - component: {fileID: 2276843054147526798}
   - component: {fileID: 2276843054147526794}
   - component: {fileID: 2276843054147526795}
+  - component: {fileID: 4035629735000378128}
   m_Layer: 0
   m_Name: Malt Can
   m_TagString: Untagged
@@ -245,7 +246,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2276843054147526784}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 1.677, y: 1.207, z: -0.113}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -478,6 +479,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tags: []
+--- !u!114 &4035629735000378128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2276843054147526784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9ee34dd6912a344590efa74e5e1507b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 2fb188f1410e23e4e85a06f160348a45, type: 2}
 --- !u!1 &2276843054648607880
 GameObject:
   m_ObjectHideFlags: 0

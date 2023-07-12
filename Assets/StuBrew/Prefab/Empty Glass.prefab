@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 4836408205147169488, guid: 640157c7353b0094281d85fc9528c079,
         type: 3}
       propertyPath: m_Name
-      value: Cup Mod
+      value: Empty Glass
       objectReference: {fileID: 0}
     - target: {fileID: 5212229442535209066, guid: 640157c7353b0094281d85fc9528c079,
         type: 3}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,10 +8,9 @@ using TMPro;
 public class DispensableObject
 {
     [Header("Object")]
+    [NonSerialized]
     public string name;
     public GameObject prefab;
-    public int price = 0;
-
 }
 
 public class ItemDispenser : MonoBehaviour
@@ -26,7 +26,20 @@ public class ItemDispenser : MonoBehaviour
 
     void Start()
     {
+        GetText();
         DisplayText();
+    }
+
+    void GetText()
+    {
+        foreach (DispensableObject obj in objList)
+        {
+            if (obj.prefab.TryGetComponent(out ItemInfo item))
+            {
+
+                obj.name = item.GetItem().GetName();
+            }
+        }
     }
 
     private void DisplayText()
@@ -54,17 +67,21 @@ public class ItemDispenser : MonoBehaviour
         DisplayText();
     }
 
-    public void SpawnItem()
+    public void BuyItem()
     {
         if (!canSpawn)
             return;
         if (objList.Count == 0)
             return;
-        if (objList[selector].price > 0)
+        if (objList[selector].prefab.TryGetComponent(out ItemInfo item))
         {
-            CurrencyManager.Instance.Deduct(objList[selector].price);
+            CurrencyManager.Instance.Deduct((int)item.GetItem().GetSellingPrice());
         }
-        Debug.Log(objList[selector].name);
+        SpawnItem();
+    }
+
+    public void SpawnItem()
+    {
         GameObject obj = Instantiate(objList[selector].prefab, spawnPoint.position, Quaternion.identity);
     }
 

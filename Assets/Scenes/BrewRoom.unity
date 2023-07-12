@@ -6388,7 +6388,7 @@ PrefabInstance:
     - target: {fileID: 5116238323746712895, guid: 352f22c0ea4b32f46995b40e5190f09d,
         type: 3}
       propertyPath: OnPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SpawnItem
+      value: BuyItem
       objectReference: {fileID: 0}
     - target: {fileID: 5116238323746712895, guid: 352f22c0ea4b32f46995b40e5190f09d,
         type: 3}
@@ -8533,10 +8533,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objList:
-  - name: Yeast
-    prefab: {fileID: 8960647111179836588, guid: beca6278481a4c64c8a35f6b1dd90235,
+  - prefab: {fileID: 8960647111179836588, guid: beca6278481a4c64c8a35f6b1dd90235,
       type: 3}
-    price: 0
   spawnPoint: {fileID: 2076296412}
   displayText: {fileID: 1941427597}
 --- !u!1 &750515806
@@ -9921,10 +9919,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objList:
-  - name: Hop
-    prefab: {fileID: 8268800687686307468, guid: c4c9724ca6cfa124584785421e180b06,
+  - prefab: {fileID: 8268800687686307468, guid: c4c9724ca6cfa124584785421e180b06,
       type: 3}
-    price: 0
   spawnPoint: {fileID: 29403022}
   displayText: {fileID: 1490495922}
 --- !u!1 &866328049
@@ -24830,7 +24826,7 @@ PrefabInstance:
     - target: {fileID: 5116238323746712895, guid: 352f22c0ea4b32f46995b40e5190f09d,
         type: 3}
       propertyPath: OnPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SpawnItem
+      value: BuyItem
       objectReference: {fileID: 0}
     - target: {fileID: 5116238323746712895, guid: 352f22c0ea4b32f46995b40e5190f09d,
         type: 3}

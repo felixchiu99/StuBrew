@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 5755378715609785668}
   - component: {fileID: 5755378715609785669}
   - component: {fileID: 1798269870}
+  - component: {fileID: 281295130074745688}
   m_Layer: 0
   m_Name: Cup Mod
   m_TagString: Pickupable_PC
@@ -273,6 +274,20 @@ MonoBehaviour:
   volume: 1
   currentStored: 0
   particleContainer: {fileID: 5755378714359977476}
+  SellMinFill: 0.9
+--- !u!114 &281295130074745688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4836408205147169488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9ee34dd6912a344590efa74e5e1507b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: c42d8944322baab47bced7f68e662ce3, type: 2}
 --- !u!1 &4847984876549907154
 GameObject:
   m_ObjectHideFlags: 0

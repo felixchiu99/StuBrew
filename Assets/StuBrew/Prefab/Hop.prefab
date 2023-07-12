@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8268800687686307457}
   - component: {fileID: 8268800687686307458}
   - component: {fileID: 8268800687686307463}
+  - component: {fileID: -3963608625884106884}
   m_Layer: 0
   m_Name: Hop
   m_TagString: Pickupable_PC
@@ -127,6 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 374c79db8af188c46bbfc80c6cf7c95f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  holdDist: 0.5
 --- !u!114 &8268800687686307463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +143,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tags:
   - Hops
+--- !u!114 &-3963608625884106884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8268800687686307468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9ee34dd6912a344590efa74e5e1507b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 386e85d56eb3747418acaa7c4d87638a, type: 2}
 --- !u!1 &8268800687692225666
 GameObject:
   m_ObjectHideFlags: 0

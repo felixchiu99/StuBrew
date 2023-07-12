@@ -27,7 +27,7 @@ public class UIButtonColliderTrigger : MonoBehaviour
                 col.isTrigger = true;
                 RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
                 if (TryGetComponent<BoxCollider>(out BoxCollider boxCol))
-                    boxCol.size = new Vector3(rectTransform.sizeDelta.x, rectTransform.sizeDelta.y, 1);
+                    boxCol.size = new Vector3(Mathf.Abs(rectTransform.sizeDelta.x), Mathf.Abs(rectTransform.sizeDelta.y), 1);
             }
         }
         if (UIController == null)
@@ -45,21 +45,30 @@ public class UIButtonColliderTrigger : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
+        
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        OnTrigger(other);
+    }
+
+    void OnTrigger(Collider other)
+    {
         if (!btn.interactable)
             return;
         if (collisionTriggers == (collisionTriggers | (1 << other.gameObject.layer)) && UIController.IsActive())
-        if (UIController.IsFingerTip(other))
-        {
-            if (IsFront(other))
-                if (UIController.CheckHand(FindHand(other)))
-                {
-                    UIController.SetInactive();
-                    btn.onClick.Invoke();
-                    //Debug.Log(other.name);
-                }
+            if (UIController.IsFingerTip(other))
+            {
+                if (IsFront(other))
+                    if (UIController.CheckHand(FindHand(other)))
+                    {
+                        UIController.SetInactive();
+                        btn.onClick.Invoke();
+                    }
 
-            
-        }
+
+            }
     }
 
     Autohand.Hand FindHand(Collider other)
@@ -71,7 +80,6 @@ public class UIButtonColliderTrigger : MonoBehaviour
     bool IsFront(Collider other)
     {
         Vector3 finger = gameObject.transform.InverseTransformPoint(other.gameObject.transform.position);
-
         return finger.z < 0;
     }
 }

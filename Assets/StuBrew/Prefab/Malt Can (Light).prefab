@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 2864618480064253207}
   - component: {fileID: 2864618480064253206}
   - component: {fileID: 2864618480064253209}
+  - component: {fileID: 1693252086500455546}
   m_Layer: 0
   m_Name: Malt Can (Light)
   m_TagString: Untagged
@@ -363,6 +364,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tags: []
+--- !u!114 &1693252086500455546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2864618480064253211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9ee34dd6912a344590efa74e5e1507b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: edd62680f003b3b46a2e7a495fc3c1d2, type: 2}
 --- !u!1 &2864618480753655357
 GameObject:
   m_ObjectHideFlags: 0

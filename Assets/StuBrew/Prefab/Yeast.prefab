@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 8960647111179836584}
   - component: {fileID: 8960647111179836587}
   - component: {fileID: 8960647111179836586}
+  - component: {fileID: 8644091256338951168}
   m_Layer: 0
   m_Name: Yeast
   m_TagString: Pickupable_PC
@@ -256,6 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 374c79db8af188c46bbfc80c6cf7c95f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  holdDist: 0.5
 --- !u!114 &8960647111179836586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,3 +272,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tags:
   - Yeast
+--- !u!114 &8644091256338951168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8960647111179836588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9ee34dd6912a344590efa74e5e1507b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: cb2d2de3192a43e4b96fa3c32fa0718f, type: 2}
