@@ -130,30 +130,45 @@ public class KettleProcess : StuBrew.BrewingProcess
         TriggerOnProcessReset();
     }
 
+    private void UnexpectedObj(GameObject obj)
+    {
+        if (obj.TryGetComponent<Autohand.Grabbable>(out Autohand.Grabbable grab))
+        {
+            Destroy(obj);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (!other.attachedRigidbody)
             return;
         CustomTag tag = other.attachedRigidbody.GetComponent<CustomTag>();
         if (!tag)
+        {
+            UnexpectedObj(other.attachedRigidbody.gameObject);
             return;
+        }
+            
         if (!tag.HasTag("Hops"))
+        {
+            UnexpectedObj(other.attachedRigidbody.gameObject);
             return;
-        
+        }
+
         hopAmount[hopStage]++;
 
         switch(hopStage){
             case 0:
                 liqProp.ChangeBitterness(2f);
-                return;
+                break;
             case 1:
                 liqProp.ChangeBitterness(1f);
                 liqProp.ChangeAroma(0.5f) ;
-                return;
+                break;
             case 2:
                 liqProp.ChangeBitterness(0.5f);
                 liqProp.ChangeAroma(1f);
-                return;
+                break;
         }
 
         Destroy(other.attachedRigidbody.gameObject);

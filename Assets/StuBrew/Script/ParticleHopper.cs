@@ -96,4 +96,12 @@ public class ParticleHopper : MonoBehaviour
         if (text)
             text.SetText(particleCount.ToString());
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.rigidbody.gameObject.TryGetComponent<Autohand.Grabbable>(out Autohand.Grabbable grab))
+        {
+            Destroy(collision.rigidbody.gameObject);
+        }
+    }
 }

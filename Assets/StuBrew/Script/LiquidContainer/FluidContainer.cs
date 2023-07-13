@@ -24,6 +24,11 @@ public class FluidContainer : MonoBehaviour
         return removed;
     }
 
+    protected void SetFill(float fillLevel)
+    {
+        currentStored = volume * fillLevel;
+    }
+
     public bool isEmpty()
     {
         return currentStored <= 0;

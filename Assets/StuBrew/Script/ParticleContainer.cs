@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+using UnityEngine.Events;
+
 public class ParticleContainer : MonoBehaviour
 {
     [Tooltip("Maximum Particle storage in container")]
@@ -18,6 +20,8 @@ public class ParticleContainer : MonoBehaviour
     private bool isEmit = false;
 
     [SerializeField] TextMeshProUGUI display;
+
+    public event UnityAction<float> OnPour;
 
     void Start()
     {
@@ -38,17 +42,18 @@ public class ParticleContainer : MonoBehaviour
         
         if (storedParticle > 0 && isEmit)
         {
+            int emit = 0;
             if(storedParticle > emitNum)
             {
-                Emit(emitNum);
-                RemoveParticle(emitNum);
+                emit = emitNum;
             }
             else
             {
-                Emit(storedParticle);
-                RemoveParticle(storedParticle);
+                emit = storedParticle;
             }
-            
+            Emit(emit);
+            RemoveParticle(emit);
+            OnPour?.Invoke(GetFillLevel());
         }
         yield return new WaitForSeconds(waitTime);
         if( flowRate == 0)

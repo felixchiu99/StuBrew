@@ -16,7 +16,7 @@ public class CheckVREnable : MonoBehaviour
     [SerializeField] UnityEvent OnPC;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // ...
         if (XRGeneralSettings.Instance.Manager.activeLoader != null)

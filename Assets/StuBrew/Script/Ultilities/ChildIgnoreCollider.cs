@@ -10,7 +10,7 @@ public class ChildIgnoreCollider : MonoBehaviour
     {
         MakeChildrenIgnore();
     }
-    void MakeChildrenIgnore()
+    protected void MakeChildrenIgnore()
     {
         for (int i = 0; i < transform.childCount; i++)
         {

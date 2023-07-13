@@ -467,7 +467,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 215893538, guid: 5e424c17717a3c14c95ef7ae657b8921, type: 3}
       propertyPath: col.a
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 215893538, guid: 5e424c17717a3c14c95ef7ae657b8921, type: 3}
       propertyPath: sceneName
@@ -479,7 +479,7 @@ PrefabInstance:
       objectReference: {fileID: 709275559}
     - target: {fileID: 215893538, guid: 5e424c17717a3c14c95ef7ae657b8921, type: 3}
       propertyPath: fadeInDuration
-      value: 0.6
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 215893538, guid: 5e424c17717a3c14c95ef7ae657b8921, type: 3}
       propertyPath: fadeOutDuration
@@ -544,6 +544,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2425446883137798425, guid: 5e424c17717a3c14c95ef7ae657b8921,
+        type: 3}
+      propertyPath: cols2.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2425446883137798425, guid: 5e424c17717a3c14c95ef7ae657b8921,
         type: 3}

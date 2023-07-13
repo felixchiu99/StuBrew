@@ -19,4 +19,18 @@ public class CupContainer : FluidContainer
     {
         return GetFillLevel() >= SellMinFill;
     }
+
+    private void SyncFillLevel(float fillLevel)
+    {
+        SetFill(fillLevel);
+        Debug.Log("fillLevel "+ fillLevel);
+    }
+    private void Start()
+    {
+        particleContainer.OnPour += SyncFillLevel;
+    }
+    private void OnDestroy()
+    {
+        particleContainer.OnPour -= SyncFillLevel;
+    }
 }

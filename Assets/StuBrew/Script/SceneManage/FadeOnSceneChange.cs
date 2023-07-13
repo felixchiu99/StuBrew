@@ -32,7 +32,7 @@ public class FadeOnSceneChange : MonoBehaviour
 
         var fader = init.GetComponent<ScreenFader>();
         isFading = true;
-        fader.InitiateFader(this, init.GetComponent<CanvasGroup>(), init.GetComponent<Image>(), scene, col, fadeOutDuration, fadeInDuration);
+        fader.InitiateFader(this, init.GetComponent<CanvasGroup>(), init.GetComponent<Image>(), scene, col, fadeOutDuration * 0.5f, fadeInDuration * 0.5f);
     }
 
     public void FadeVR(string scene, Color col, float fadeOutDuration, float fadeInDuration)
@@ -54,7 +54,6 @@ public class FadeOnSceneChange : MonoBehaviour
         isFading = false;
     }
 
-    [Button]
     public void DoFade()
     {
         if (!vrChecker.CheckIsVR())

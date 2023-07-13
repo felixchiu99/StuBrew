@@ -11,6 +11,9 @@ public class DispensableObject
     [NonSerialized]
     public string name;
     public GameObject prefab;
+
+    [NonSerialized]
+    public ItemInfo info;
 }
 
 public class ItemDispenser : MonoBehaviour
@@ -21,6 +24,7 @@ public class ItemDispenser : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
     private int selector = 0;
     [SerializeField] TextMeshProUGUI displayText;
+    [SerializeField] TextMeshProUGUI costText;
 
     private bool canSpawn = true;
 
@@ -38,6 +42,7 @@ public class ItemDispenser : MonoBehaviour
             {
 
                 obj.name = item.GetItem().GetName();
+                obj.info = item;
             }
         }
     }
@@ -46,6 +51,8 @@ public class ItemDispenser : MonoBehaviour
     {
         if(displayText)
             displayText.SetText(objList[selector].name);
+        if (costText)
+            costText.SetText(objList[selector].info.GetItem().GetSellingPrice().ToString("0"));
     }
 
     public void NextItem()
@@ -73,10 +80,8 @@ public class ItemDispenser : MonoBehaviour
             return;
         if (objList.Count == 0)
             return;
-        if (objList[selector].prefab.TryGetComponent(out ItemInfo item))
-        {
-            CurrencyManager.Instance.Deduct((int)item.GetItem().GetSellingPrice());
-        }
+
+        CurrencyManager.Instance.Deduct((int)objList[selector].info.GetItem().GetSellingPrice());
         SpawnItem();
     }
 

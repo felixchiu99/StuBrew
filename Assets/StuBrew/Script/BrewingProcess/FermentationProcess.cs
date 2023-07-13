@@ -89,15 +89,30 @@ public class FermentationProcess : StuBrew.BrewingProcess
         return curve.Evaluate(position);
     }
 
+    private void UnexpectedObj(GameObject obj)
+    {
+        if (obj.TryGetComponent<Autohand.Grabbable>(out Autohand.Grabbable grab))
+        {
+            Destroy(obj);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (!other.attachedRigidbody)
             return;
         CustomTag tag = other.attachedRigidbody.GetComponent<CustomTag>();
         if (!tag)
+        {
+            UnexpectedObj(other.attachedRigidbody.gameObject);
             return;
+        }
+
         if (!tag.HasTag("Yeast"))
+        {
+            UnexpectedObj(other.attachedRigidbody.gameObject);
             return;
+        }
 
         AddYeast();
         Destroy(other.attachedRigidbody.gameObject);
