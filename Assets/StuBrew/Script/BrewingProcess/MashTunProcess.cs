@@ -55,7 +55,9 @@ public class MashTunProcess : StuBrew.BrewingProcess
             MaltProperties maltProp = maltHopper.GetMaltProperties();
 
             liquidStage.ChangeLiquidStage(1);
-            liqProp.ChangeBitterness(maltProp.GetSweetness() - 0.1f * flushCounter);
+            Debug.Log("hi");
+            Debug.Log(maltProp.GetSweetness());
+            liqProp.ChangeSweetness(maltProp.GetSweetness() - 0.1f * flushCounter);
             liqProp.ChangeBitterness(maltProp.GetBitterness());
             liqProp.color = maltProp.GetColor();
             TriggerNextProcess();

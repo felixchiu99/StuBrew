@@ -88,6 +88,11 @@ public class LiquidProperties : MonoBehaviour
         return aroma;
     }
 
+    public Color GetColor()
+    {
+        return color;
+    }
+
     public void ChangeTransparency(float change)
     {
         isDefault = false;

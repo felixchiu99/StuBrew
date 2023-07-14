@@ -15,6 +15,8 @@ public class ScoringProcess : StuBrew.BrewingProcess
     [SerializeField] TextMeshProUGUI flavourText;
     [SerializeField] TextMeshProUGUI cleanlinessText;
 
+    [SerializeField] LiquidChangeColor colorControl;
+
     private GameObject triggeredObj;
 
     void Update()
@@ -41,6 +43,7 @@ public class ScoringProcess : StuBrew.BrewingProcess
             return;
         SetLiquidProperties(other.attachedRigidbody.GetComponent<LiquidProperties>());
         triggeredObj = other.attachedRigidbody.gameObject;
+        colorControl.ChangeColor(liqProp.GetColor());
     }
 
     public void OnTriggerExit(Collider other)
@@ -57,5 +60,6 @@ public class ScoringProcess : StuBrew.BrewingProcess
             triggeredObj = null;
             liqProp.ClearLiq();
         }
+        colorControl.HideColor();
     }
 }
