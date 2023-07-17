@@ -18,6 +18,8 @@ public class OnTriggerCall : MonoBehaviour
 
     public EFilterType filterType;
 
+    public bool isInverseFilter = false;
+
     [ShowIf("filterType", EFilterType.Layers)]
     [Tooltip("The layers that Triggers")]
     public LayerMask collisionTriggers = ~0;
@@ -60,6 +62,8 @@ public class OnTriggerCall : MonoBehaviour
             return true;
         if (filterType == EFilterType.Layers)
         {
+            if(isInverseFilter)
+                return collisionTriggers != (collisionTriggers | (1 << other.gameObject.layer)) || collisionTriggers == (collisionTriggers | (1 << other.attachedRigidbody.gameObject.layer));
             return collisionTriggers == (collisionTriggers | (1 << other.gameObject.layer)) || collisionTriggers == (collisionTriggers | (1 << other.attachedRigidbody.gameObject.layer));
         }
         if (filterType == EFilterType.Tags)
@@ -67,9 +71,15 @@ public class OnTriggerCall : MonoBehaviour
             foreach (string tag in tags)
             {
                 if (other.tag == tag)
-                    return true;
+                    if (isInverseFilter)
+                        return false;
+                    else
+                        return true;
                 if (other.attachedRigidbody.tag == tag)
-                    return true;
+                    if (isInverseFilter)
+                        return false;
+                    else
+                        return true;
             }
         }
         if (filterType == EFilterType.CustomTags)
@@ -78,17 +88,17 @@ public class OnTriggerCall : MonoBehaviour
             {
                 if (other.gameObject.TryGetComponent<CustomTag>(out CustomTag tag))
                 {
-                    if (tag.HasTag(customTag))
-                    {
+                    if (isInverseFilter)
+                        return false;
+                    else
                         return true;
-                    }
                 }
                 if (other.attachedRigidbody.gameObject.TryGetComponent<CustomTag>(out CustomTag rbTag))
                 {
-                    if (rbTag.HasTag(customTag))
-                    {
+                    if (isInverseFilter)
+                        return false;
+                    else
                         return true;
-                    }
                 }
             }
         }
@@ -99,11 +109,17 @@ public class OnTriggerCall : MonoBehaviour
             {
                 if(other.gameObject == obj || other.attachedRigidbody.gameObject == obj)
                 {
-                    return true;
+                    if (isInverseFilter)
+                        return false;
+                    else
+                        return true;
                 }
             }
 
         }
-        return false;
+        if (isInverseFilter)
+            return true;
+        else
+            return false;
     }
 }
