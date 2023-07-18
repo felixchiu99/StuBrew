@@ -42,4 +42,13 @@ public class FluidContainer : MonoBehaviour
     {
         return currentStored / volume;
     }
+
+    public float GetCurrentStored()
+    {
+        return currentStored;
+    }
+    public float GetVolume()
+    {
+        return volume;
+    }
 }

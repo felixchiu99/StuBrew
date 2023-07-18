@@ -88,17 +88,27 @@ public class OnTriggerCall : MonoBehaviour
             {
                 if (other.gameObject.TryGetComponent<CustomTag>(out CustomTag tag))
                 {
-                    if (isInverseFilter)
-                        return false;
-                    else
-                        return true;
+                    if (tag.HasTag(customTag))
+                        if (isInverseFilter)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
                 }
                 if (other.attachedRigidbody.gameObject.TryGetComponent<CustomTag>(out CustomTag rbTag))
                 {
-                    if (isInverseFilter)
-                        return false;
-                    else
-                        return true;
+                    if (tag.HasTag(customTag))
+                        if (isInverseFilter)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }   
                 }
             }
         }

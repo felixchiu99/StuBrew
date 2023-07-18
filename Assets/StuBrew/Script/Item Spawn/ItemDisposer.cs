@@ -21,10 +21,24 @@ public class ItemDisposer : MonoBehaviour
     {
         if (delList.Contains(collider.attachedRigidbody.gameObject))
             return;
+        SetHighlightable(collider.attachedRigidbody.gameObject, true);
         delList.Add(collider.attachedRigidbody.gameObject);
+
     }
     public void RemoveObj(Collider collider)
     {
+        if (!delList.Contains(collider.attachedRigidbody.gameObject))
+            return;
+        SetHighlightable(collider.attachedRigidbody.gameObject, false);
         delList.Remove(collider.attachedRigidbody.gameObject);
+    }
+
+    void SetHighlightable(GameObject obj, bool isEnable = false)
+    {
+        if (obj.TryGetComponent(out Highlightable highlightObj))
+        {
+            highlightObj.SetOverrideHighlight(isEnable);
+            highlightObj.SetHighLight(isEnable);
+        }
     }
 }

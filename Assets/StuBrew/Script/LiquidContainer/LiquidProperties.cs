@@ -132,7 +132,7 @@ public class LiquidProperties : MonoBehaviour
     {
         return isDefault;
     }
-    public static bool operator ==(LiquidProperties a, LiquidProperties b)
+    public static bool operator == (LiquidProperties a, LiquidProperties b)
     {
         bool similar = true;
         similar = a.GetTemperature() != b.GetTemperature()? false : similar;

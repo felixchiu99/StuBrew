@@ -8,9 +8,18 @@ public class DoNotDestroyInArea : ItemInArea
 
     [SerializeField] UnityEvent<GameObject> OnSceneChange;
     GameObject doNotDestroy;
+
+    [SerializeField] Vector3 spawnPos = new Vector3(0, 0, 0);
+    [SerializeField] float randDist = 2f;
+
     public void Start()
     {
         doNotDestroy = new GameObject();
+        SetTransformOnSceneChange temp = doNotDestroy.AddComponent(typeof(SetTransformOnSceneChange)) as SetTransformOnSceneChange;
+        temp.SetSpawnPos(spawnPos);
+        temp.SetRandDist(randDist);
+
+
         DontDestroyOnLoad(doNotDestroy);
     }
 
