@@ -18,6 +18,12 @@ public class CurrencyStatsObject : ScriptableObject
         storedAmount = InitialValue;
     }
 
+    public void Set(int amount)
+    {
+        storedAmount = amount;
+        OnValueChange?.Invoke(storedAmount);
+    }
+
     public void Add(int diff)
     {
         storedAmount += diff;
@@ -34,5 +40,6 @@ public class CurrencyStatsObject : ScriptableObject
     {
         return storedAmount;
     }
+
     
 }

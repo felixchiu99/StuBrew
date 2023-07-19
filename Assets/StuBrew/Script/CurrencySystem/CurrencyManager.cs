@@ -30,7 +30,12 @@ public class CurrencyManager : MonoBehaviour
         return currency.GetCurrentStored();
     }
 
-    public void Add (int diff)
+    public void SetCurrentStored(int num)
+    {
+        currency.Set(num);
+    }
+
+    public void Add(int diff)
     {
         currency.Add(diff);
     }

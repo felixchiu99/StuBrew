@@ -11,6 +11,8 @@ using UnityEditor;
 
 public class PcPlayerController : MonoBehaviour
 {
+    public bool teleported = false;
+
     public float MouseSpeed = 2f;
     private Rigidbody body;
 
@@ -225,13 +227,17 @@ public class PcPlayerController : MonoBehaviour
                 }
             }
 
-            if (isGrounded)
+            if (isGrounded && !teleported)
             {
                 body.velocity = new Vector3(body.velocity.x, 0, body.velocity.z);
                 body.position = new Vector3(body.position.x, newClosestHit.point.y, body.position.z);
                 transform.position = body.position;
             }
 
+            if (teleported)
+            {
+                teleported = false;
+            }
             body.useGravity = !isGrounded;
         }
     }
@@ -512,5 +518,11 @@ public class PcPlayerController : MonoBehaviour
         {
             SetGameLayerRecursive(child.gameObject, layer);
         }
+    }
+
+    public void Teleported()
+    {
+        teleported = true;
+        bodyCapsule.transform.localPosition = new Vector3(0, 0, 0);
     }
 }

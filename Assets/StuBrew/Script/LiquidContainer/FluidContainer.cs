@@ -51,4 +51,12 @@ public class FluidContainer : MonoBehaviour
     {
         return volume;
     }
+    public void SetCurrentStored(float currentStored)
+    {
+        this.currentStored = currentStored;
+    }
+    public void SetVolume(float volume)
+    {
+        this.volume = volume;
+    }
 }

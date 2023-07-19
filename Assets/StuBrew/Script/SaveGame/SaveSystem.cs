@@ -5,51 +5,44 @@ using UnityEngine;
 
 public static class SaveSystem
 {
-    static List<GameObject> listOfBarrel = new List<GameObject>();
+    static public SaveableObj prefab;
 
-    public static void AddBarrel(GameObject obj)
+    static SaveData saveData = new SaveData();
+
+    public static void AddPlayer()
     {
-        if (listOfBarrel.Contains(obj))
-            return;
-        listOfBarrel.Add(obj);
+        
+    } 
+    
+    public static void Save()
+    {
+        //retrieve and format data
+        saveData.SaveAll();
+
+        //save data
+        string data = JsonUtility.ToJson(saveData);
+        Debug.Log(data);
+        File.WriteAllText(Application.persistentDataPath + "/Save1.json", data);
     }
 
-    static string SaveBarrelData(string str, GameObject obj)
+    public static void Load()
     {
-        Transform barrelTransform = obj.transform;
-        if (obj.TryGetComponent(out LiquidProperties prop))
-        {
-            if (obj.TryGetComponent(out BarrelContainer container))
-            {
-                BarrelData data = new BarrelData(barrelTransform, prop, container);
-                str += JsonUtility.ToJson(data);
-                return str;
-            }
-        }
-        return "";
-    }
-
-    public static void SaveBarrel()
-    {
-        string barrel = "";
-
-        foreach (GameObject obj in listOfBarrel)
-        {
-            barrel = SaveBarrelData(barrel, obj);
-        }
-
-        File.WriteAllText(Application.persistentDataPath + "/Barrel.json", barrel);
-    }
-
-    public static void LoadBarrel()
-    {
-        string saveFile = Application.persistentDataPath + "/Barrel.json";
+        string saveFile = Application.persistentDataPath + "/Save1.json";
         if (File.Exists(saveFile))
         {
             // Read the entire file and save its contents.
             string fileContents = File.ReadAllText(saveFile);
             Debug.Log(fileContents);
             // Work with JSON
+            SaveData newSave = CreateFromJson(fileContents);
+            newSave.Load();
+            saveData.ClearAll();
+            saveData = newSave;
         }
+    }
+
+    public static SaveData CreateFromJson(string jsonString)
+    {
+        return JsonUtility.FromJson<SaveData>(jsonString);
     }
 }

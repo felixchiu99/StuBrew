@@ -6,27 +6,22 @@ using NaughtyAttributes;
 
 public class TestSaveGame : MonoBehaviour
 {
+    public SaveableObj prefab;
+
+    void Start()
+    {
+        SaveSystem.prefab = prefab;
+    }
 
     [Button]
-    void SaveBarrel()
+    void Save()
     {
-        var tags = FindObjectsOfType<CustomTag>();
-
-
-        foreach (CustomTag tag in tags)
-        {
-            if (tag.HasTag("Barrel"))
-            {
-                SaveSystem.AddBarrel(tag.gameObject);
-            }
-            //Instantiate(respawnPrefab, respawn.transform.position, respawn.transform.rotation);
-        }
-        SaveSystem.SaveBarrel();
+        SaveSystem.Save();
     }
     [Button]
-    void LoadBarrel()
+    void Load()
     {
-        SaveSystem.LoadBarrel();
+        SaveSystem.Load();
 
     }
 }

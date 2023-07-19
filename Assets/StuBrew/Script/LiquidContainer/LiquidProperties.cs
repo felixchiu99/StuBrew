@@ -62,6 +62,11 @@ public class LiquidProperties : MonoBehaviour
     {
         return bitterness;
     }
+    public void SetBitterness(float change)
+    {
+        isDefault = false;
+        bitterness = change;
+    }
 
     public void ChangeSweetness(float change)
     {
@@ -88,9 +93,18 @@ public class LiquidProperties : MonoBehaviour
         return aroma;
     }
 
+    public void SetAroma(float aroma)
+    {
+        this.aroma = aroma;
+    }
+
     public Color GetColor()
     {
         return color;
+    }
+    public void SetColor(Color color)
+    {
+        this.color = color;
     }
 
     public void ChangeTransparency(float change)
