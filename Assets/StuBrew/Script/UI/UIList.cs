@@ -33,6 +33,9 @@ public class UIList : MonoBehaviour
     [MinValue(1)]
     [SerializeField] Vector2 gridSize = new Vector2(3, 1);
 
+    [SerializeField] float gapScale = 0.8f;
+    [SerializeField] Vector2 centre = new Vector2(0.5f, 0.5f);
+
     int firstItem = 0;
     int maxShownOnPage = 0;
     void Awake()
@@ -92,12 +95,12 @@ public class UIList : MonoBehaviour
             }
             else 
             {
-                float gapX = 1 / gridSize.x * 0.8f;
+                float gapX = 1 / gridSize.x * gapScale;
                 gapX = -(gridSize.x / 2 * -gapX + gapX / 2 + current % gridSize.x * gapX);
-                float gapY = 1 / gridSize.y * 0.8f;
+                float gapY = 1 / gridSize.y * gapScale;
                 gapY = -(gridSize.y / 2 * gapY + -gapY / 2 + (int)(current / gridSize.x) * -gapY);
 
-                Vector2 anchor = new Vector2(0.5f - gapX, 0.5f - gapY);
+                Vector2 anchor = new Vector2(centre.x - gapX, centre.y - gapY);
 
                 uiComponents[i].rectTransform.anchorMin = anchor;
                 uiComponents[i].rectTransform.anchorMax = anchor;

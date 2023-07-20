@@ -14,14 +14,21 @@ public class TestSaveGame : MonoBehaviour
     }
 
     [Button]
-    void Save()
+    public void Save(int fileNum)
     {
-        SaveSystem.Save();
+        SaveSystem.Save(fileNum);
     }
     [Button]
-    void Load()
+    public void Load(int fileNum)
     {
-        SaveSystem.Load();
+        SaveSystem.Load(fileNum);
+
+    }
+
+    [Button]
+    public void Clear()
+    {
+        SaveSystem.ClearFileName();
 
     }
 }

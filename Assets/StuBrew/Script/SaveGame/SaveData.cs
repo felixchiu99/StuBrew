@@ -5,6 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class SaveData
 {
+    [SerializeField] SceneData sceneData;
+
     [SerializeField]
     List<BarrelData> barrels = new List<BarrelData>();
     List<GameObject> listOfBarrel = new List<GameObject>();
@@ -15,8 +17,14 @@ public class SaveData
 
     public void SaveAll()
     {
+        SaveScene();
         SavePlayer();
         SaveBarrels();
+    }
+
+    public void SaveScene()
+    {
+        sceneData = new SceneData();
     }
 
     public void SavePlayer()
@@ -81,6 +89,7 @@ public class SaveData
 
     public void Load()
     {
+        sceneData.Load();
         LoadPlayer();
         LoadBarrel();
     }

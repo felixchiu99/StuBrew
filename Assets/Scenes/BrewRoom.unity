@@ -21738,92 +21738,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 166724664, guid: b024588b635c2e74c8ed38f510521a9c, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 166724664, guid: b024588b635c2e74c8ed38f510521a9c, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 166724664, guid: b024588b635c2e74c8ed38f510521a9c, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 166724664, guid: b024588b635c2e74c8ed38f510521a9c, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 166724665, guid: b024588b635c2e74c8ed38f510521a9c, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 166724665, guid: b024588b635c2e74c8ed38f510521a9c, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 166724665, guid: b024588b635c2e74c8ed38f510521a9c, type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1157632771, guid: b024588b635c2e74c8ed38f510521a9c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1157632773, guid: b024588b635c2e74c8ed38f510521a9c, type: 3}
-      propertyPath: sceneName
-      value: Stall
-      objectReference: {fileID: 0}
-    - target: {fileID: 1157632773, guid: b024588b635c2e74c8ed38f510521a9c, type: 3}
-      propertyPath: fadeCanvas
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1157632773, guid: b024588b635c2e74c8ed38f510521a9c, type: 3}
-      propertyPath: fadeInDuration
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1157632773, guid: b024588b635c2e74c8ed38f510521a9c, type: 3}
-      propertyPath: fadeOutDuration
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1701247972, guid: b024588b635c2e74c8ed38f510521a9c, type: 3}
-      propertyPath: grabPriorityWeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1025673479603937912, guid: b024588b635c2e74c8ed38f510521a9c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2063786966615184041, guid: b024588b635c2e74c8ed38f510521a9c,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7140176776712730323, guid: b024588b635c2e74c8ed38f510521a9c,
-        type: 3}
-      propertyPath: reachDistance
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7140176777405371008, guid: b024588b635c2e74c8ed38f510521a9c,
-        type: 3}
-      propertyPath: reachDistance
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 8256122454668438192, guid: b024588b635c2e74c8ed38f510521a9c,
-        type: 3}
-      propertyPath: m_CameraType
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8256122454728705616, guid: b024588b635c2e74c8ed38f510521a9c,
         type: 3}
       propertyPath: m_Name
       value: '[PlayerController]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 8256122454728705616, guid: b024588b635c2e74c8ed38f510521a9c,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8256122454728705617, guid: b024588b635c2e74c8ed38f510521a9c,
         type: 3}
@@ -21880,8 +21798,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8256122454314714565, guid: b024588b635c2e74c8ed38f510521a9c, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b024588b635c2e74c8ed38f510521a9c, type: 3}
 --- !u!1 &1502624504
 GameObject:
