@@ -6,6 +6,8 @@ using TMPro;
 public class SaveFileDisplay : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI displayText;
+    [SerializeField] TextMeshProUGUI dateText;
+    [SerializeField] TextMeshProUGUI sceneText;
 
     [SerializeField] int index = 0;
 
@@ -14,8 +16,8 @@ public class SaveFileDisplay : MonoBehaviour
         if (gameObject.TryGetComponent<TextMeshProUGUI>(out TextMeshProUGUI display))
         {
             displayText = display;
-            DisplayText();
         }
+        DisplayText();
         SaveSystem.OnFilenameChange += DisplayText;
     }
 
@@ -26,7 +28,12 @@ public class SaveFileDisplay : MonoBehaviour
 
     private void DisplayText()
     {
+        FileData file = SaveSystem.GetFileData(index);
         if (displayText)
-            displayText.SetText(SaveSystem.GetFileName(index));
+            displayText.SetText(file.displayName);
+        if (dateText)
+            dateText.SetText(file.saveDate);
+        if (sceneText)
+            sceneText.SetText(file.saveScene);
     }
 }

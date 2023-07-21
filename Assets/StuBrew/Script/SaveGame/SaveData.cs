@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class SaveData
@@ -36,7 +37,6 @@ public class SaveData
         {
             if (listOfPlayer.Contains(player))
                 continue;
-            Debug.Log(player.name);
             if(player.name == "[PlayerController]")
             {
                 continue;
@@ -89,9 +89,18 @@ public class SaveData
 
     public void Load()
     {
+        SaveSystem.hasLoaded = false;
         sceneData.Load();
+        SceneManager.sceneLoaded -= LoadAfterFade;
+        SceneManager.sceneLoaded += LoadAfterFade;
+    }
+
+    private void LoadAfterFade(Scene scene, LoadSceneMode mode)
+    {
         LoadPlayer();
         LoadBarrel();
+        SaveSystem.hasLoaded = true;
+        SceneManager.sceneLoaded -= LoadAfterFade;
     }
 
     protected void LoadPlayer()

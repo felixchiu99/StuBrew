@@ -9,12 +9,16 @@ public static class SaveSystem
 {
     static public SaveableObj prefab;
 
+    static public FadeOnSceneChange sceneChange;
+
     static SaveData saveData = new SaveData();
 
     static public event UnityAction OnFilenameChange;
 
     [SerializeField]
     static FilenameData filename = new FilenameData();
+
+    public static bool hasLoaded = true;
 
     static SaveSystem()
     {
@@ -23,8 +27,16 @@ public static class SaveSystem
 
     public static void ClearFileName()
     {
+        string[] filePaths = Directory.GetFiles(Application.persistentDataPath);
+        foreach (string filePath in filePaths)
+            File.Delete(filePath);
+
         filename.ClearAll();
         SaveFileName();
+    }
+    public static FileData GetFileData(int index)
+    {
+        return filename.GetFileData(index);
     }
     public static string GetFileName(int index)
     {
@@ -34,11 +46,11 @@ public static class SaveSystem
     {
         string data = JsonUtility.ToJson(filename);
         File.WriteAllText(Application.persistentDataPath + "/saveFilename.json", data);
+        Debug.Log(data);
         OnFilenameChange?.Invoke();
     }
     public static void LoadFileName()
     {
-        Debug.Log("loadname");
         string saveFile = Application.persistentDataPath + "/saveFilename.json";
         if (File.Exists(saveFile))
         {
@@ -47,7 +59,7 @@ public static class SaveSystem
             Debug.Log(fileContents);
             // Work with JSON
             filename = JsonUtility.FromJson<FilenameData>(fileContents);
-
+            OnFilenameChange?.Invoke();
         }
     }
 
@@ -63,7 +75,6 @@ public static class SaveSystem
         {
             filename.SetSave(saveNum);
         }
-        Debug.Log(filename.IsSaved(saveNum));
         File.WriteAllText(Application.persistentDataPath + "/" + filename.GetFilename(saveNum) + ".json", data);
 
         SaveFileName();

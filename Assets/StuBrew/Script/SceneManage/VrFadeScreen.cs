@@ -88,6 +88,13 @@ public class VrFadeScreen : MonoBehaviour
             case FadeDirection.In:
                 do
                 {
+                    timePassed += Time.deltaTime;
+                    yield return null;
+                } while (timePassed < 2 && SaveSystem.hasLoaded == false);
+
+                timePassed = 0.0f;
+                do
+                {
                     newColor = fadeColor;
                     newColor.a = Mathf.Lerp(1, 0, timePassed / fadeDuration);
                     rend.material.color = newColor;

@@ -15,7 +15,9 @@ public class SceneData
 
     public void Load()
     {
-        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+        //SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+        SaveSystem.sceneChange.sceneName = sceneName;
+        SaveSystem.sceneChange.DoFade();
     }
 
     IEnumerator LoadYourAsyncScene()

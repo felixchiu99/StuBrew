@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using NaughtyAttributes;
+
 
 public class FadeOnSceneChange : MonoBehaviour
 {
@@ -19,6 +21,8 @@ public class FadeOnSceneChange : MonoBehaviour
 
     private bool isFading;
 
+    //[SerializeField] UnityEvent sceneLoadComplete;
+
     //Create Fader object and assing the fade scripts and assign all the variables
     public void Fade(string scene, Color col, float fadeOutDuration, float fadeInDuration)
     {
@@ -28,7 +32,9 @@ public class FadeOnSceneChange : MonoBehaviour
         }
 
         var init = new GameObject("ScreenFader", typeof(Canvas), typeof(CanvasGroup), typeof(Image), typeof(ScreenFader));
-        init.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
+        Canvas myCanvas = init.GetComponent<Canvas>();
+        myCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        myCanvas.sortingOrder = 1;
 
         var fader = init.GetComponent<ScreenFader>();
         isFading = true;
