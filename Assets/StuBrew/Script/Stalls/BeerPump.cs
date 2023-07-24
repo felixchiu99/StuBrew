@@ -14,6 +14,8 @@ public class BeerPump : MonoBehaviour
 
     public bool isPulled = false;
 
+    [SerializeField] LiquidProperties liqProp;
+
     void Start()
     {
         OnReleased();
@@ -34,11 +36,20 @@ public class BeerPump : MonoBehaviour
         {
             barrel = container;
         }
+        if (obj.gameObject.TryGetComponent(out LiquidProperties liqProp))
+        {
+            this.liqProp = liqProp;
+            if(cup != null)
+            {
+                cup.SetColor(liqProp);
+            }
+        }
     }
 
     public void RemoveBarrel()
     {
         barrel = null;
+        liqProp = null;
     }
 
     public void AddCup(Autohand.PlacePoint placePoint, Autohand.Grabbable obj)
@@ -46,6 +57,11 @@ public class BeerPump : MonoBehaviour
         if (obj.gameObject.TryGetComponent(out CupContainer container))
         {
             cup = container;
+            if(liqProp != null)
+            {
+                cup.SetColor(liqProp);
+            }
+                
         }
     }
 
@@ -59,6 +75,7 @@ public class BeerPump : MonoBehaviour
     {
         if (Transfer())
         {
+            //liq.UpdateColor();
             particles.Play();
         }
         else {

@@ -300,6 +300,8 @@ GameObject:
   - component: {fileID: 6227972266097850957}
   - component: {fileID: 4222478509757042983}
   - component: {fileID: 5755378714281631622}
+  - component: {fileID: 3993882936624343297}
+  - component: {fileID: 703818276325640422}
   m_Layer: 0
   m_Name: Liquid
   m_TagString: Untagged
@@ -506,6 +508,41 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3993882936624343297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4847984876549907154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa12c40612413084aa1d229c19948c8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  temperature: 18
+  flavourBalance: 0
+  bitterness: 0
+  sweetness: 0
+  aroma: 0
+  color: {r: 1, g: 1, b: 1, a: 1}
+  foamColor: {r: 1, g: 1, b: 1, a: 1}
+  canTransfer: 1
+--- !u!114 &703818276325640422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4847984876549907154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b1919964ab12e9479d07f7d82a0db1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rend: {fileID: 0}
+  container: {fileID: 5755378714281631622}
+  isDisplayOnly: 0
 --- !u!1 &5755378714359977474
 GameObject:
   m_ObjectHideFlags: 0

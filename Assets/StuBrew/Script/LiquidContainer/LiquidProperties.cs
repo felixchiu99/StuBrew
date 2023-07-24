@@ -107,6 +107,24 @@ public class LiquidProperties : MonoBehaviour
         this.color = color;
     }
 
+    public Color GetFoamColor()
+    {
+        return foamColor;
+    }
+    public void SetFoamColor(Color color)
+    {
+        this.foamColor = color;
+    }
+
+    public float GetTransparency()
+    {
+        return transparency;
+    }
+    public void SetTransparency(float transparency)
+    {
+        this.transparency = transparency;
+    }
+
     public void ChangeTransparency(float change)
     {
         isDefault = false;
@@ -146,8 +164,17 @@ public class LiquidProperties : MonoBehaviour
     {
         return isDefault;
     }
+
     public static bool operator == (LiquidProperties a, LiquidProperties b)
     {
+        if (b is null && a is null)
+        {
+            return true;
+        }
+        else if (b is null)
+        {
+            return false;
+        }
         bool similar = true;
         similar = a.GetTemperature() != b.GetTemperature()? false : similar;
         similar = a.GetBitterness() != b.GetBitterness()? false : similar;

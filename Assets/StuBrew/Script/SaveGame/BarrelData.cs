@@ -12,6 +12,10 @@ public class BarrelData
     public float volume;
     public float currentFill;
 
+    public Color color = Color.white;
+    public float transparency = 0;     //0-1
+    public Color foamColor = Color.white;
+
     public float[] position;
 
     public BarrelData(Transform barrelTransform, LiquidProperties liquidProperties, BarrelContainer barrelContainer)
@@ -27,6 +31,10 @@ public class BarrelData
 
         volume = barrelContainer.GetVolume();
         currentFill = barrelContainer.GetCurrentStored();
+
+        color = liquidProperties.GetColor();
+        foamColor = liquidProperties.GetFoamColor();
+        transparency = liquidProperties.GetTransparency();
     }
 
     public GameObject Load(GameObject respawnPrefab)
@@ -37,6 +45,10 @@ public class BarrelData
             prop.SetBitterness(bitterness);
             prop.SetSweetness(sweetness);
             prop.SetAroma(aroma);
+
+            prop.SetColor(color);
+            prop.SetFoamColor(foamColor);
+            prop.SetTransparency(transparency);
         }
 
         if (obj.TryGetComponent(out BarrelContainer container))

@@ -130,7 +130,7 @@ public class FermentationProcess : StuBrew.BrewingProcess
     {
         if (hasProcessFinished)
         {
-            int barrelCount = (int)(wort.GetLiquidStored() / 0.164f);
+            int barrelCount = (int)(wort.GetLiquidStored() / 0.2f);
             for(int i = 0; i < barrelCount; i++)
             {
                 SpawnPrefab(i);

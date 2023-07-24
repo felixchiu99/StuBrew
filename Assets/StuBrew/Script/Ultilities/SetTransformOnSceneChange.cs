@@ -27,7 +27,6 @@ public class SetTransformOnSceneChange : MonoBehaviour
     {
         transform.position = new Vector3(0, 0, 0);
         SetChildenPosition();
-        transform.DetachChildren();
     }
 
     void SetChildenPosition()
@@ -36,6 +35,10 @@ public class SetTransformOnSceneChange : MonoBehaviour
         {
             SetChildPosition(child, new Vector3(Random.Range(-randDist, randDist) + spawnPos.x, spawnPos.y, Random.Range(-randDist, randDist) + spawnPos.z));
             SetHighlightable(child.gameObject, false);
+        }
+        for(int i = transform.childCount-1; i > 0; i --)
+        {
+            transform.GetChild(i).transform.SetParent(null);
         }
     }
 

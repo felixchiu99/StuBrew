@@ -19,7 +19,7 @@ public class SellingArea : ItemInArea
     {
         if (!CheckIfEmpty())
         {
-            CurrencyManager.Instance.Add(10);
+            CurrencyManager.Instance.Add(2);
             GameObject delObj = RemoveFirst();
             OnSell?.Invoke(delObj);
             Destroy(delObj);

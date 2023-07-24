@@ -9,6 +9,9 @@ public class CupContainer : FluidContainer
     [SerializeField] ParticleContainer particleContainer;
     [MinValue(0), MaxValue(10)]
     [SerializeField] float SellMinFill = 0.9f;
+
+    [SerializeField] LiquidChangeColor colorManager;
+
     //[Button("TestContainer")]
     public void UpdateContainerFill()
     {
@@ -32,5 +35,10 @@ public class CupContainer : FluidContainer
     private void OnDestroy()
     {
         particleContainer.OnPour -= SyncFillLevel;
+    }
+
+    public void SetColor(LiquidProperties liquidProperties)
+    {
+        colorManager.ChangeLiquidProp(liquidProperties);
     }
 }

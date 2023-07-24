@@ -41,9 +41,10 @@ public class ScoringProcess : StuBrew.BrewingProcess
             return;
         if (!tag.HasTag("Barrel"))
             return;
-        SetLiquidProperties(other.attachedRigidbody.GetComponent<LiquidProperties>());
+        LiquidProperties liqProp = other.attachedRigidbody.GetComponent<LiquidProperties>();
+        SetLiquidProperties(liqProp);
         triggeredObj = other.attachedRigidbody.gameObject;
-        colorControl.ChangeColor(liqProp.GetColor());
+        colorControl.ChangeLiquidProp(liqProp);
     }
 
     public void OnTriggerExit(Collider other)

@@ -64,6 +64,7 @@ public class KettleProcess : StuBrew.BrewingProcess
             return;
         if (waterFill == 0)
             return;
+        tempControl.Heat();
         time = Mathf.Clamp(time + timeOvertime * Time.deltaTime, 0, 1);
         if (time < 0.5f)
         {
