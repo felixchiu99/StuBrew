@@ -138,7 +138,7 @@ Material:
     - _BottomColor: {r: 0.81960785, g: 0.61682725, b: 0, a: 1}
     - _Color: {r: 0.9433962, g: 0.9091053, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Fensel: {r: 0.039849162, g: 1, b: 0, a: 0}
+    - _Fensel: {r: 1, g: 1, b: 1, a: 0}
     - _FillAmount: {r: 0, g: -0.487592, b: 0, a: 0}
     - _Fill_Min_Max: {r: -0.1, g: 0.1, b: 0, a: 0}
     - _FoamColor: {r: 1, g: 1, b: 1, a: 1}

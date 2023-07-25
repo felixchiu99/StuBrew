@@ -26,7 +26,6 @@ public class CupContainer : FluidContainer
     private void SyncFillLevel(float fillLevel)
     {
         SetFill(fillLevel);
-        Debug.Log("fillLevel "+ fillLevel);
     }
     private void Start()
     {
@@ -40,5 +39,6 @@ public class CupContainer : FluidContainer
     public void SetColor(LiquidProperties liquidProperties)
     {
         colorManager.ChangeLiquidProp(liquidProperties);
+        particleContainer.ChangeColorOvertime(liquidProperties.GetColor(), liquidProperties.GetColor(), 0.7f, 0.1f);
     }
 }

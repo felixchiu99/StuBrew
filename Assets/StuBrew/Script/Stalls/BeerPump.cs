@@ -16,8 +16,11 @@ public class BeerPump : MonoBehaviour
 
     [SerializeField] LiquidProperties liqProp;
 
-    void Start()
+    [SerializeField] AudioSource audioSource;
+
+    void Awake()
     {
+        isPulled = false;
         OnReleased();
     }
 
@@ -43,6 +46,7 @@ public class BeerPump : MonoBehaviour
             {
                 cup.SetColor(liqProp);
             }
+            particles.ChangeColorOvertime(liqProp.GetColor(), liqProp.GetColor(), 0.8f, 0.2f);
         }
     }
 
@@ -86,11 +90,15 @@ public class BeerPump : MonoBehaviour
     public void OnPulled()
     {
         isPulled = true;
+        if (audioSource)
+            audioSource.Play();
     }
     public void OnReleased()
     {
         isPulled = false;
         particles.Stop();
+        if (audioSource)
+            audioSource.Stop();
     }
 
     bool Transfer()

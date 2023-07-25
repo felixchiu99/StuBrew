@@ -40,8 +40,11 @@ public class CurrencyManager : MonoBehaviour
         currency.Add(diff);
     }
 
-    public void Deduct(int diff)
+    public bool Deduct(int diff)
     {
+        if (currency.GetCurrentStored() - diff < 0)
+            return false;
         currency.Deduct(diff);
+        return true;
     }
 }

@@ -15,6 +15,9 @@ namespace StuBrew
         [SerializeField]
         UnityEvent<bool> processCompleted;
 
+        [SerializeField]
+        protected UnityEvent<int> playSFX;
+
         [SerializeField] protected BrewingProcess nextProcess;
 
         protected bool canNext = false;

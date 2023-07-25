@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
+
 
 public class KettleProcess : StuBrew.BrewingProcess
 {
@@ -35,9 +37,25 @@ public class KettleProcess : StuBrew.BrewingProcess
     [SerializeField] TextMeshProUGUI hopText;
     [SerializeField] TextMeshProUGUI timeText;
 
+    private bool canStart = false;
+
+    [SerializeField]
+    UnityEvent processCanStart;
+    [SerializeField]
+    UnityEvent processResetCanStart;
+
     public void SwitchedOn()
     {
-        isOn = true;
+        if (canStart)
+        {
+            isOn = true;
+            playSFX?.Invoke(0);
+        }
+        else
+        {
+            playSFX?.Invoke(1);
+        }
+
     }
     public void SwitchedOff()
     {
@@ -49,19 +67,23 @@ public class KettleProcess : StuBrew.BrewingProcess
     {
         waterFill = wort.GetFillLevel();
         liqProp.SetTemperature(tempControl.GetTemperature());
+        if (waterFill > 0.7 && hopAmount[0] > 0)
+        {
+            canStart = true;
+            processCanStart?.Invoke();
+        }
         if (hasProcessFinished && waterFill <= 0)
         {
             ResetKettle();
         }
-        ProgressTime();
+        if (canStart && isOn)
+            ProgressTime();
         BlendLiquidStage();
         UpdateText();
     }
 
     void ProgressTime()
     {
-        if (!isOn || waterFill <= 0.7f)
-            return;
         if (waterFill == 0)
             return;
         tempControl.Heat();
@@ -94,6 +116,7 @@ public class KettleProcess : StuBrew.BrewingProcess
             liquidStage.ChangeLiquidStage(1);
             liqProp.ChangeBitterness(0.2f);
             TriggerNextProcess();
+            SwitchedOff();
         }
         if (time < 1 && canNext)
         {
@@ -129,6 +152,7 @@ public class KettleProcess : StuBrew.BrewingProcess
         }
         liquidStage.ChangeLiquidStage(0);
         TriggerOnProcessReset();
+        processResetCanStart?.Invoke();
     }
 
     private void UnexpectedObj(GameObject obj)

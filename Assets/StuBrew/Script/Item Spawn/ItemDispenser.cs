@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
 
 [System.Serializable]
@@ -28,10 +29,27 @@ public class ItemDispenser : MonoBehaviour
 
     private bool canSpawn = true;
 
+    [Tooltip("SFX index : 0 - buy, 1 - prev, 2 - next, 3 - buyFail, 4 - spawn(no cost)")]
+    [SerializeField]
+    protected UnityEvent<int> playSFX;
+
+    [SerializeField]
+    GameObject prevBtn;
+    [SerializeField]
+    GameObject nextBtn;
+
     void Start()
     {
         GetText();
         DisplayText();
+        if(objList.Count <= 1)
+        {
+            if (prevBtn)
+                prevBtn.SetActive(false);
+            if (nextBtn)
+                nextBtn.SetActive(false);
+        }
+
     }
 
     void GetText()
@@ -63,6 +81,7 @@ public class ItemDispenser : MonoBehaviour
             selector = 0;
         }
         DisplayText();
+        playSFX?.Invoke(2);
     }
     public void PrevItem()
     {
@@ -72,6 +91,7 @@ public class ItemDispenser : MonoBehaviour
             selector = objList.Count-1;
         }
         DisplayText();
+        playSFX?.Invoke(1);
     }
 
     public void BuyItem()
@@ -81,8 +101,17 @@ public class ItemDispenser : MonoBehaviour
         if (objList.Count == 0)
             return;
 
-        CurrencyManager.Instance.Deduct((int)objList[selector].info.GetItem().GetSellingPrice());
-        SpawnItem();
+        bool transectionSuccess = CurrencyManager.Instance.Deduct((int)objList[selector].info.GetItem().GetSellingPrice());
+        if (transectionSuccess)
+        {
+            if((int)objList[selector].info.GetItem().GetSellingPrice() > 0)
+                playSFX?.Invoke(0);
+            else
+                playSFX?.Invoke(4);
+            SpawnItem();
+        } 
+        else
+            playSFX?.Invoke(3);
     }
 
     public void SpawnItem()

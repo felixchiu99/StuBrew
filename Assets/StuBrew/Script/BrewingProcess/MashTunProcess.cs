@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(LiquidProperties))]
 public class MashTunProcess : StuBrew.BrewingProcess
@@ -31,6 +32,14 @@ public class MashTunProcess : StuBrew.BrewingProcess
     private int flushCounter = 0;
     private float waterFill = 0f;
 
+    private bool canStart = false;
+    private bool hasStarted = false;
+
+    [SerializeField]
+    UnityEvent processCanStart;
+    [SerializeField]
+    UnityEvent processResetCanStart;
+
     new void Start()
     {
         base.Start();
@@ -38,13 +47,35 @@ public class MashTunProcess : StuBrew.BrewingProcess
             maltHopper = GetComponent<MaltHopper>();
     }
 
+    public void StartProcess()
+    {
+        if(!hasStarted && canStart)
+        {
+            hasStarted = true;
+            TriggerOnProcessStarted();
+            playSFX?.Invoke(0);
+        }
+        else
+        {
+            playSFX?.Invoke(1);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+        canStart = false;
+
         waterFill = water.GetFillLevel();
         malt.SetVisualFill(maltHopper.GetFillLevel());
         
-        if (maltHopper.GetFillLevel() >= 1 && water.GetFillLevel() >= 0.7)
+        if (maltHopper.GetFillLevel() >= 1 && water.GetFillLevel() >= 0.7 && canStart == false)
+        {
+            canStart = true;
+            processCanStart?.Invoke();
+        }
+
+        if(hasStarted && !canNext)
         {
             time = Mathf.Clamp(time + timeOvertime * Time.deltaTime, 0, 1);
         }
@@ -55,8 +86,6 @@ public class MashTunProcess : StuBrew.BrewingProcess
             MaltProperties maltProp = maltHopper.GetMaltProperties();
 
             liquidStage.ChangeLiquidStage(1);
-            Debug.Log("hi");
-            Debug.Log(maltProp.GetSweetness());
             liqProp.ChangeSweetness(maltProp.GetSweetness() - 0.1f * flushCounter);
             liqProp.ChangeBitterness(maltProp.GetBitterness());
             liqProp.color = maltProp.GetColor();
@@ -76,6 +105,8 @@ public class MashTunProcess : StuBrew.BrewingProcess
         {
             time = 0;
             liquidStage.ChangeLiquidStage(0);
+            hasStarted = false;
+            canStart = false;
         }
         liquidStage.BlendLiquidStage(1, time);
         maltLiquidStage.BlendLiquidStage(1, waterFill / waterTarget);
@@ -85,16 +116,26 @@ public class MashTunProcess : StuBrew.BrewingProcess
     void UpdateText()
     {
         timeText.SetText((time * 100).ToString("F2"));
-        waterText.SetText((waterFill * 100 / waterTarget).ToString("F2"));
+        waterText.SetText((waterFill * 100 ).ToString("F2"));
         maltText.SetText(maltHopper.GetFillAmount().ToString("0"));
     }
 
     public void ResetProcess()
     {
-        if (waterFill <= 0)
+        if (waterFill <= 0 && hasStarted)
         {
             maltHopper.ClearFill();
+            hasStarted = false;
+            canStart = false;
             TriggerOnProcessReset();
+            processResetCanStart?.Invoke();
+            playSFX?.Invoke(0);
+        }
+        else
+        {
+            playSFX?.Invoke(1);
         }
     }
+
+
 }

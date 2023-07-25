@@ -39,8 +39,9 @@ public class LiquidChangeColor : MonoBehaviour
 
     public void ChangeFoamColor(Color color)
     {
-        rend.material.SetColor("_Foam_EdgeColour", color);
+        rend.material.SetColor("_Foam_EdgeColour", Color.Lerp(color, Color.black, 0.1f));
         rend.material.SetColor("_LiquidSurface", color);
+
     }
 
     public void ChangeTransparency(float transparent)

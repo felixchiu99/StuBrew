@@ -109,4 +109,15 @@ public class ParticleContainer : MonoBehaviour
     {
         storedParticle = fill > maxParticle ? maxParticle: fill;
     }
+
+    public void ChangeColorOvertime(Color colorStart, Color colorEnd, float alphaStart, float alphaEnd)
+    {
+        var col = part.colorOverLifetime;
+        col.enabled = true;
+
+        Gradient grad = new Gradient();
+        grad.SetKeys(new GradientColorKey[] { new GradientColorKey(colorStart, 0.0f), new GradientColorKey(colorEnd, 1.0f) }, new GradientAlphaKey[] { new GradientAlphaKey(alphaStart, 0.0f), new GradientAlphaKey(alphaEnd, 1.0f) });
+
+        col.color = grad;
+    }
 }

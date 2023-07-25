@@ -10,6 +10,10 @@ public class SellingArea : ItemInArea
 
     [SerializeField] UnityEvent<GameObject> OnSell;
 
+    [Tooltip("SFX index : 0 - sell, 1 - buyFail")]
+    [SerializeField]
+    protected UnityEvent<int> playSFX;
+
     void Start()
     {
         objRenderer = GetComponent<Renderer>();
@@ -19,11 +23,16 @@ public class SellingArea : ItemInArea
     {
         if (!CheckIfEmpty())
         {
+            playSFX?.Invoke(0);
             CurrencyManager.Instance.Add(2);
             GameObject delObj = RemoveFirst();
             OnSell?.Invoke(delObj);
             Destroy(delObj);
             ChangeMaterialIfEmpty();
+        }
+        else
+        {
+            playSFX?.Invoke(1);
         }
     }
 
