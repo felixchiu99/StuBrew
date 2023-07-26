@@ -25,7 +25,9 @@ public class ItemDispenser : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
     private int selector = 0;
     [SerializeField] TextMeshProUGUI displayText;
+    [SerializeField] TextMeshProUGUI displayText2;
     [SerializeField] TextMeshProUGUI costText;
+    [SerializeField] TextMeshProUGUI costText2;
 
     private bool canSpawn = true;
 
@@ -71,6 +73,10 @@ public class ItemDispenser : MonoBehaviour
             displayText.SetText(objList[selector].name);
         if (costText)
             costText.SetText(objList[selector].info.GetItem().GetSellingPrice().ToString("0"));
+        if(displayText2)
+            displayText2.SetText(objList[selector].name);
+        if (costText2)
+            costText2.SetText(objList[selector].info.GetItem().GetSellingPrice().ToString("0"));
     }
 
     public void NextItem()

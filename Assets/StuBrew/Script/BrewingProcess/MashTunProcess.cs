@@ -75,7 +75,7 @@ public class MashTunProcess : StuBrew.BrewingProcess
             processCanStart?.Invoke();
         }
 
-        if(hasStarted && !canNext)
+        if(hasStarted && !canNext && canStart)
         {
             time = Mathf.Clamp(time + timeOvertime * Time.deltaTime, 0, 1);
         }
@@ -83,6 +83,8 @@ public class MashTunProcess : StuBrew.BrewingProcess
         if (time >= 1 && !canNext)
         {
             canNext = true;
+            canStart = false;
+            processResetCanStart?.Invoke();
             MaltProperties maltProp = maltHopper.GetMaltProperties();
 
             liquidStage.ChangeLiquidStage(1);
@@ -105,8 +107,8 @@ public class MashTunProcess : StuBrew.BrewingProcess
         {
             time = 0;
             liquidStage.ChangeLiquidStage(0);
-            hasStarted = false;
             canStart = false;
+            processResetCanStart?.Invoke();
         }
         liquidStage.BlendLiquidStage(1, time);
         maltLiquidStage.BlendLiquidStage(1, waterFill / waterTarget);
@@ -125,8 +127,6 @@ public class MashTunProcess : StuBrew.BrewingProcess
         if (waterFill <= 0 && hasStarted)
         {
             maltHopper.ClearFill();
-            hasStarted = false;
-            canStart = false;
             TriggerOnProcessReset();
             processResetCanStart?.Invoke();
             playSFX?.Invoke(0);

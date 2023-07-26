@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
 using UnityEngine.Events;
 
 public class ParticleContainer : MonoBehaviour
@@ -23,6 +22,15 @@ public class ParticleContainer : MonoBehaviour
 
     public event UnityAction<float> OnPour;
 
+    private bool hasEmit = false;
+
+    [SerializeField]
+    UnityEvent OnPourStart;
+    [SerializeField]
+    UnityEvent OnPourEnd;
+    [SerializeField]
+    UnityEvent<float> OnPourStay;
+
     void Start()
     {
         StartCoroutine(EmitParticle(1 / ((float)flowRate / emitNum)));
@@ -39,7 +47,14 @@ public class ParticleContainer : MonoBehaviour
         {
             display.SetText(storedParticle.ToString());
         }
-        
+        if (!isEmit)
+        {
+            if (hasEmit)
+            {
+                hasEmit = false;
+                OnPourEnd?.Invoke();
+            }
+        }
         if (storedParticle > 0 && isEmit)
         {
             int emit = 0;
@@ -50,6 +65,17 @@ public class ParticleContainer : MonoBehaviour
             else
             {
                 emit = storedParticle;
+            }
+            float volume = 1-Mathf.InverseLerp(0, 0.09f, waitTime);
+            Debug.Log("volume " + volume);
+            if (emit > 0)
+            {
+                if (!hasEmit) {
+                    hasEmit = true;
+                    OnPourStart?.Invoke();
+                    Debug.Log("Start pour");
+                }
+                OnPourStay?.Invoke(volume);
             }
             Emit(emit);
             RemoveParticle(emit);

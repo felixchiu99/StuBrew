@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 
 public class FermentationProcess : StuBrew.BrewingProcess
 {
@@ -31,13 +32,41 @@ public class FermentationProcess : StuBrew.BrewingProcess
     public GameObject barrelPrefab;
     public Transform spawnPoint;
 
+    private bool canStart = false;
+    private bool hasStarted = false;
+
+    [SerializeField]
+    UnityEvent processCanStart;
+    [SerializeField]
+    UnityEvent processResetCanStart;
+
     void Update()
     {
         liquidAmount = wort.GetFillLevel();
+        if((liquidAmount >= 0.5f && yeastAmount >= 2))
+        {
+            if(!canStart)
+                processCanStart?.Invoke();
+            canStart = true;
+        }
         ProgressTime();
         BlendLiquidStage();
         UpdateText();
         ProgressNext();
+    }
+
+    public void StartProcess()
+    {
+        if (!hasStarted && canStart)
+        {
+            hasStarted = true;
+            TriggerOnProcessStarted();
+            playSFX?.Invoke(0);
+        }
+        else
+        {
+            playSFX?.Invoke(1);
+        }
     }
 
     void AddYeast()
@@ -47,7 +76,7 @@ public class FermentationProcess : StuBrew.BrewingProcess
 
     void ProgressTime()
     {
-        if ((liquidAmount <= 0 || yeastAmount <= 0))
+        if (!hasStarted)
             return;
         timeOvertime = EvaluateCurve(yeastTimeGraph, yeastAmount);
 
@@ -139,6 +168,12 @@ public class FermentationProcess : StuBrew.BrewingProcess
             yeastAmount = 0;
             time = 0;
             TriggerOnProcessReset();
+            processResetCanStart?.Invoke();
+            playSFX?.Invoke(0);
+        }
+        else
+        {
+            playSFX?.Invoke(1);
         }
     }
 }

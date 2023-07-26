@@ -69,8 +69,15 @@ public class KettleProcess : StuBrew.BrewingProcess
         liqProp.SetTemperature(tempControl.GetTemperature());
         if (waterFill > 0.7 && hopAmount[0] > 0)
         {
+            if(!canStart)
+                processCanStart?.Invoke();
             canStart = true;
-            processCanStart?.Invoke();
+        }
+        else
+        {
+            if (canStart)
+                processResetCanStart?.Invoke();
+            canStart = false;
         }
         if (hasProcessFinished && waterFill <= 0)
         {
