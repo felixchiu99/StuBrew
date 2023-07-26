@@ -16,6 +16,11 @@ namespace StuBrew
         UnityEvent<bool> processCompleted;
 
         [SerializeField]
+        UnityEvent OnProcessStarted;
+        [SerializeField]
+        UnityEvent OnProcessCompleted;
+
+        [SerializeField]
         protected UnityEvent<int> playSFX;
 
         [SerializeField] protected BrewingProcess nextProcess;
@@ -37,6 +42,8 @@ namespace StuBrew
 
         protected void TriggerOnProcessStarted()
         {
+            if(!hasProcessStarted)
+                OnProcessStarted?.Invoke();
             hasProcessStarted = true;
             liqProp.canTransfer = false;
             processStarted?.Invoke();
@@ -54,6 +61,8 @@ namespace StuBrew
         {
             if (completed)
             {
+                if (!hasProcessFinished)
+                    OnProcessCompleted?.Invoke();
                 hasProcessFinished = true;
 
                 if (IsTransferEnable())

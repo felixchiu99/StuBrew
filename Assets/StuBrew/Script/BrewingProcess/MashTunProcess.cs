@@ -39,6 +39,8 @@ public class MashTunProcess : StuBrew.BrewingProcess
     UnityEvent processCanStart;
     [SerializeField]
     UnityEvent processResetCanStart;
+    [SerializeField]
+    UnityEvent<float> PassWaterFillLevel;
 
     new void Start()
     {
@@ -68,7 +70,9 @@ public class MashTunProcess : StuBrew.BrewingProcess
 
         waterFill = water.GetFillLevel();
         malt.SetVisualFill(maltHopper.GetFillLevel());
-        
+
+        PassWaterFillLevel?.Invoke(waterFill* 0.3f);
+
         if (maltHopper.GetFillLevel() >= 1 && water.GetFillLevel() >= 0.7 && canStart == false)
         {
             canStart = true;

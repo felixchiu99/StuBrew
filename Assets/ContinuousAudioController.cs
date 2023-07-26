@@ -9,13 +9,15 @@ public class ContinuousAudioController : MonoBehaviour
     public void Play()
     {
         if (audioSource)
-            audioSource.Play();
+            if(!audioSource.isPlaying)
+                audioSource.Play();
     }
     
     public void Pause()
     {
         if (audioSource)
-            audioSource.Pause();
+            if (audioSource.isPlaying)
+                audioSource.Pause();
     }
     public void SetVolume(float volume)
     {

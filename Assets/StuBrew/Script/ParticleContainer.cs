@@ -66,16 +66,14 @@ public class ParticleContainer : MonoBehaviour
             {
                 emit = storedParticle;
             }
-            float volume = 1-Mathf.InverseLerp(0, 0.09f, waitTime);
-            Debug.Log("volume " + volume);
+            float volume = 1 - Mathf.InverseLerp(0, 0.09f, waitTime);
             if (emit > 0)
             {
                 if (!hasEmit) {
                     hasEmit = true;
                     OnPourStart?.Invoke();
-                    Debug.Log("Start pour");
                 }
-                OnPourStay?.Invoke(volume);
+                OnPourStay?.Invoke(volume*0.9f);
             }
             Emit(emit);
             RemoveParticle(emit);
