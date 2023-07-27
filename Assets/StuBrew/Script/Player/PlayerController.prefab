@@ -126,7 +126,8 @@ AudioSource:
   m_GameObject: {fileID: 35515638}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 04deb6c4f33450143a69009bebf267a1,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: d80edf00be4412f4a8d75b2729d47c14, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -21480,6 +21481,7 @@ GameObject:
   - component: {fileID: 2647967990141376072}
   - component: {fileID: 3499493283301180312}
   - component: {fileID: 504143423968700303}
+  - component: {fileID: 65627565}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -21554,16 +21556,16 @@ MonoBehaviour:
   m_FillRect: {fileID: 5424416833112216139}
   m_HandleRect: {fileID: 7558441004378291354}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.00001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1118778545}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: set_volume
+      - m_Target: {fileID: 65627565}
+        m_TargetAssemblyTypeName: GlobalVolume, Assembly-CSharp
+        m_MethodName: SetVolume
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21612,7 +21614,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1118778545}
-  slider: {fileID: 0}
+  slider: {fileID: 2647967990141376072}
+--- !u!114 &65627565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3140165541483945674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9d2f9c960330fd46989454edd83e08e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: 04deb6c4f33450143a69009bebf267a1, type: 2}
 --- !u!1 &3170760854562289371
 GameObject:
   m_ObjectHideFlags: 0
@@ -47458,6 +47473,18 @@ PrefabInstance:
       propertyPath: m_Positions.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1188298502747381017, guid: a5226a72c9553294abfe172a458b5805,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 04deb6c4f33450143a69009bebf267a1,
+        type: 2}
+    - target: {fileID: 1188298502933001935, guid: a5226a72c9553294abfe172a458b5805,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 04deb6c4f33450143a69009bebf267a1,
+        type: 2}
     - target: {fileID: 1262313374629172509, guid: a5226a72c9553294abfe172a458b5805,
         type: 3}
       propertyPath: reachDistance
@@ -47468,6 +47495,18 @@ PrefabInstance:
       propertyPath: reachDistance
       value: 0.15
       objectReference: {fileID: 0}
+    - target: {fileID: 2258183580557847807, guid: a5226a72c9553294abfe172a458b5805,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 04deb6c4f33450143a69009bebf267a1,
+        type: 2}
+    - target: {fileID: 2258183582387586857, guid: a5226a72c9553294abfe172a458b5805,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 04deb6c4f33450143a69009bebf267a1,
+        type: 2}
     - target: {fileID: 6707951067419483808, guid: a5226a72c9553294abfe172a458b5805,
         type: 3}
       propertyPath: crouching
@@ -47478,6 +47517,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7817498872276788090, guid: a5226a72c9553294abfe172a458b5805,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 04deb6c4f33450143a69009bebf267a1,
+        type: 2}
+    - target: {fileID: 7817498873212569385, guid: a5226a72c9553294abfe172a458b5805,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 04deb6c4f33450143a69009bebf267a1,
+        type: 2}
     - target: {fileID: 7942002210973373747, guid: a5226a72c9553294abfe172a458b5805,
         type: 3}
       propertyPath: m_RootOrder
@@ -47553,6 +47604,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.087
       objectReference: {fileID: 0}
+    - target: {fileID: 8946829407063163706, guid: a5226a72c9553294abfe172a458b5805,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 04deb6c4f33450143a69009bebf267a1,
+        type: 2}
+    - target: {fileID: 8946829408535963497, guid: a5226a72c9553294abfe172a458b5805,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 04deb6c4f33450143a69009bebf267a1,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5226a72c9553294abfe172a458b5805, type: 3}
 --- !u!1 &2063786965451428312 stripped

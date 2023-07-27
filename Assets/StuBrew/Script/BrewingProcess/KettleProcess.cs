@@ -44,6 +44,9 @@ public class KettleProcess : StuBrew.BrewingProcess
     [SerializeField]
     UnityEvent processResetCanStart;
 
+    [SerializeField]
+    UnityEvent<float> PassWaterLevel;
+
     public void SwitchedOn()
     {
         if (canStart)
@@ -129,6 +132,7 @@ public class KettleProcess : StuBrew.BrewingProcess
         {
             canNext = false;
         }
+        PassWaterLevel?.Invoke(waterFill);
     }
 
     void BlendLiquidStage()

@@ -13,6 +13,7 @@ public class BeerPump : MonoBehaviour
     [SerializeField] CupContainer cup;
 
     public bool isPulled = false;
+    private bool hasTransfer = false;
 
     [SerializeField] LiquidProperties liqProp;
 
@@ -77,10 +78,14 @@ public class BeerPump : MonoBehaviour
     [Button("TestTransfer")]
     public void Pulled()
     {
-        if (Transfer())
+        hasTransfer = Transfer();
+        if (hasTransfer)
         {
             //liq.UpdateColor();
             particles.Play();
+            if (audioSource)
+                if (!audioSource.isPlaying)
+                    audioSource.Play();
         }
         else {
             OnReleased();
@@ -90,8 +95,6 @@ public class BeerPump : MonoBehaviour
     public void OnPulled()
     {
         isPulled = true;
-        if (audioSource)
-            audioSource.Play();
     }
     public void OnReleased()
     {
@@ -106,7 +109,7 @@ public class BeerPump : MonoBehaviour
         if(cup != null && barrel != null)
         {
             float transfered = 0;
-            if (!cup.isFull())
+            if (!cup.isFull(0.02f))
                 transfered = barrel.Remove(flowRate);
             if (transfered <= 0)
                 return false;

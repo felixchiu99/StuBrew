@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class HotLiquorTankProcess : StuBrew.BrewingProcess
 {
@@ -11,6 +12,14 @@ public class HotLiquorTankProcess : StuBrew.BrewingProcess
     float temperatureThreshold = 77f;
 
     [SerializeField] PhysicsGadgetSwitch physicsSwitch;
+
+    [SerializeField]
+    LiquidContainerSetting water;
+
+    [SerializeField]
+    UnityEvent<float> PassTemperatureLevel;
+    [SerializeField]
+    UnityEvent<float> PassWaterLevel;
 
     new void Start()
     {
@@ -38,6 +47,9 @@ public class HotLiquorTankProcess : StuBrew.BrewingProcess
             TriggerNextProcess(false);
             canNext = false;
         }
+
+        PassTemperatureLevel?.Invoke(temperature);
+        PassWaterLevel?.Invoke(water.GetFillLevel());
     }
 
     override public bool IsExportingFluid()

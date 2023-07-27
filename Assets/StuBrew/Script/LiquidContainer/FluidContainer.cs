@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class FluidContainer : MonoBehaviour
 {
@@ -12,14 +13,15 @@ public class FluidContainer : MonoBehaviour
     public float Add(float toAdd)
     {
         float add = 0f;
-        add = currentStored + toAdd < volume ? toAdd : volume - currentStored;
+        add = (currentStored + toAdd) < volume ? toAdd : volume - currentStored;
+
         currentStored = currentStored + add;
         return add;
     }
     public float Remove(float toRemove)
     {
         float removed = 0f;
-        removed = currentStored - toRemove > 0 ? toRemove : currentStored;
+        removed = (currentStored - toRemove) > 0 ? toRemove : currentStored;
         currentStored = currentStored - removed;
         return removed;
     }
@@ -32,6 +34,10 @@ public class FluidContainer : MonoBehaviour
     public bool isEmpty()
     {
         return currentStored <= 0;
+    }
+    public bool isFull(float tolerance)
+    {
+        return volume - currentStored < tolerance;
     }
     public bool isFull()
     {

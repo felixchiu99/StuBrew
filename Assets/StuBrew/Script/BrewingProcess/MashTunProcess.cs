@@ -130,6 +130,7 @@ public class MashTunProcess : StuBrew.BrewingProcess
     {
         if (waterFill <= 0 && hasStarted)
         {
+            hasStarted = false;
             maltHopper.ClearFill();
             TriggerOnProcessReset();
             processResetCanStart?.Invoke();

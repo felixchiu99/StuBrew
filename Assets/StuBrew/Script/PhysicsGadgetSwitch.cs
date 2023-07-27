@@ -14,6 +14,9 @@ public class PhysicsGadgetSwitch : Autohand.PhysicsGadgetHingeAngleReader
     public UnityEvent switchOn;
     public UnityEvent switchOff;
 
+    public UnityEvent onSwitchOn;
+    public UnityEvent onSwitchOff;
+
     HingeJoint hinge;
 
     short forcedDir = 0;
@@ -70,6 +73,10 @@ public class PhysicsGadgetSwitch : Autohand.PhysicsGadgetHingeAngleReader
         if(value > cutOffValue)
         {
             spring.targetPosition = ForceLeverOn(true);
+            if (!isOn)
+            {
+                onSwitchOn?.Invoke();
+            }
             isOn = true;
             if (forcedDir > 0)
                 forcedDir = 0;
@@ -77,6 +84,10 @@ public class PhysicsGadgetSwitch : Autohand.PhysicsGadgetHingeAngleReader
         else
         {
             spring.targetPosition = ForceLeverOn(false);
+            if (isOn)
+            {
+                onSwitchOff?.Invoke();
+            }
             isOn = false;
             if (forcedDir < 0)
                 forcedDir = 0;

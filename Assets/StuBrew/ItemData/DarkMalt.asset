@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a4b91c1384bbb74da6eb906c99ff83a, type: 3}
   m_Name: DarkMalt
   m_EditorClassIdentifier: 
-  sellingPrice: 1
+  sellingPrice: 10
   name: Dark Malt

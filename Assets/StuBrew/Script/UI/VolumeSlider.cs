@@ -11,10 +11,8 @@ public class VolumeSlider : MonoBehaviour
     {
         if (slider == null)
         {
-            Debug.Log(slider);
             if (gameObject.TryGetComponent<Slider>(out Slider temp))
             {
-                Debug.Log(slider);
                 slider = temp;
                 OnEnable();
             }

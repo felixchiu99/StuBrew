@@ -20,14 +20,19 @@ public class ParticleEffectController : MonoBehaviour
     public void Play()
     {
         part.Play();
+        /*
         var em = part.emission;
         em.enabled = true;
+        */
     }
 
     public void Stop()
     {
+        part.Stop();
+        /*
         var em = part.emission;
         em.enabled = false;
+        */
     }
 
     public void ChangeColorOvertime(Color colorStart, Color colorEnd, float alphaStart, float alphaEnd)
@@ -39,5 +44,17 @@ public class ParticleEffectController : MonoBehaviour
         grad.SetKeys(new GradientColorKey[] { new GradientColorKey(colorStart, 0.0f), new GradientColorKey(colorEnd, 1.0f) }, new GradientAlphaKey[] { new GradientAlphaKey(alphaStart, 0.0f), new GradientAlphaKey(alphaEnd, 1.0f) });
 
         col.color = grad;
+    }
+
+    public void ChangeShapeLength(float length)
+    {
+        var shape = part.shape;
+        shape.length = length;
+    }
+
+    public void ChangeRate(float rate)
+    {
+        var emission = part.emission;
+        emission.rateOverTime = rate;
     }
 }

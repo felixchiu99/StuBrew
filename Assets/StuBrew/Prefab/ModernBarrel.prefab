@@ -446,8 +446,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eabbb7084fe3464d85ee8d5d3f41bc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 30
-  currentStored: 30
+  volume: 20
+  currentStored: 20
 --- !u!1 &4975469678660422135
 GameObject:
   m_ObjectHideFlags: 0

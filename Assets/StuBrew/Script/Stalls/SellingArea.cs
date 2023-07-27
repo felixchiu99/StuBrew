@@ -14,6 +14,9 @@ public class SellingArea : ItemInArea
     [SerializeField]
     protected UnityEvent<int> playSFX;
 
+    [SerializeField]
+    private int sellingPrice = 2;
+
     void Start()
     {
         objRenderer = GetComponent<Renderer>();
@@ -24,7 +27,7 @@ public class SellingArea : ItemInArea
         if (!CheckIfEmpty())
         {
             playSFX?.Invoke(0);
-            CurrencyManager.Instance.Add(2);
+            CurrencyManager.Instance.Add(sellingPrice);
             GameObject delObj = RemoveFirst();
             OnSell?.Invoke(delObj);
             Destroy(delObj);
