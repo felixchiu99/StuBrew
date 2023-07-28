@@ -73,6 +73,7 @@ public class ScreenFader : MonoBehaviour
                 } while (timePassed < fadeDuration);
 
                 _alpha = 1;
+                _myCanvas.alpha = _alpha;
 
                 SceneManager.LoadSceneAsync(_fadeScene);
                 break;

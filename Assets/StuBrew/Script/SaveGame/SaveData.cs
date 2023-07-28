@@ -31,7 +31,7 @@ public class SaveData
     public void SavePlayer()
     {
         GameObject[] playerObj;
-        playerObj = GameObject.FindGameObjectsWithTag("Player");
+        playerObj = GameObject.FindGameObjectsWithTag("PlayerController");
 
         foreach (GameObject player in playerObj)
         {
@@ -105,7 +105,7 @@ public class SaveData
 
     protected void LoadPlayer()
     {
-        GameObject[] playerObj = GameObject.FindGameObjectsWithTag("Player");
+        GameObject[] playerObj = GameObject.FindGameObjectsWithTag("PlayerController");
 
         foreach (GameObject player in playerObj)
         {

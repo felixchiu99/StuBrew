@@ -2646,6 +2646,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2063786966615184041, guid: b024588b635c2e74c8ed38f510521a9c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424088484455848255, guid: b024588b635c2e74c8ed38f510521a9c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8256122454471306083, guid: b024588b635c2e74c8ed38f510521a9c,
+        type: 3}
+      propertyPath: normalCameraYValue
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8256122454471306085, guid: b024588b635c2e74c8ed38f510521a9c,
+        type: 3}
+      propertyPath: m_TagString
+      value: PlayerController
+      objectReference: {fileID: 0}
     - target: {fileID: 8256122454728705616, guid: b024588b635c2e74c8ed38f510521a9c,
         type: 3}
       propertyPath: m_Name
@@ -4755,6 +4775,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  sellingPrice: 2
 --- !u!114 &1676381680
 MonoBehaviour:
   m_ObjectHideFlags: 0
