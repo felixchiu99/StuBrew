@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(CustomTag))]
 public class PickUpPC : Highlightable, IPickup
 {
-    [SerializeField] float holdDist = 0.5f;
+    [SerializeField] float holdDist = 0.7f;
     new protected void Start()
     {
         base.Start();

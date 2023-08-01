@@ -8,6 +8,8 @@ public class SellingArea : ItemInArea
     [SerializeField] Material[] materialList;
     [SerializeField] Renderer objRenderer;
 
+    [SerializeField] QueueManager queueManager;
+
     [SerializeField] UnityEvent<GameObject> OnSell;
 
     [Tooltip("SFX index : 0 - sell, 1 - buyFail")]
@@ -20,18 +22,23 @@ public class SellingArea : ItemInArea
     void Start()
     {
         objRenderer = GetComponent<Renderer>();
+
+        if (!queueManager)
+            queueManager = (QueueManager)FindObjectOfType(typeof(QueueManager));
     }
 
     public void SellItem()
     {
-        if (!CheckIfEmpty())
+        if (!CheckIfEmpty() && queueManager.HasQueue())
         {
             playSFX?.Invoke(0);
-            CurrencyManager.Instance.Add(sellingPrice);
+            int price = (int)(sellingPrice * queueManager.GetBonus());
+            CurrencyManager.Instance.Add(price);
             GameObject delObj = RemoveFirst();
             OnSell?.Invoke(delObj);
             Destroy(delObj);
             ChangeMaterialIfEmpty();
+            queueManager.RemoveFromQueue();
         }
         else
         {

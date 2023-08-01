@@ -9,11 +9,32 @@ public class FloatingObjPointer : MonoBehaviour
 
     private bool isLockY = false;
 
+    [SerializeField] TutorialSequencer tutManager;
+
+    void OnEnable()
+    {
+        if (!tutManager)
+            tutManager = (TutorialSequencer)FindObjectOfType(typeof(TutorialSequencer));
+        tutManager.OnIndexChange += OnTutChange;
+    }
+
+    public void OnTutChange(TutorialObject tutObj)
+    {
+        target = tutObj.target;
+        if (!tutObj.isShow)
+            target = null;
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (target)
         {
+            if (target.position.y < -100)
+            {
+                ui.SetActive(false);
+                return;
+            }
             ui.SetActive(true);
 
             Vector3 pos = target.position;
