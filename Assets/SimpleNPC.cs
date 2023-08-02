@@ -2,6 +2,88 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class BrewPreference
+{
+    public int preferenceType;
+
+    public bool isMore = true;
+    
+    public BrewPreference()
+    {
+        System.Random r = new System.Random();
+
+        preferenceType = r.Next(3);
+        isMore = r.Next(2) == 1;
+    }
+
+    private bool IsPreferred(float stat)
+    {
+        float threshold = 5f;
+        if (isMore)
+        {
+            return stat >= threshold;
+        }
+        else
+        {
+            return stat <= threshold;
+        }
+
+    }
+    public float CheckPreference(LiquidProperties liqProp)
+    {
+        float preference = 1.0f;
+        bool extreme = false;
+
+        if (liqProp.GetBitterness() > 10)
+        {
+            extreme = true;
+        }
+        if (liqProp.GetSweetness() > 10)
+        {
+            extreme = true;
+        }
+        if (extreme)
+        {
+            return 0.5f;
+        }
+
+        switch (preferenceType)
+        {
+            case 0:
+                if (IsPreferred(liqProp.GetBitterness()))
+                    preference += 0.5f;
+                break;
+            case 1:
+                if (IsPreferred(liqProp.GetSweetness()))
+                    preference += 0.5f;
+                break;
+            case 2:
+                if (IsPreferred(liqProp.GetAroma()))
+                    preference += 0.5f;
+                break;
+        }
+
+        return preference;
+    }
+    public string GetPreferenceString()
+    {
+        switch (preferenceType)
+        {
+            case 0:
+                return "bitterness";
+            case 1:
+                return "sweetness";
+            case 2:
+                return "aroma";
+        }
+        return "";
+    }
+    public bool GetIsMore()
+    {
+        return isMore;
+    }
+}
+
 public class SimpleNPC : MonoBehaviour
 {
     [SerializeField] Transform SelfQueuePos;
@@ -24,6 +106,12 @@ public class SimpleNPC : MonoBehaviour
 
     PhysicMaterial original;
     [SerializeField] PhysicMaterial modded;
+
+    [SerializeField] GameObject armUp;
+    [SerializeField] Transform holdPos;
+    [SerializeField] GameObject armDown;
+
+    BrewPreference brewPref = new BrewPreference();
 
     void OnEnable()
     {
@@ -88,7 +176,7 @@ public class SimpleNPC : MonoBehaviour
             collider.sharedMaterial = original;
             rigidbody.AddForce(GetTargetDirection(target).normalized * moveSpeed * moveSpeedMod, ForceMode.VelocityChange);
         }
-        if(rigidbody.velocity.magnitude < 0.1f && !isInQueue)
+        if(rigidbody.velocity.magnitude < 0.05f && !isInQueue)
         {
             stuckCounter++;
         }
@@ -99,6 +187,10 @@ public class SimpleNPC : MonoBehaviour
         if(stuckCounter > 10)
         {
             rigidbody.AddForce(transform.right * -0.2f, ForceMode.VelocityChange);
+        }
+        if (stuckCounter > 40)
+        {
+            stuckCounter = 0;
         }
     }
     void Stop()
@@ -170,5 +262,32 @@ public class SimpleNPC : MonoBehaviour
     public void Destroy(float time)
     {
         Destroy(gameObject, time);
+    }
+
+    public void HoldItem(GameObject obj)
+    {
+        armUp.SetActive(true);
+        if (obj.TryGetComponent<Rigidbody>(out Rigidbody rb))
+        {
+            rb.isKinematic = true;
+        }
+        obj.transform.SetParent(holdPos);
+        obj.transform.localPosition = new Vector3(0, 0, 0);
+        armDown.SetActive(false);
+    }
+
+    public float GetBonus(GameObject gameObject)
+    {
+        if (gameObject.TryGetComponent<CupContainer>(out CupContainer cup)) 
+        {
+            return brewPref.CheckPreference(cup.GetLiqProp());
+        }
+
+        return 1f;
+    }
+
+    public BrewPreference GetBrewPreference()
+    {
+        return brewPref;
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
 using NaughtyAttributes;
 
@@ -19,11 +20,20 @@ public class QueueManager : MonoBehaviour
 
     [SerializeField] float destroyTimeout = 5f;
 
-    // Start is called before the first frame update
+    [SerializeField] TextMeshProUGUI displayText;
+    [SerializeField] TextMeshProUGUI displayVistorText;
+
+    [SerializeField] float npcSpawnRate = 30f;
+
+    private int expectedVistor;
     void Start()
     {
         queueEnd = queueStart;
         OnQueueEndChange?.Invoke(queueEnd, this.transform);
+        UpdateDisplay();
+        expectedVistor = Random.Range(10,50);
+        UpdateVistorDisplay();
+        InvokeRepeating("SpawnNPC", 1f, npcSpawnRate);
     }
 
     public void AddToQueueEnd(GameObject obj)
@@ -33,6 +43,7 @@ public class QueueManager : MonoBehaviour
             inQueue.Add(npc);
             ChangeQueueEnd(npc.GetQueuePos(), npc.transform);
         }
+        UpdateDisplay();
     }
 
     [Button]
@@ -52,6 +63,7 @@ public class QueueManager : MonoBehaviour
         {
             ChangeQueueEnd(queueStart, this.transform);
         }
+        UpdateDisplay();
     }
 
     void ChangeQueueEnd(Transform newTransform, Transform newLook)
@@ -89,9 +101,11 @@ public class QueueManager : MonoBehaviour
     [Button]
     public void SpawnNPC()
     {
-        if(inQueue.Count < 10)
+        if(inQueue.Count < 10 && expectedVistor > 0 )
         {
             GameObject obj = Instantiate(NpcPrefab, spawnPoint.position, Quaternion.identity);
+            expectedVistor--;
+            UpdateVistorDisplay();
         }   
     }
 
@@ -100,8 +114,47 @@ public class QueueManager : MonoBehaviour
         return inQueue.Count != 0;
     }
 
-    public float GetBonus()
+    public void SellObj(GameObject obj)
     {
-        return 1f ;
+        if (inQueue.Count > 0)
+        {
+            inQueue[0].HoldItem(obj);
+        }
+    }
+
+    public float GetBonus(GameObject gameObject)
+    {
+        if (inQueue.Count > 0)
+        {
+            return inQueue[0].GetBonus(gameObject);
+        }
+        return 1f;
+    }
+
+    public void UpdateDisplay()
+    {
+        if (inQueue.Count > 0)
+        {
+            BrewPreference pref = inQueue[0].GetBrewPreference();
+            displayText.SetText(pref.GetPreferenceString());
+            if (pref.GetIsMore())
+            {
+                displayText.color = new Color(0, 255, 0, 255);
+            }
+            else
+            {
+                displayText.color = new Color(255, 0, 0, 255);
+            }
+        }
+        else
+        {
+            displayText.SetText("");
+        }
+        
+    }
+
+    public void UpdateVistorDisplay()
+    {
+        displayVistorText.SetText(expectedVistor.ToString()); 
     }
 }

@@ -12,6 +12,7 @@ public class CupContainer : FluidContainer
 
     [SerializeField] LiquidChangeColor colorManager;
 
+    [SerializeField] LiquidProperties liqProp;
     //[Button("TestContainer")]
     public void UpdateContainerFill()
     {
@@ -40,5 +41,10 @@ public class CupContainer : FluidContainer
     {
         colorManager.ChangeLiquidProp(liquidProperties);
         particleContainer.ChangeColorOvertime(liquidProperties.GetColor(), liquidProperties.GetColor(), 0.7f, 0.1f);
+    }
+
+    public LiquidProperties GetLiqProp()
+    {
+        return liqProp;
     }
 }

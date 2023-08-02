@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
 public class SellingArea : ItemInArea
 {
@@ -19,6 +20,11 @@ public class SellingArea : ItemInArea
     [SerializeField]
     private int sellingPrice = 2;
 
+    [SerializeField]
+    GameObject floatingNumPrefab;
+    [SerializeField]
+    Transform floatingNumSpawn;
+
     void Start()
     {
         objRenderer = GetComponent<Renderer>();
@@ -32,11 +38,13 @@ public class SellingArea : ItemInArea
         if (!CheckIfEmpty() && queueManager.HasQueue())
         {
             playSFX?.Invoke(0);
-            int price = (int)(sellingPrice * queueManager.GetBonus());
-            CurrencyManager.Instance.Add(price);
             GameObject delObj = RemoveFirst();
+            int price = (int)(sellingPrice * queueManager.GetBonus(delObj));
+            CurrencyManager.Instance.Add(price);
+            SpawnFloatingNum(price);
             OnSell?.Invoke(delObj);
-            Destroy(delObj);
+            queueManager.SellObj(delObj);
+            //Destroy(delObj);
             ChangeMaterialIfEmpty();
             queueManager.RemoveFromQueue();
         }
@@ -44,6 +52,12 @@ public class SellingArea : ItemInArea
         {
             playSFX?.Invoke(1);
         }
+    }
+
+    private void SpawnFloatingNum(int num)
+    {
+        GameObject floatingNum = Instantiate(floatingNumPrefab, floatingNumSpawn.position, Quaternion.Euler(0, 180, 0));
+        floatingNum.transform.GetChild(0).GetComponent<TextMeshPro>().SetText("$ " + num);
     }
 
     public void OnTriggerEnterEvent(Collider col)

@@ -1086,7 +1086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particles: {fileID: 5731653063380582393}
-  flowRate: 0.0005
+  flowRate: 0.001
   barrel: {fileID: 0}
   cup: {fileID: 0}
   isPulled: 0
