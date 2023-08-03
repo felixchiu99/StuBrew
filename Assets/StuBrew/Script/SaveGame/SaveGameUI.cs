@@ -15,7 +15,7 @@ public class SaveGameUI : MonoBehaviour
 
     public void save()
     {
-        saveGame ?.Invoke(fileIndex);
+        saveGame?.Invoke(fileIndex);
     }
 
 }

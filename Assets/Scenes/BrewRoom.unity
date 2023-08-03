@@ -8624,7 +8624,31 @@ MonoBehaviour:
   inAreaList: []
   OnSceneChange:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2064367260}
+        m_TargetAssemblyTypeName: TestSaveGame, Assembly-CSharp
+        m_MethodName: Save
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2064367260}
+        m_TargetAssemblyTypeName: TestSaveGame, Assembly-CSharp
+        m_MethodName: LoadStall
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   spawnPos: {x: 15, y: 0.8, z: 15}
   randDist: 2
 --- !u!1 &290345375
@@ -39761,12 +39785,12 @@ PrefabInstance:
     - target: {fileID: 2425446882663252038, guid: 5e424c17717a3c14c95ef7ae657b8921,
         type: 3}
       propertyPath: OnTriggerEnterCall.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2425446882663252038, guid: 5e424c17717a3c14c95ef7ae657b8921,
         type: 3}
       propertyPath: OnTriggerEnterCall.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2425446882663252038, guid: 5e424c17717a3c14c95ef7ae657b8921,
         type: 3}
@@ -39787,7 +39811,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OnTriggerEnterCall.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 2064367254}
+      objectReference: {fileID: 2064367260}
     - target: {fileID: 2425446882663252038, guid: 5e424c17717a3c14c95ef7ae657b8921,
         type: 3}
       propertyPath: OnTriggerEnterCall.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
@@ -39806,12 +39830,12 @@ PrefabInstance:
     - target: {fileID: 2425446882663252038, guid: 5e424c17717a3c14c95ef7ae657b8921,
         type: 3}
       propertyPath: OnTriggerEnterCall.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Save
+      value: LoadStall
       objectReference: {fileID: 0}
     - target: {fileID: 2425446882663252038, guid: 5e424c17717a3c14c95ef7ae657b8921,
         type: 3}
       propertyPath: OnTriggerEnterCall.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: DoFade
+      value: LoadStall
       objectReference: {fileID: 0}
     - target: {fileID: 2425446882663252038, guid: 5e424c17717a3c14c95ef7ae657b8921,
         type: 3}
@@ -39826,12 +39850,12 @@ PrefabInstance:
     - target: {fileID: 2425446882663252038, guid: 5e424c17717a3c14c95ef7ae657b8921,
         type: 3}
       propertyPath: OnTriggerEnterCall.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: FadeOnSceneChange, Assembly-CSharp
+      value: TestSaveGame, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2425446882663252038, guid: 5e424c17717a3c14c95ef7ae657b8921,
         type: 3}
       propertyPath: OnTriggerEnterCall.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2425446882663252038, guid: 5e424c17717a3c14c95ef7ae657b8921,
         type: 3}

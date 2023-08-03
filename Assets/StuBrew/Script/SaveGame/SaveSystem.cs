@@ -11,7 +11,8 @@ public static class SaveSystem
 
     static public FadeOnSceneChange sceneChange;
 
-    static SaveData saveData = new SaveData();
+    //static SaveData saveData = new SaveData();
+    static GameData saveData = new GameData();
 
     static public event UnityAction OnFilenameChange;
 
@@ -46,7 +47,7 @@ public static class SaveSystem
     {
         string data = JsonUtility.ToJson(filename);
         File.WriteAllText(Application.persistentDataPath + "/saveFilename.json", data);
-        Debug.Log(data);
+        //Debug.Log("saving" + data);
         OnFilenameChange?.Invoke();
     }
     public static void LoadFileName()
@@ -56,13 +57,30 @@ public static class SaveSystem
         {
             // Read the entire file and save its contents.
             string fileContents = File.ReadAllText(saveFile);
-            Debug.Log(fileContents);
             // Work with JSON
             filename = JsonUtility.FromJson<FilenameData>(fileContents);
             OnFilenameChange?.Invoke();
         }
     }
 
+    public static void Save(int saveNum = 3)
+    {
+        //retrieve and format data
+        saveData.SaveAll();
+
+        //save data
+        string data = JsonUtility.ToJson(saveData);
+        Debug.Log(filename.GetFilename(saveNum) + " saving ");
+        if (!filename.IsSaved(saveNum))
+        {
+            filename.SetSave(saveNum);
+        }
+        File.WriteAllText(Application.persistentDataPath + "/" + filename.GetFilename(saveNum) + ".json", data);
+
+        SaveFileName();
+    }
+
+    /* with save data system
     public static void Save(int saveNum = 3)
     {
         //retrieve and format data
@@ -79,26 +97,38 @@ public static class SaveSystem
 
         SaveFileName();
     }
+    */
 
-    public static void Load(int saveNum = 3)
+    public static bool CheckIfExist(int sceneIndex)
+    {
+
+        return saveData.CheckIfExist(sceneIndex);
+    }
+
+    public static void Load(int saveNum = 3, int index = -1, bool loadPlayer = true)
     {
         string saveFile = Application.persistentDataPath + "/" + filename.GetFilename(saveNum) + ".json";
         if (File.Exists(saveFile))
         {
             // Read the entire file and save its contents.
             string fileContents = File.ReadAllText(saveFile);
-            Debug.Log(fileContents);
+            Debug.Log(filename.GetFilename(saveNum) + " Loading ");
             // Work with JSON
-            SaveData newSave = CreateFromJson(fileContents);
-            newSave.Load();
+            GameData newSave = CreateFromJson(fileContents);
+            if(index == -1)
+                newSave.Load();
+            else
+            {
+                newSave.Load(index, loadPlayer);
+            }
             saveData.ClearAll();
             saveData = newSave;
         }
     }
 
-    public static SaveData CreateFromJson(string jsonString)
+    public static GameData CreateFromJson(string jsonString)
     {
-        return JsonUtility.FromJson<SaveData>(jsonString);
+        return JsonUtility.FromJson<GameData>(jsonString);
     }
 
 

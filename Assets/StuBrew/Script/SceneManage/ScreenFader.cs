@@ -87,7 +87,6 @@ public class ScreenFader : MonoBehaviour
                 } while (timePassed < 2 && SaveSystem.hasLoaded == false);
 
                 timePassed = 0.0f;
-
                 do
                 {
                     _alpha = Mathf.Lerp(1, 0, timePassed / fadeDuration);

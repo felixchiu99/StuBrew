@@ -16,8 +16,14 @@ public class SaveData
     List<PlayerData> players = new List<PlayerData>();
     List<GameObject> listOfPlayer = new List<GameObject>();
 
+    bool loadPlayer = true;
+
+    [SerializeField]
+    public bool isSaved = false;
+
     public void SaveAll()
     {
+        isSaved = true;
         SaveScene();
         SavePlayer();
         SaveBarrels();
@@ -25,14 +31,15 @@ public class SaveData
 
     public void SaveScene()
     {
-        sceneData = new SceneData();
+        if(sceneData == null)
+            sceneData = new SceneData();
+        sceneData.Save();
     }
 
     public void SavePlayer()
     {
         GameObject[] playerObj;
         playerObj = GameObject.FindGameObjectsWithTag("PlayerController");
-
         foreach (GameObject player in playerObj)
         {
             if (listOfPlayer.Contains(player))
@@ -68,7 +75,8 @@ public class SaveData
         {
             if (tag.HasTag("Barrel"))
             {
-                AddBarrel(tag.gameObject);
+                if(tag.gameObject.scene.name != "DontDestroyOnLoad")
+                    AddBarrel(tag.gameObject);
             }
             //Instantiate(respawnPrefab, respawn.transform.position, respawn.transform.rotation);
         }
@@ -87,8 +95,9 @@ public class SaveData
         listOfBarrel.Clear();
     }
 
-    public void Load()
+    public void Load(bool loadPlayer = true)
     {
+        this.loadPlayer = loadPlayer;
         SaveSystem.hasLoaded = false;
         sceneData.Load();
         SceneManager.sceneLoaded -= LoadAfterFade;
@@ -97,10 +106,12 @@ public class SaveData
 
     private void LoadAfterFade(Scene scene, LoadSceneMode mode)
     {
-        LoadPlayer();
+        if(loadPlayer)
+            LoadPlayer();
         LoadBarrel();
         SaveSystem.hasLoaded = true;
         SceneManager.sceneLoaded -= LoadAfterFade;
+        loadPlayer = true;
     }
 
     protected void LoadPlayer()

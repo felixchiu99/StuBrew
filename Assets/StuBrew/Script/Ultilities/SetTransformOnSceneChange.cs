@@ -10,6 +10,7 @@ public class SetTransformOnSceneChange : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("test");
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -25,20 +26,23 @@ public class SetTransformOnSceneChange : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        GameObject obj = new GameObject();
         transform.position = new Vector3(0, 0, 0);
-        SetChildenPosition();
+        SetChildenPosition(obj);
+        transform.SetParent(obj.transform);
+        //Destroy(gameObject);
     }
 
-    void SetChildenPosition()
+    void SetChildenPosition(GameObject obj)
     {
         foreach (Transform child in transform)
         {
             SetChildPosition(child, new Vector3(Random.Range(-randDist, randDist) + spawnPos.x, spawnPos.y, Random.Range(-randDist, randDist) + spawnPos.z));
             SetHighlightable(child.gameObject, false);
         }
-        for(int i = transform.childCount-1; i > 0; i --)
+        for(int i = transform.childCount-1; i >= 0; i --)
         {
-            transform.GetChild(i).transform.SetParent(null);
+            transform.GetChild(i).transform.SetParent(obj.transform);
         }
     }
 

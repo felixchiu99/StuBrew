@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class DoNotDestroyInArea : ItemInArea
 {
 
-    [SerializeField] UnityEvent<GameObject> OnSceneChange;
+    [SerializeField] UnityEvent OnSceneChange;
     GameObject doNotDestroy;
 
     [SerializeField] Vector3 spawnPos = new Vector3(0, 0, 0);
@@ -27,10 +27,10 @@ public class DoNotDestroyInArea : ItemInArea
     {
         foreach (GameObject obj in GetList())
         {
-            OnSceneChange?.Invoke(obj);
             obj.transform.SetParent(doNotDestroy.transform);
             //DontDestroyOnLoad(obj);
         }
+        OnSceneChange?.Invoke();
     }
 
     public void OnTriggerEnterEvent(Collider col)

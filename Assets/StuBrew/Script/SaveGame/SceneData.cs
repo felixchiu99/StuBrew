@@ -9,6 +9,11 @@ public class SceneData
     public string sceneName;
     public SceneData()
     {
+        sceneName = "";
+    }
+
+    public void Save()
+    {
         Scene scene = SceneManager.GetActiveScene();
         sceneName = scene.name;
     }
@@ -17,6 +22,7 @@ public class SceneData
     {
         //SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
         SaveSystem.sceneChange.sceneName = sceneName;
+        Debug.Log(sceneName);
         SaveSystem.sceneChange.DoFade();
     }
 

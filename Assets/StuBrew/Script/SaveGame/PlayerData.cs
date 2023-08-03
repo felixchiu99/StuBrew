@@ -30,7 +30,6 @@ public class PlayerData
         if (playerObj.name != name)
             return null;
 
-        Debug.Log(playerObj.name + " stored: " + name);
         if (playerObj.TryGetComponent<PcPlayerController>(out PcPlayerController pcPlayer))
         {
             pcPlayer.Teleported();
