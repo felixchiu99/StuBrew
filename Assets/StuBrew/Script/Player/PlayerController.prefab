@@ -2420,8 +2420,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "W A S D to move;\nLeft Mouse Click on interactable object to interact
     / pickup;\n\"Q\" \"E\" while hover on dial to turn;\nScroll while holding to
-    Rotate;\n\tRotation is based on the direction you are facing;\n\tShift While
-    Scrolling to Change direction;"
+    Rotate;\n   Rotation is based on the direction you are facing;\n   Shift While
+    Scrolling to Change direction;\n\"Tab\" To open tablet view;"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

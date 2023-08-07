@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Events;
 
 public class FluidContainer : MonoBehaviour
 {
@@ -10,12 +11,15 @@ public class FluidContainer : MonoBehaviour
     [Tooltip("Current Stored Volume")]
     [SerializeField] protected float currentStored = 0f;
 
+    public event UnityAction UpdateFluidFill;
+
     public float Add(float toAdd)
     {
         float add = 0f;
         add = (currentStored + toAdd) < volume ? toAdd : volume - currentStored;
 
         currentStored = currentStored + add;
+        InvokeUpdateFluidFill();
         return add;
     }
     public float Remove(float toRemove)
@@ -23,6 +27,7 @@ public class FluidContainer : MonoBehaviour
         float removed = 0f;
         removed = (currentStored - toRemove) > 0 ? toRemove : currentStored;
         currentStored = currentStored - removed;
+        InvokeUpdateFluidFill();
         return removed;
     }
 
@@ -64,5 +69,10 @@ public class FluidContainer : MonoBehaviour
     public void SetVolume(float volume)
     {
         this.volume = volume;
+    }
+
+    protected void InvokeUpdateFluidFill()
+    {
+        UpdateFluidFill?.Invoke();
     }
 }
