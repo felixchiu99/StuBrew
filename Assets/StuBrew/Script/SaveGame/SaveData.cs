@@ -75,23 +75,26 @@ public class SaveData
         {
             if (tag.HasTag("Barrel"))
             {
+                Debug.Log("hi");
                 if(tag.gameObject.scene.name != "DontDestroyOnLoad")
                     AddBarrel(tag.gameObject);
             }
             //Instantiate(respawnPrefab, respawn.transform.position, respawn.transform.rotation);
         }
+        Debug.Log("barrel saved " + barrels.Count);
     }
 
-    public void ClearAll()
+    public void ClearAll(bool isDestroy = true)
     {
         players.Clear();
         listOfPlayer.Clear();
 
         barrels.Clear();
-        foreach (GameObject barrel in listOfBarrel)
-        {
-            Object.Destroy(barrel);
-        }
+        if(isDestroy)
+            foreach (GameObject barrel in listOfBarrel)
+            {
+                Object.Destroy(barrel);
+            }
         listOfBarrel.Clear();
     }
 
@@ -100,18 +103,23 @@ public class SaveData
         this.loadPlayer = loadPlayer;
         SaveSystem.hasLoaded = false;
         sceneData.Load();
-        SceneManager.sceneLoaded -= LoadAfterFade;
-        SceneManager.sceneLoaded += LoadAfterFade;
+        SceneManager.sceneLoaded += LoadSceneLoaded;
     }
 
-    private void LoadAfterFade(Scene scene, LoadSceneMode mode)
+    private void LoadSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if(loadPlayer)
+        SceneManager.sceneLoaded -= LoadSceneLoaded;
+        Debug.Log("Loading On Sceneload");
+        if (loadPlayer)
+        {
             LoadPlayer();
+            Debug.Log("Loading Player");
+        }
+
         LoadBarrel();
         SaveSystem.hasLoaded = true;
-        SceneManager.sceneLoaded -= LoadAfterFade;
         loadPlayer = true;
+        SaveSystem.CheckFinishLoading();
     }
 
     protected void LoadPlayer()
@@ -133,5 +141,6 @@ public class SaveData
         {
             listOfBarrel.Add(barrel.Load(SaveSystem.prefab._barrelPrefab));
         }
+        Debug.Log("barrel loaded " + barrels.Count);
     }
 }

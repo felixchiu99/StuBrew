@@ -25,16 +25,17 @@ public class GameData
         {
             saveData[inScene] = new SaveData();
         }
-        saveData[inScene].ClearAll();
+        saveData[inScene].ClearAll(false);
         saveData[inScene].SaveAll();
     }
 
     public void Load(bool loadPlayer = true)
     {
-        Scene scene = SceneManager.GetActiveScene();
-        saveData[scene.buildIndex].Load(loadPlayer);
+        //Scene scene = SceneManager.GetActiveScene();
+        Debug.Log("inScene " + inScene);
+        saveData[inScene].Load(loadPlayer);
         //Debug.Log("auto Loading scene" + scene.buildIndex);
-        inScene = scene.buildIndex;
+        //inScene = scene.buildIndex;
     }
 
     public void Load(int index, bool loadPlayer = true)

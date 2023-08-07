@@ -10,7 +10,6 @@ public class SetTransformOnSceneChange : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("test");
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 

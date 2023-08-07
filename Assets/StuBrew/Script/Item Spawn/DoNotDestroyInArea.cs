@@ -19,7 +19,6 @@ public class DoNotDestroyInArea : ItemInArea
         temp.SetSpawnPos(spawnPos);
         temp.SetRandDist(randDist);
 
-
         DontDestroyOnLoad(doNotDestroy);
     }
 
@@ -28,7 +27,6 @@ public class DoNotDestroyInArea : ItemInArea
         foreach (GameObject obj in GetList())
         {
             obj.transform.SetParent(doNotDestroy.transform);
-            //DontDestroyOnLoad(obj);
         }
         OnSceneChange?.Invoke();
     }

@@ -36,23 +36,27 @@ public class OnTriggerCall : MonoBehaviour
     [Tooltip("The GameObjects that Triggers")]
     [SerializeField] List<GameObject> gameObjects;
 
+    [SerializeField] List<Collider> ignoreColliders;
+
     [SerializeField] UnityEvent<Collider> OnTriggerEnterCall;
     [SerializeField] UnityEvent<Collider> OnTriggerStayCall;
     [SerializeField] UnityEvent<Collider> OnTriggerExitCall;
 
     private void OnTriggerEnter(Collider other)
     {
-        if(CheckType(other))
+        if (CheckType(other) && !ignoreColliders.Contains(other))
+        {
             OnTriggerEnterCall?.Invoke(other);
+        }
     }
     private void OnTriggerStay(Collider other)
     {
-        if (CheckType(other))
+        if (CheckType(other) && !ignoreColliders.Contains(other))
             OnTriggerStayCall?.Invoke(other);
     }
     private void OnTriggerExit(Collider other)
     {
-        if (CheckType(other))
+        if (CheckType(other) && !ignoreColliders.Contains(other))
             OnTriggerExitCall?.Invoke(other);
     }
 

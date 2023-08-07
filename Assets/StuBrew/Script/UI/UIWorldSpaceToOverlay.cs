@@ -16,7 +16,7 @@ public class UIWorldSpaceToOverlay : MonoBehaviour
         UI.transform.SetParent(parentUnder);
         UI.renderMode = RenderMode.ScreenSpaceOverlay;
         UIScaler.uiScaleMode = UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize;
-        UIScaler.referenceResolution = new Vector3(600, 450);
+        UIScaler.referenceResolution = new Vector3(600, 480);
         UI.gameObject.SetActive(true);
         gameObject.SetActive(true);
         OnOverlay?.Invoke();

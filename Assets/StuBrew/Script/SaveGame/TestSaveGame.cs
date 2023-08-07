@@ -48,10 +48,13 @@ public class TestSaveGame : MonoBehaviour
     public void LoadScene(int sceneIndex)
     {
         if (SaveSystem.CheckIfExist(sceneIndex))
+        {
+            Debug.Log("Load auto");
             SaveSystem.Load(3, sceneIndex, false);
+        }
         else
         {
-            if (sceneIndex < SceneManager.sceneCountInBuildSettings && sceneIndex >= 0) 
+            if (sceneIndex < SceneManager.sceneCountInBuildSettings && sceneIndex >= 0)
             {
                 string path = SceneUtility.GetScenePathByBuildIndex(sceneIndex);
                 int slash = path.LastIndexOf('/');

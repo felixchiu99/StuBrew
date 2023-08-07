@@ -8576,6 +8576,7 @@ MonoBehaviour:
   - Player
   customTags: []
   gameObjects: []
+  ignoreColliders: []
   OnTriggerEnterCall:
     m_PersistentCalls:
       m_Calls:
@@ -29838,6 +29839,12 @@ Transform:
   m_Father: {fileID: 1355393639}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1121722646 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 2013857264847840867, guid: b024588b635c2e74c8ed38f510521a9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1490260333}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1122602884
 GameObject:
   m_ObjectHideFlags: 0
@@ -36695,6 +36702,12 @@ Transform:
   m_Father: {fileID: 1871908252}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1596500252 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 3424088484455848241, guid: b024588b635c2e74c8ed38f510521a9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1490260333}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1598625721
 GameObject:
   m_ObjectHideFlags: 0
@@ -39413,6 +39426,7 @@ MonoBehaviour:
   tags: []
   customTags: []
   gameObjects: []
+  ignoreColliders: []
   OnTriggerEnterCall:
     m_PersistentCalls:
       m_Calls:
@@ -39782,6 +39796,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2425446882663252032, guid: 5e424c17717a3c14c95ef7ae657b8921,
+        type: 3}
+      propertyPath: m_Name
+      value: TPCubeBrew
+      objectReference: {fileID: 0}
+    - target: {fileID: 2425446882663252038, guid: 5e424c17717a3c14c95ef7ae657b8921,
+        type: 3}
+      propertyPath: ignoreColliders.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2425446882663252038, guid: 5e424c17717a3c14c95ef7ae657b8921,
+        type: 3}
+      propertyPath: ignoreColliders.Array.data[0]
+      value: 
+      objectReference: {fileID: 1121722646}
+    - target: {fileID: 2425446882663252038, guid: 5e424c17717a3c14c95ef7ae657b8921,
+        type: 3}
+      propertyPath: ignoreColliders.Array.data[1]
+      value: 
+      objectReference: {fileID: 1596500252}
     - target: {fileID: 2425446882663252038, guid: 5e424c17717a3c14c95ef7ae657b8921,
         type: 3}
       propertyPath: OnTriggerEnterCall.m_PersistentCalls.m_Calls.Array.size

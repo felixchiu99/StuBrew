@@ -15,15 +15,19 @@ public static class SaveSystem
     static GameData saveData = new GameData();
 
     static public event UnityAction OnFilenameChange;
+    
+    static public event UnityAction OnFinishLoadedScene;
 
     [SerializeField]
     static FilenameData filename = new FilenameData();
 
     public static bool hasLoaded = true;
+    public static bool isLoading = false;
 
     static SaveSystem()
     {
         LoadFileName();
+        OnFinishLoadedScene += OnLoaded;
     }
 
     public static void ClearFileName()
@@ -50,6 +54,7 @@ public static class SaveSystem
         //Debug.Log("saving" + data);
         OnFilenameChange?.Invoke();
     }
+
     public static void LoadFileName()
     {
         string saveFile = Application.persistentDataPath + "/saveFilename.json";
@@ -65,12 +70,13 @@ public static class SaveSystem
 
     public static void Save(int saveNum = 3)
     {
+        Debug.Log("Saving " + filename.GetFilename(saveNum));
+
         //retrieve and format data
         saveData.SaveAll();
 
         //save data
         string data = JsonUtility.ToJson(saveData);
-        Debug.Log(filename.GetFilename(saveNum) + " saving ");
         if (!filename.IsSaved(saveNum))
         {
             filename.SetSave(saveNum);
@@ -79,25 +85,6 @@ public static class SaveSystem
 
         SaveFileName();
     }
-
-    /* with save data system
-    public static void Save(int saveNum = 3)
-    {
-        //retrieve and format data
-        saveData.SaveAll();
-
-        //save data
-        string data = JsonUtility.ToJson(saveData);
-        Debug.Log(data);
-        if (!filename.IsSaved(saveNum))
-        {
-            filename.SetSave(saveNum);
-        }
-        File.WriteAllText(Application.persistentDataPath + "/" + filename.GetFilename(saveNum) + ".json", data);
-
-        SaveFileName();
-    }
-    */
 
     public static bool CheckIfExist(int sceneIndex)
     {
@@ -107,18 +94,25 @@ public static class SaveSystem
 
     public static void Load(int saveNum = 3, int index = -1, bool loadPlayer = true)
     {
+        if (isLoading)
+            return;
+        isLoading = true;
         string saveFile = Application.persistentDataPath + "/" + filename.GetFilename(saveNum) + ".json";
         if (File.Exists(saveFile))
         {
             // Read the entire file and save its contents.
+            Debug.Log("Loading " + filename.GetFilename(saveNum));
             string fileContents = File.ReadAllText(saveFile);
-            Debug.Log(filename.GetFilename(saveNum) + " Loading ");
             // Work with JSON
             GameData newSave = CreateFromJson(fileContents);
-            if(index == -1)
+            if (index == -1)
+            {
+                Debug.Log("index not found");
                 newSave.Load();
+            }
             else
             {
+                Debug.Log("index"+ index);
                 newSave.Load(index, loadPlayer);
             }
             saveData.ClearAll();
@@ -131,5 +125,18 @@ public static class SaveSystem
         return JsonUtility.FromJson<GameData>(jsonString);
     }
 
+    public static void CheckFinishLoading()
+    {
+        if (true)
+        {
+            Debug.Log("on finished");
+            OnFinishLoadedScene?.Invoke();
+        }
+    }
 
+    public static void OnLoaded()
+    {
+        Save(3);
+        isLoading = false;
+    }
 }
