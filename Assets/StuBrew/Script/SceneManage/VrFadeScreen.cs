@@ -118,7 +118,6 @@ public class VrFadeScreen : MonoBehaviour
     private void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
         //We can now fade in
-        SaveSystem.Load(3);
         StartCoroutine(FadeIt(sceneChange, FadeDirection.In, _fadeInDuration));
     }
 }

@@ -76,6 +76,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &482988486216219111
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6301288632118052652}
+  m_Layer: 0
+  m_Name: FloatingSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6301288632118052652
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482988486216219111}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.525, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3210109177594300916}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &1733601941448590796
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,6 +598,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3210109177594300916}
   - component: {fileID: 3210109177594300917}
+  - component: {fileID: 4931892247870893804}
   m_Layer: 0
   m_Name: Dispenser
   m_TagString: Untagged
@@ -593,6 +625,7 @@ Transform:
   - {fileID: 3384079235322612910}
   - {fileID: 3210109179229047759}
   - {fileID: 247158980245867657}
+  - {fileID: 6301288632118052652}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -618,6 +651,7 @@ MonoBehaviour:
   displayText2: {fileID: 2248025062829940530}
   costText: {fileID: 7694202922277295486}
   costText2: {fileID: 1533585285525294937}
+  floatingNumAni: {fileID: 4931892247870893804}
   playSFX:
     m_PersistentCalls:
       m_Calls:
@@ -635,6 +669,21 @@ MonoBehaviour:
         m_CallState: 2
   prevBtn: {fileID: 1778345684311910719}
   nextBtn: {fileID: 1778345683464070200}
+--- !u!114 &4931892247870893804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3210109177594300919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c106aafe984e3984f940414d21da3900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatingTextPrefab: {fileID: 6606435606290256556, guid: e605fd740597afa4382104cba903dbca,
+    type: 3}
+  floatingTextSpawn: {fileID: 6301288632118052652}
 --- !u!1 &3210109177952903542
 GameObject:
   m_ObjectHideFlags: 0
@@ -767,6 +816,7 @@ MonoBehaviour:
   tags: []
   customTags: []
   gameObjects: []
+  ignoreColliders: []
   OnTriggerEnterCall:
     m_PersistentCalls:
       m_Calls: []

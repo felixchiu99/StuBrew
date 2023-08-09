@@ -29,6 +29,8 @@ public class ItemDispenser : MonoBehaviour
     [SerializeField] TextMeshProUGUI costText;
     [SerializeField] TextMeshProUGUI costText2;
 
+    [SerializeField] FloatingNumAni floatingNumAni;
+
     private bool canSpawn = true;
 
     [Tooltip("SFX index : 0 - buy, 1 - prev, 2 - next, 3 - buyFail, 4 - spawn(no cost)")]
@@ -110,8 +112,11 @@ public class ItemDispenser : MonoBehaviour
         bool transectionSuccess = CurrencyManager.Instance.Deduct((int)objList[selector].info.GetItem().GetSellingPrice());
         if (transectionSuccess)
         {
-            if((int)objList[selector].info.GetItem().GetSellingPrice() > 0)
+            if ((int)objList[selector].info.GetItem().GetSellingPrice() > 0)
+            {
+                floatingNumAni.SpawnFloatingText("-$" + ((int)objList[selector].info.GetItem().GetSellingPrice()).ToString());
                 playSFX?.Invoke(0);
+            }
             else
                 playSFX?.Invoke(4);
             SpawnItem();
