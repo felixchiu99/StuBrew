@@ -38,7 +38,7 @@ public class UIList : MonoBehaviour
 
     int firstItem = 0;
     int maxShownOnPage = 0;
-    void Awake()
+    void Start()
     {
         GetUIListComponents();
 
